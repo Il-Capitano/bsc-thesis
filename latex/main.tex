@@ -1,0 +1,456 @@
+\documentclass[a4paper,12pt,titlepage]{article}
+\usepackage{fancyhdr}
+\usepackage{t1enc}
+\usepackage[utf8]{inputenc}
+\usepackage[magyar]{babel}
+\usepackage{lmodern}
+\usepackage[pdftex]{graphicx}
+\usepackage[lflt]{floatflt}
+\usepackage{epstopdf}
+\usepackage{amsmath,amssymb}
+\usepackage{icomma}
+\usepackage{array}
+\usepackage[unicode,colorlinks]{hyperref}
+\usepackage{fullpage}
+\usepackage{booktabs}
+\usepackage{subcaption}
+\usepackage{mathtools}
+\usepackage{physics}
+
+\hypersetup{allcolors=black}
+\hypersetup{pdfstartview=FitH}
+\hypersetup{pdfinfo={
+	Title={Szupravezetőbeli spin- és töltéskorrelációk elméleti vizsgálata},
+	Author={},
+	Subject={},
+	Keywords={}
+}}
+
+
+\title{\bf Szupravezetőbeli spin- és töltéskorrelációk elméleti vizsgálata}
+\author{Hajdú Csanád \\ \small Témavezető: Dr.\ Zaránd Gergely Attila}
+\date{2021.\ 05.\ 21.}
+\topmargin = 0pt
+\headheight = 14.5pt
+\headsep = 14.5pt
+
+\pagestyle{fancy}
+\lhead{\small {{Szupravezetőbeli spin- és töltéskorrelációk elméleti vizsgálata} -- 2021.\ 05.\ 21.}}
+\rhead{Hajdú Csanád}
+
+\widowpenalty=10000 \clubpenalty=10000
+
+% taken from https://tex.stackexchange.com/a/175245
+\makeatletter
+\DeclareRobustCommand*\uell{\mathpalette\@uell\relax}
+\newcommand*\@uell[2]{
+	% We need to adjust the width of \uell to be the same as \ell
+	\setbox0=\hbox{$#1\ell$}
+	\setbox1=\hbox{\rotatebox{10}{$#1\ell$}}
+	\dimen0=\wd0 \advance\dimen0 by -\wd1 \divide\dimen0 by 2
+	\mathord{\lower 0.1ex \hbox{\kern\dimen0\unhbox1\kern\dimen0}}
+}
+
+\newcommand{\KK}{{\vb{k}}}
+\newcommand{\LL}{{\boldsymbol\uell}}
+\newcommand{\RR}{{\vb{r}}}
+\newcommand{\phantomdagger}{{\phantom{\dagger}}}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents \newpage
+
+
+% ================================================================
+\section{Bevezetés}
+
+A szupravezetés a 20.\ század elején lett felfedezve Heike Kamerlingh Onnes holland fizikus által.  A jelenség leírására több fenomenológikus elmélet is született, az első kvantummechanikai elméletet 1957-ben publikálta Bardeen\footnote{John Bardeen, kétszeres Nobel-díjas (1956 és 1972) amerikai mérnök és fizikus}, Cooper\footnote{Leon N.\ Cooper, Nobel-díjas (1972) amerikai fizikus} és Schrieffer\footnote{John Robert Schrieffer, Nobel-díjas (1972) amerikai fizikus}, amiért 1972-ben megkapták a fizikai Nobel-díjat.  Az elméletük a BCS-elmélet.
+
+A szupravezetés jelensége a mai napig fontos, többek között használják az orvostudományban (MRI), kutatásban (részecskegyorsítók), méréstechnikában (volt definíciója) és az energiaiparban (fúziós erőművek, szélerőművek) is.
+
+A dolgozat során a BCS-elméletben használt szupravezető alapállapot segítségével levezetjük az elektronok töltéskorrelációs, illetve spinkorrelációs függvényét.  A kapott függvények asszimptotikus viselkedését összevetjük a normálállapotú korrelációs függvényekkel.
+
+
+% ================================================================
+\section{Fizikai modell}
+
+\subsection{BCS-elmélet}
+
+A BCS-elméletben használt szupravezető alapállapot hullámfüggvénye
+\begin{equation}
+	\tilde{\phi} = \prod\limits_\KK \left( u_\KK + v_\KK \, c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger \right) \phi_0,
+\end{equation}
+ahol $\phi_0$ a vákuum állapot, $c_{\KK \sigma}^\dagger$ a $\left( \KK \sigma \right)$ sajátállapotú elektron keltő operátora, $u_\KK$ és $v_\KK$ pedig általános esetben komplex együtthatók.  A hullámfüggvény normálásának feltétele, hogy
+\begin{equation} \label{u-v-norm}
+	\left| u_\KK \right|^2 + \left| v_\KK \right|^2 = 1.
+\end{equation}
+
+Ezzel a formalizmussal a normálállapot alapállapota is leírható, ahol minden elektronállapot be van töltve a Fermi-felületig,
+\begin{equation}
+	\tilde{\phi}_\text{n} = \prod\limits_{\left| \KK \right| < k_\text{F}} c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger \phi_0,
+\end{equation}
+ez az
+\begin{equation}
+	u_\KK = \left\{ \begin{array}{ll} 0, & \text{ha } \left| \KK \right| < k_\text{F} \\ 1, & \text{ha } \left| \KK \right| > k_\text{F} \end{array} \right.
+	~~~ \text{és} ~~~
+	v_\KK = \left\{ \begin{array}{ll} 1, & \text{ha } \left| \KK \right| < k_\text{F} \\ 0, & \text{ha } \left| \KK \right| > k_\text{F} \end{array} \right.
+\end{equation}
+együtthatóknak felel meg.
+
+\subsection{Hamilton-operátor meghatározása}
+
+A szupravezető állapot Hamilton-operátora két részből áll, a $H_0$ kinetikus és a $H_\text{int}$ kölcsönhatási tagból.  A kinetikus tag egyszerűen az egyes részecskék kinetikus energiájának összege,
+\begin{equation}
+	H_0 = \sum\limits_\KK \xi_\KK \left( c_{\KK \uparrow}^\dagger c_{\KK \uparrow} + c_{\KK \downarrow}^\dagger c_{\KK \downarrow} \right),
+\end{equation}
+ahol
+$$ \xi_\KK = \frac{\hbar^2 k^2}{2 m} - E_\text{F}. $$
+A kölcsönhatási tag
+\begin{equation} \label{H-int-def}
+	H_\text{int} = \sum\limits_{\KK, \LL} V_{\KK \LL} \, c_{\LL \uparrow}^\dagger c_{-\LL \downarrow}^\dagger c_{-\KK \downarrow} c_{\KK \uparrow}
+\end{equation}
+lesz, ahol $V_{\KK \LL}$ azt jellemzi, hogy két elektron kölcsönhatásánál mekkora a valószínűsége, hogy a $\left( \KK \uparrow, -\KK \downarrow \right)$ állapotból az $\left( \LL \uparrow, -\LL \downarrow \right)$ állapotba kerüljenek.
+
+A kölcsönhatási tag meghatározásához vezessük be a $\phi_{\KK 0}$ és $\phi_{\KK 1}$ állapotokat, amikben rendre a $\left( \KK \uparrow, -\KK \downarrow \right)$ állapot nincs, illetve be van betöltve.  Ennek segítségével $\tilde{\phi}$ felírható,
+\begin{equation}
+	\tilde{\phi} = (u_\KK + v_\KK \, c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger) \phi_{\KK 0} = u_\KK \phi_{\KK 0} + v_\KK \phi_{\KK 1}
+\end{equation}
+alakban.  Hasonló módon bevezethető a $\phi_{\KK i \LL j}$ állapot is, amiben $i$ és $j$ rendre a $\left( \KK \uparrow, -\KK \downarrow \right)$ és $\left( \LL \uparrow, -\LL \downarrow \right)$ állapotok betöltöttségét jelöli.  Ezek segítségével is felírhatjuk $\tilde{\phi}$-t,
+\begin{equation} \label{phi-tilde-kl}
+	\begin{split}
+	\tilde{\phi} & = \left( u_\KK + v_\KK \, c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger \right) \left( u_\LL + v_\LL \, c_{\LL \uparrow}^\dagger c_{-\LL \downarrow}^\dagger \right) \phi_{\KK 0 \LL 0} = \\
+	& = u_\KK u_\LL \phi_{\KK 0 \LL 0} + u_\KK v_\LL \phi_{\KK 0 \LL 1} + v_\KK u_\LL \phi_{\KK 1 \LL 0} + v_\KK v_\LL \phi_{\KK 1 \LL 1}.
+	\end{split}
+\end{equation}
+A \eqref{H-int-def} definícióból ezután következik, hogy
+\begin{equation}
+	\matrixelement{\tilde{\phi}}{H_\text{int}}{\tilde{\phi}} = \sum\limits_{\KK, \LL} \left( V_{\KK \LL} v_\KK^* u_\LL^* u_\KK v_\LL + V_{\LL \KK} u_\KK^* v_\LL^* v_\KK u_\LL \right).
+\end{equation}
+Továbbá definiáljuk a $\Delta_\KK$ mennyiséget is,
+\begin{equation}
+	\Delta_\KK \coloneqq - \sum\limits_\LL V_{\KK \LL} u_\LL^* v_\LL,
+\end{equation}
+aminek segítségével
+\begin{equation} \label{Hintmatrix}
+	\matrixelement{\tilde{\phi}}{H_\text{int}}{\tilde{\phi}} = - \sum\limits_\KK \left( \Delta_\KK u_\KK v_\KK^* + \Delta_\KK^* u_\KK^* v_\KK \right)
+\end{equation}
+felírható.
+
+$H_\text{int}$ alakjának meghatározásához vizsgáljuk meg a $c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger$ operátor várhatóértékét,
+\begin{equation}
+\begin{split}
+	\matrixelement{\tilde{\phi}}{c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger}{\tilde{\phi}} & = v_\KK^* \matrixelement{\phi_{\KK 1}}{c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger}{\phi_{\KK 0}} u_\KK = u_\KK v_\KK^*, \\
+	\matrixelement{\tilde{\phi}}{c_{-\KK \downarrow} c_{\KK \uparrow}}{\tilde{\phi}} & = \matrixelement{\tilde{\phi}}{c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger}{\tilde{\phi}}^* = u_\KK^* v_\KK.
+\end{split}
+\end{equation}
+Ez alapján \eqref{Hintmatrix} átalakítható,
+\begin{equation}
+\begin{split}
+	\matrixelement{\tilde{\phi}}{H_\text{int}}{\tilde{\phi}} & = - \sum\limits_\KK \left( \Delta_\KK \matrixelement{\tilde{\phi}}{c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger}{\tilde{\phi}} + \Delta_\KK^* \matrixelement{\tilde{\phi}}{c_{-\KK \downarrow} c_{\KK \uparrow}}{\tilde{\phi}} \right) \\
+	& = \matrixelement{\tilde{\phi}}{- \sum\limits_\KK \left( \Delta_\KK c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger + \Delta_\KK^* c_{-\KK \downarrow} c_{\KK \uparrow} \right)}{\tilde{\phi}},
+\end{split}
+\end{equation}
+így $H_\text{int}$ teljes alakja
+\begin{equation}
+	H_\text{int} = - \sum\limits_\KK \left( \Delta_\KK c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger + \Delta_\KK^* c_{-\KK \downarrow} c_{\KK \uparrow} \right).
+\end{equation}
+
+A teljes Hamilton-operátor így felírható,
+\begin{equation}
+	H_\text{BCS} = H_0 + H_\text{int} = \sum\limits_\KK \left[ \xi_\KK \left( c_{\KK \uparrow}^\dagger c_{\KK \uparrow} + c_{\KK \downarrow}^\dagger c_{\KK \downarrow} \right) - \Delta_\KK c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger - \Delta_\KK^* c_{-\KK \downarrow} c_{\KK \uparrow} \right].
+\end{equation}
+
+
+\subsection{Az szupravezető-állapot léptetőoperátorai}
+
+Feltételezzük, hogy $H_\text{BCS}$ felírható léptetőoperátorok segítségével, vagyis
+\begin{equation} \label{H-BCS}
+	H_\text{BCS} = \sum\limits_\KK E_\KK \left( \gamma_{\KK \uparrow}^\dagger \gamma_{\KK \uparrow} + \gamma_{\KK \downarrow}^\dagger \gamma_{\KK \downarrow} \right) + E_0,
+\end{equation}
+ahol a $\gamma_{\KK \sigma}$ operátorok a szupravezető-állapot léptetőoperátorai.  Továbbá feltételezzük, hogy ezek az operátorok felírhatók a $c_{\KK \sigma}$ operátorok lineáris kombinációjaként,
+\begin{equation} \label{gamma-from-c}
+	\gamma_{\KK \uparrow}^\dagger = A \, c_{\KK \uparrow}^\dagger + B \, c_{-\KK \downarrow}, ~~~~~~~~ A, B \in \mathbb{C},
+\end{equation}
+\begin{equation}
+	\gamma_{\KK \downarrow}^\dagger = C \, c_{\KK \downarrow}^\dagger + D \, c_{-\KK \uparrow}, ~~~~~~~~ C, D \in \mathbb{C}.
+\end{equation}
+A $\gamma_{\KK \sigma}$ operátorokra továbbá igaz, hogy
+\begin{equation} \label{gamma-anticommutator-zero}
+	\left\{ \gamma_{\KK \sigma}^\phantomdagger, \gamma_{\KK^\prime \sigma^\prime}^\phantomdagger \right\} = \left\{ \gamma_{\KK \sigma}^\dagger, \gamma_{\KK^\prime \sigma^\prime}^\dagger \right\} = 0,
+\end{equation}
+\begin{equation} \label{gamma-anticommutator}
+	\left\{ \gamma_{\KK \sigma}^\phantomdagger, \gamma_{\KK^\prime \sigma^\prime}^\dagger \right\} = \delta_{\KK \KK^\prime} \delta_{\sigma \sigma^\prime},
+\end{equation}
+\begin{equation} \label{gamma-zero}
+	\gamma_{\KK \sigma} \tilde{\phi} = 0,
+\end{equation}
+ahol $\left\{ A, B \right\} = A B + B A$ az antikommutátor.
+
+Számoljuk ki $\gamma_{\LL \uparrow}$-t \eqref{gamma-from-c} és \eqref{gamma-zero} összefüggések felhasználásával.  Ehhez nézzük meg $c_{\LL \uparrow}$ és $c_{-\LL \downarrow}^\dagger$ hatását a $\tilde{\phi}$ alapállapotra.
+\begin{equation}
+\begin{split}
+	c_{\LL \uparrow} \tilde{\phi} & = c_{\LL \uparrow} \prod\limits_\KK \left( u_\KK + v_\KK \, c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger \right) \phi_0 = \\
+	& = \prod\limits_{\KK \neq \LL} \left( u_\KK + v_\KK \, c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger \right) c_{\LL \uparrow} \left( u_\LL + v_\LL \, c_{\LL \uparrow}^\dagger c_{-\LL \downarrow}^\dagger \right) \phi_0 = \\
+	& = \prod\limits_{\KK \neq \LL} \left( u_\KK + v_\KK \, c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger \right) \left( u_\LL c_{\LL \uparrow} + v_\LL \left( 1 - c_{\LL \uparrow}^\dagger c_{\LL \uparrow} \right) c_{-\LL \downarrow}^\dagger \right) \phi_0 = \\
+	& = \prod\limits_{\KK \neq \LL} \left( u_\KK + v_\KK \, c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger \right) \left( u_\LL c_{\LL \uparrow} + v_\LL c_{-\LL \downarrow}^\dagger - v_\LL c_{\LL \uparrow}^\dagger c_{\LL \uparrow} c_{-\LL \downarrow}^\dagger \right) \phi_0 = \\
+	& = \prod\limits_{\KK \neq \LL} \left( u_\KK + v_\KK \, c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger \right) v_\LL c_{-\LL \downarrow}^\dagger \phi_0
+\end{split}
+\end{equation}
+és
+\begin{equation}
+\begin{split}
+	c_{-\LL \downarrow}^\dagger \tilde{\phi} & = c_{-\LL \downarrow}^\dagger \prod\limits_\KK \left( u_\KK + v_\KK \, c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger \right) \phi_0 = \\
+	& = \prod\limits_{\KK \neq \LL} \left( u_\KK + v_\KK \, c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger \right) c_{-\LL \downarrow}^\dagger \left( u_\LL + v_\LL \, c_{\LL \uparrow}^\dagger c_{-\LL \downarrow}^\dagger \right) \phi_0 = \\
+	& = \prod\limits_{\KK \neq \LL} \left( u_\KK + v_\KK \, c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger \right) \left( u_\LL c_{-\LL \downarrow}^\dagger - v_\LL c_{\LL \uparrow}^\dagger c_{-\LL \downarrow}^\dagger c_{-\LL \downarrow}^\dagger \right) \phi_0 = \\
+	& = \prod\limits_{\KK \neq \LL} \left( u_\KK + v_\KK \, c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger \right) u_\LL c_{-\LL \downarrow}^\dagger \phi_0.
+\end{split}
+\end{equation}
+Így $\gamma_{\LL \uparrow}$ kifejezhető a \eqref{gamma-anticommutator} feltétel szerint,
+\begin{equation}
+	\gamma_{\LL \uparrow} \tilde{\phi} = \left( u_\LL c_{\LL \uparrow} - v_\LL c_{-\LL \downarrow}^\dagger \right) \tilde{\phi} = 0 ~~~ \Rightarrow ~~~ \gamma_{\LL \uparrow} = u_\LL c_{\LL \uparrow} - v_\LL c_{-\LL \downarrow}^\dagger.
+\end{equation}
+Megjegyezzük, hogy az együtthatókban van egy komplex fázisnyi szabadsági fok, ezt konvenció szerint úgy választjuk meg, hogy $u_\LL$ együtthatója egység legyen.
+
+$\gamma_{-\LL \downarrow}$-t hasonlóan kiszámolva végeredményül a különböző $\gamma_{\LL \sigma}$ operátorokra
+\begin{equation} \label{gamma}
+\begin{split}
+	\gamma_{\LL \uparrow}         & = u_\LL c_{\LL \uparrow} - v_\LL c_{-\LL \downarrow}^\dagger, \\
+	\gamma_{\LL \uparrow}^\dagger & = u_\LL^* c_{\LL \uparrow}^\dagger - v_\LL^* c_{-\LL \downarrow}, \\
+	\gamma_{-\LL \downarrow}         & = u_\LL c_{-\LL \downarrow} + v_\LL c_{\LL \uparrow}^\dagger, \\
+	\gamma_{-\LL \downarrow}^\dagger & = u_\LL^* c_{-\LL \downarrow}^\dagger + v_\LL^* c_{\LL \uparrow}
+\end{split}
+\end{equation}
+adódnak.  Az összefüggéseket invertálva megkaphatjuk a $c_{\KK \sigma}$ operátorokat is,
+\begin{equation}
+\begin{split}
+	c_{\LL \uparrow}         & = u_\LL^* \gamma_{\LL \uparrow} + v_\LL \gamma_{-\LL \downarrow}^\dagger, \\
+	c_{\LL \uparrow}^\dagger & = u_\LL \gamma_{\LL \uparrow}^\dagger + v_\LL^* \gamma_{-\LL \downarrow}, \\
+	c_{-\LL \downarrow}         & = -v_\LL \gamma_{\LL \uparrow}^\dagger + u_\LL^* \gamma_{-\LL \downarrow}, \\
+	c_{-\LL \downarrow}^\dagger & = -v_\LL^* \gamma_{\LL \uparrow} + u_\LL \gamma_{-\LL \downarrow}^\dagger.
+\end{split}
+\end{equation}
+
+
+\subsection{$u_\KK$ és $v_\KK$ kiszámolása}
+
+$u_\KK$ és $v_\KK$ kiszámolásához a \eqref{H-BCS} Hamilton-operátort és a léptetőoperátorok tulajdonságait használjuk fel.  Felírható, hogy
+\begin{equation}
+	H_\text{BCS} \gamma_{\LL \uparrow}^\dagger \tilde{\phi} = \gamma_{\LL \uparrow}^\dagger \left( H_\text{BCS} + E_\LL \right) \tilde{\phi},
+\end{equation}
+amit tovább írva,
+\begin{equation}
+	\left[ H_\text{BCS}, \gamma_{\LL \uparrow}^\dagger \right] = E_\LL \gamma_{\LL \uparrow}^\dagger.
+\end{equation}
+$\left[ H_\text{BCS}, \gamma_{\LL \uparrow}^\dagger \right]$ kiszámolásához számoljuk ki egyenként $\left[ H_\text{BCS}, c_{\LL \uparrow}^\dagger \right]$ és $\left[ H_\text{BCS}, c_{-\LL \downarrow} \right]$ értékét,
+\begin{equation}
+\begin{split}
+	\left[ H_\text{BCS}, c_{\LL \uparrow}^\dagger \right] & = \left[ \sum\limits_\KK \left(\xi_\KK \left( c_{\KK \uparrow}^\dagger c_{\KK \uparrow} + c_{\KK \downarrow}^\dagger c_{\KK \downarrow} \right) - \Delta_\KK c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger - \Delta_\KK^* c_{-\KK \downarrow} c_{\KK \uparrow} \right), c_{\LL \uparrow}^\dagger \right] = \\
+	& = \xi_\LL \left[ c_{\LL \uparrow}^\dagger c_{\LL \uparrow}, c_{\LL \uparrow}^\dagger \right] - \Delta_\LL^* \left[ c_{-\LL \downarrow} c_{\LL \uparrow}, c_{\LL \uparrow}^\dagger \right] = \\
+	& = \xi_\LL \left( c_{\LL \uparrow}^\dagger c_{\LL \uparrow} c_{\LL \uparrow}^\dagger - c_{\LL \uparrow}^\dagger c_{\LL \uparrow}^\dagger c_{\LL \uparrow} \right) - \Delta_\LL^* \left( c_{-\LL \downarrow} c_{\LL \uparrow} c_{\LL \uparrow}^\dagger - c_{\LL \uparrow}^\dagger c_{-\LL \downarrow} c_{\LL \uparrow} \right) = \\
+	& = \xi_\LL \left( c_{\LL \uparrow}^\dagger - c_{\LL \uparrow}^\dagger c_{\LL \uparrow}^\dagger c_{\LL \uparrow} \right) - \Delta_\LL^* \left( c_{-\LL \downarrow} - c_{-\LL \downarrow} c_{\LL \uparrow}^\dagger c_{\LL \uparrow} + c_{-\LL \downarrow} c_{\LL \uparrow}^\dagger c_{\LL \uparrow} \right) = \\
+	& = \xi_\LL c_{\LL \uparrow}^\dagger - \Delta_\LL^* c_{-\LL \downarrow},
+\end{split}
+\end{equation}
+illetve
+\begin{equation}
+\begin{split}
+	\left[ H_\text{BCS}, c_{-\LL \downarrow} \right] & = \left[ \sum\limits_\KK \left(\xi_\KK \left( c_{\KK \uparrow}^\dagger c_{\KK \uparrow} + c_{\KK \downarrow}^\dagger c_{\KK \downarrow} \right) - \Delta_\KK c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger - \Delta_\KK^* c_{-\KK \downarrow} c_{\KK \uparrow} \right), c_{-\LL \downarrow} \right] = \\
+	& = \xi_\LL \left[ c_{-\LL \downarrow}^\dagger c_{-\LL \downarrow}, c_{-\LL \downarrow} \right] - \Delta_\LL \left[ c_{\LL \uparrow}^\dagger c_{-\LL \downarrow}^\dagger, c_{-\LL \downarrow} \right] = \\
+	& = \xi_\LL \left( c_{-\LL \downarrow}^\dagger c_{-\LL \downarrow} c_{-\LL \downarrow} - c_{-\LL \downarrow} c_{-\LL \downarrow}^\dagger c_{-\LL \downarrow} \right) - \Delta_\LL \left( c_{\LL \uparrow}^\dagger c_{-\LL \downarrow}^\dagger c_{-\LL \downarrow} - c_{-\LL \downarrow} c_{\LL \uparrow}^\dagger c_{-\LL \downarrow}^\dagger \right) = \\
+	& = -\xi_\LL \left( c_{-\LL \downarrow} - c_{-\LL \downarrow} c_{-\LL \downarrow} c_{-\LL \downarrow}^\dagger \right) - \Delta_\LL \left( c_{\LL \uparrow}^\dagger - c_{\LL \uparrow}^\dagger c_{-\LL \downarrow} c_{-\LL \downarrow}^\dagger + c_{\LL \uparrow}^\dagger c_{-\LL \downarrow} c_{-\LL \downarrow}^\dagger \right) = \\
+	& = -\xi_\LL c_{-\LL \downarrow} - \Delta_\LL c_{\LL \uparrow}^\dagger.
+\end{split}
+\end{equation}
+A \eqref{gamma} összefüggést felhasználva felírható, hogy
+\begin{equation}
+	u_\LL^* \left( \xi_\LL c_{\LL \uparrow}^\dagger - \Delta_\LL^* c_{-\LL \downarrow} \right) - v_\LL^* \left( -\xi_\LL c_{-\LL \downarrow} - \Delta_\LL c_{\LL \uparrow}^\dagger \right) = E_\LL \left( u_\LL^* c_{\LL \uparrow}^\dagger - v_\LL^* c_{-\LL \downarrow} \right),
+\end{equation}
+amit egy lineáris egyenletrendszerre hozhatunk,
+\begin{equation}
+	\begin{pmatrix}
+		\xi_\LL & \Delta_\LL \\
+		\Delta_\LL^* & -\xi_\LL
+	\end{pmatrix} \begin{pmatrix} u_\LL^* \\ v_\LL^* \end{pmatrix}
+	= E_\LL \begin{pmatrix} u_\LL^* \\ v_\LL^* \end{pmatrix}.
+\end{equation}
+A sajátértékekre $E_\LL = \pm \sqrt{\xi_\LL^2 + \left| \Delta_\LL \right|^2}$ adódik, amiből a pozitív előjelűnek van fizikai értelme.  Az egyenletrendszert megoldva úgy, hogy az eredmény kielégítse a \eqref{u-v-norm} feltételt,
+\begin{equation}
+	u_\LL^* = \frac{\Delta_\LL}{\sqrt{2 E_\LL \left( E_\LL - \xi_\LL \right)}} ~~~ \text{és} ~~~ v_\LL^* = \frac{E_\LL - \xi_\LL}{\sqrt{2 E_\LL \left( E_\LL - \xi_\LL \right)}}
+\end{equation}
+adódik.
+
+
+\subsection{BCS közelítés és a mi közelítésünk}
+
+A BCS-elméletben $\Delta_\LL$ definíciója
+\begin{equation}
+	\Delta_\LL = \left\{ \begin{array}{ll} \Delta, & \text{ha } \left| \xi_\LL \right| < \hbar \omega_\text{D} \\ 0, & \text{ha } \left| \xi_\LL \right| > \hbar \omega_\text{D} \end{array} \right. ,
+\end{equation}
+ahol $\omega_\text{D}$ a Debeye-frekvencia.  Ez azt jelenti, hogy csak a Fermi-felület közelében lévő elektronok vesznek részt a szupravezetésben.
+
+A BCS-elméletben használt éles levágás helyett mi egy analitikus függvényt használunk, hogy a számolás során kapott integrálokat egyszerűbben tudjuk analitikusan kezelni.  A használt levágás
+$$ \frac{1}{\left( \frac{\xi_\LL}{\hbar \omega_\text{D}} \right)^4 + 1} $$
+alakú, ami az éles levágáshoz hasonlóan nagyjából a $\left[ -\hbar \omega_\text{D}, \hbar \omega_\text{D} \right]$ tartományon nem zérus, $\Delta_\LL$ értékét mi is konstansnak vesszük a vizsgált tartományon, $\Delta_\LL \equiv \Delta$.
+
+A legtöbb szupravezetőben $\left|\Delta\right| \ll \hbar \omega_\text{D} \ll E_\text{F}$, amit a számolásaink során ki is fogunk használni.
+
+
+
+% ================================================================
+\section{Korrelátorok számolása}
+
+Vezessük be a $\psi_\sigma(\RR)$ operátorokat, amik a $c_{\KK \sigma}$ operátorokhoz hasonlóan keltő operátorok, viszont egy $\left( \KK \sigma \right)$ sajátállapotú részecske helyett egy $\left( \RR \sigma \right)$ sajátállapotút rak be az állapotfüggvénybe.  A keltő operátorok transzformációja szerint kifejezhetjük őket egymással,
+\begin{equation} \label{psi}
+\begin{split}
+	\psi_\uparrow(\RR) & = \frac{1}{\sqrt{V}} \sum\limits_\KK e^{i \KK \RR} c_{\KK \uparrow} = \frac{1}{\sqrt{V}} \sum\limits_\KK e^{i \KK \RR} \left( u_\KK^* \gamma_{\KK \uparrow} + v_\KK \gamma_{-\KK \downarrow}^\dagger \right), \\
+	\psi_\uparrow^\dagger(\RR) & = \frac{1}{\sqrt{V}} \sum\limits_\KK e^{-i \KK \RR} c_{\KK \uparrow}^\dagger = \frac{1}{\sqrt{V}} \sum\limits_\KK e^{-i \KK \RR} \left( u_\KK \gamma_{\KK \uparrow}^\dagger + v_\KK^* \gamma_{-\KK \downarrow} \right), \\
+	\psi_\downarrow(\RR) & = \frac{1}{\sqrt{V}} \sum\limits_\KK e^{-i \KK \RR} c_{-\KK \downarrow} = \frac{1}{\sqrt{V}} \sum\limits_\KK e^{-i \KK \RR} \left( -v_\KK \gamma_{\KK \uparrow}^\dagger + u_\KK^* \gamma_{-\KK \downarrow} \right), \\
+	\psi_\downarrow^\dagger(\RR) & = \frac{1}{\sqrt{V}} \sum\limits_\KK e^{i \KK \RR} c_{-\KK \downarrow}^\dagger = \frac{1}{\sqrt{V}} \sum\limits_\KK e^{i \KK \RR} \left( -v_\KK^* \gamma_{\KK \uparrow} + u_\KK \gamma_{-\KK \downarrow}^\dagger \right).
+\end{split}
+\end{equation}
+
+
+\subsection{Töltéskorreláció}
+
+A \eqref{psi} keltő operátorokkal felírhatjuk a szupravezető állapotban a töltéskorrelációt,
+\begin{equation}
+	e^2 \left< \rho(\RR) \rho(\RR^\prime) \right> = e^2 \sum\limits_{\sigma, \sigma^\prime} \left< \psi_\sigma^\dagger(\RR) \psi_\sigma(\RR) \psi_{\sigma^\prime}^\dagger(\RR^\prime) \psi_{\sigma^\prime}(\RR^\prime) \right>,
+\end{equation}
+ahol a várhatóértékhez az $\left< A \right> = \matrixelement{\tilde{\phi}}{A}{\tilde{\phi}}$ jelölést használtuk.  Az összeg egyes tagjait kiszámolhatjuk \eqref{psi} segítségével.
+
+Először írjuk fel $\left< \psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime) \right>$-t,
+\begin{multline}
+	\left< \psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime) \right> = \frac{1}{V^2} \sum\limits_{\substack{\KK_1, \KK_2, \\ \KK_3, \KK_4}} e^{-i \KK_1 \RR} e^{i \KK_2 \RR} e^{-i \KK_3 \RR^\prime} e^{i \KK_4 \RR^\prime} \cdot \\
+	\cdot \left< \left( u_{\KK_1} \gamma_{\KK_1 \uparrow}^\dagger + v_{\KK_1}^* \gamma_{-\KK_1 \downarrow} \right) \left( u_{\KK_2}^* \gamma_{\KK_2 \uparrow} + v_{\KK_2} \gamma_{-\KK_2 \downarrow}^\dagger \right)
+	\right. \\ \left.
+	\left( u_{\KK_3} \gamma_{\KK_3 \uparrow}^\dagger + v_{\KK_3}^* \gamma_{-\KK_3 \downarrow} \right) \left( u_{\KK_4}^* \gamma_{\KK_4 \uparrow} + v_{\KK_4} \gamma_{-\KK_4 \downarrow}^\dagger \right) \right>.
+\end{multline}
+Kihasználhatjuk, hogy $\gamma_{\KK \sigma} \ket{\tilde{\phi}} = 0$ és $\bra{\tilde{\phi}} \gamma_{\KK \sigma}^\dagger = 0$, amivel
+\begin{multline}
+	\left< \psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime) \right> = \frac{1}{V^2} \sum\limits_{\substack{\KK_1, \KK_2, \\ \KK_3, \KK_4}} e^{-i \KK_1 \RR} e^{i \KK_2 \RR} e^{-i \KK_3 \RR^\prime} e^{i \KK_4 \RR^\prime} \cdot \\
+	\cdot \left( \left< v_{\KK_1}^* u_{\KK_2}^* u_{\KK_3} v_{\KK_4} \cdot \gamma_{-\KK_1 \downarrow} \gamma_{\KK_2 \uparrow} \gamma_{\KK_3 \uparrow}^\dagger \gamma_{-\KK_4 \downarrow}^\dagger \right> + \left< v_{\KK_1}^* v_{\KK_2} v_{\KK_3}^* v_{\KK_4} \cdot \gamma_{-\KK_1 \downarrow} \gamma_{-\KK_4 \downarrow}^\dagger \gamma_{-\KK_3 \downarrow} \gamma_{-\KK_4 \downarrow}^\dagger \right> \right)
+\end{multline}
+adódik.  Ezután felhasználhatjuk a \eqref{gamma-anticommutator-zero} és \eqref{gamma-anticommutator} összefüggéseket, illetve azt, hogy
+$$ \gamma_{\KK \sigma} \gamma_{\KK^\prime \sigma^\prime}^\dagger \ket{\tilde{\phi}} = \delta_{\KK \KK^\prime} \delta_{\sigma \sigma^\prime} \ket{\tilde{\phi}}. $$
+Ezekkel a végső alak
+\begin{multline}
+	\left< \psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime) \right> = \\
+	= \left( \frac{1}{V} \sum\limits_\KK e^{-i \KK \left( \RR - \RR^\prime \right)} \left| v_\KK \right|^2 \right) \left( \frac{1}{V} \sum\limits_\KK e^{-i \KK \left( \RR - \RR^\prime \right)} \left| u_\KK \right|^2 \right) + \left( \frac{1}{V} \sum\limits_\KK \left| v_\KK \right|^2 \right)^2.
+\end{multline}
+A többi korrelátort is hasonlóan kiszámíthatjuk, azokra
+\begin{multline}
+	\left< \psi_\downarrow^\dagger(\RR) \psi_\downarrow(\RR) \psi_\downarrow^\dagger(\RR^\prime) \psi_\downarrow(\RR^\prime) \right> = \\
+	= \left( \frac{1}{V} \sum\limits_\KK e^{-i \KK \left( \RR - \RR^\prime \right)} \left| v_\KK \right|^2 \right) \left( \frac{1}{V} \sum\limits_\KK e^{-i \KK \left( \RR - \RR^\prime \right)} \left| u_\KK \right|^2 \right) + \left( \frac{1}{V} \sum\limits_\KK \left| v_\KK \right|^2 \right)^2,
+\end{multline}
+\begin{multline}
+	\left< \psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \psi_\downarrow^\dagger(\RR^\prime) \psi_\downarrow(\RR^\prime) \right> = \\
+	= \left( \frac{1}{V} \sum\limits_\KK e^{-i \KK \left( \RR - \RR^\prime \right)} u_\KK v_\KK^* \right) \left( \frac{1}{V} \sum\limits_\KK e^{i \KK \left( \RR - \RR^\prime \right)} u_\KK^* v_\KK \right) + \left( \frac{1}{V} \sum\limits_\KK \left| v_\KK \right|^2 \right)^2,
+\end{multline}
+\begin{multline}
+	\left< \psi_\downarrow^\dagger(\RR) \psi_\downarrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime) \right> = \\
+	= \left( \frac{1}{V} \sum\limits_\KK e^{i \KK \left( \RR - \RR^\prime \right)} u_\KK v_\KK^* \right) \left( \frac{1}{V} \sum\limits_\KK e^{-i \KK \left( \RR - \RR^\prime \right)} u_\KK^* v_\KK \right) + \left( \frac{1}{V} \sum\limits_\KK \left| v_\KK \right|^2 \right)^2
+\end{multline}
+adódnak.
+
+Az eredmények megértéséhez számoljuk ki a $\left< \psi_\sigma(\RR) \psi_{\sigma^\prime}(\RR^\prime) \right>$ alakú különféle korrelátorokat is, ezeket az előzőekhez hasonlóan tehetjük meg, végeredményül
+\begin{equation}
+\begin{split}
+	G(\RR - \RR^\prime) \coloneqq & \left< \psi_\uparrow^\dagger(\RR) \psi_\uparrow^\phantomdagger(\RR^\prime) \right> = \frac{1}{V} \sum\limits_\KK e^{-i \KK \left( \RR - \RR^\prime \right)} \left| v_\KK \right|^2, \\
+	& \left< \psi_\downarrow^\dagger(\RR) \psi_\downarrow^\phantomdagger(\RR^\prime) \right> = G(\RR - \RR^\prime), \\
+	& \left< \psi_\uparrow^\phantomdagger(\RR) \psi_\uparrow^\dagger(\RR^\prime) \right> = \delta(\RR - \RR^\prime) - G(\RR - \RR^\prime), \\
+	& \left< \psi_\downarrow^\phantomdagger(\RR) \psi_\downarrow^\dagger(\RR^\prime) \right> = \delta(\RR - \RR^\prime) - G(\RR - \RR^\prime), \\
+	F(\RR - \RR^\prime) \coloneqq & \left< \psi_\uparrow^\dagger(\RR) \psi_\downarrow^\dagger(\RR^\prime) \right> = \frac{1}{V} \sum\limits_\KK e^{-i \KK \left( \RR - \RR^\prime \right)} u_\KK v_\KK^*, \\
+	& \left< \psi_\downarrow^\dagger(\RR) \psi_\uparrow^\dagger(\RR^\prime) \right> = -F(\RR - \RR^\prime), \\
+	& \left< \psi_\uparrow^\phantomdagger(\RR) \psi_\downarrow^\phantomdagger(\RR^\prime) \right> = -F^*(\RR - \RR^\prime), \\
+	& \left< \psi_\downarrow^\phantomdagger(\RR) \psi_\uparrow^\phantomdagger(\RR^\prime) \right> = F^*(\RR - \RR^\prime), \\
+\end{split}
+\end{equation}
+adódnak, ahol bevezettük az $F(\RR)$ és $G(\RR)$ függvényeket.  A nem felírt korrelátorok mind nullák.  Ezekkel kifejezve a korábbi eredményeket,
+\begin{equation}
+\begin{split} \label{density-components}
+	\left< \psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime) \right> & = \left< \psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR^\prime) \right> \left< \psi_\uparrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \right> + \left< \psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \right> \left< \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime) \right>,  \\
+	\left< \psi_\downarrow^\dagger(\RR) \psi_\downarrow(\RR) \psi_\downarrow^\dagger(\RR^\prime) \psi_\downarrow(\RR^\prime) \right> & = \left< \psi_\downarrow^\dagger(\RR) \psi_\downarrow(\RR^\prime) \right> \left< \psi_\downarrow(\RR) \psi_\downarrow^\dagger(\RR^\prime) \right> + \left< \psi_\downarrow^\dagger(\RR) \psi_\downarrow(\RR) \right> \left< \psi_\downarrow^\dagger(\RR^\prime) \psi_\downarrow(\RR^\prime) \right>,  \\
+	\left< \psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \psi_\downarrow^\dagger(\RR^\prime) \psi_\downarrow(\RR^\prime) \right> & = -\left< \psi_\uparrow^\dagger(\RR) \psi_\downarrow^\dagger(\RR^\prime) \right> \left< \psi_\uparrow(\RR) \psi_\downarrow(\RR^\prime) \right> + \left< \psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \right> \left< \psi_\downarrow^\dagger(\RR^\prime) \psi_\downarrow(\RR^\prime) \right>,  \\
+	\left< \psi_\downarrow^\dagger(\RR) \psi_\downarrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime) \right> & = -\left< \psi_\downarrow^\dagger(\RR) \psi_\uparrow^\dagger(\RR^\prime) \right> \left< \psi_\downarrow(\RR) \psi_\uparrow(\RR^\prime) \right> + \left< \psi_\downarrow^\dagger(\RR) \psi_\downarrow(\RR) \right> \left< \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime) \right>,
+\end{split}
+\end{equation}
+az $F(\RR)$ és $G(\RR)$ függvényekkel kifejezve
+\begin{equation} \label{correlators-F-G}
+\begin{split}
+	\left< \psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime) \right> & = G(\RR - \RR^\prime) \cdot \left( \delta(\RR - \RR^\prime) - G(\RR - \RR^\prime) \right) + G^2(0), \\
+	\left< \psi_\downarrow^\dagger(\RR) \psi_\downarrow(\RR) \psi_\downarrow^\dagger(\RR^\prime) \psi_\downarrow(\RR^\prime) \right> & = G(\RR - \RR^\prime) \cdot \left( \delta(\RR - \RR^\prime) - G(\RR - \RR^\prime) \right) + G^2(0), \\
+	\left< \psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \psi_\downarrow^\dagger(\RR^\prime) \psi_\downarrow(\RR^\prime) \right> & = \left| F(\RR - \RR^\prime) \right|^2 + G^2(0), \\
+	\left< \psi_\downarrow^\dagger(\RR) \psi_\downarrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime) \right> & = \left| F(\RR - \RR^\prime) \right|^2 + G^2(0).
+\end{split}
+\end{equation}
+A \eqref{density-components} összefüggésben felismerhetjük a Wick-tételt, ami szerint ki lehet bontani a várhatóértéket több egyszerűbb tag összegére.
+
+A töltéskorrelációs függvényt így felírhatjuk az $F(\RR)$ és $G(\RR)$ függvények segítségével,
+\begin{equation}
+	e^2 \left< \rho(\RR) \rho(\RR^\prime) \right> = e^2 \left( 4 \, G^2(0) + 2 \left| F(\RR - \RR^\prime) \right|^2 - 2 \, G^2(\RR - \RR^\prime) + 2 \, G(0) \cdot \delta(\RR - \RR^\prime) \right).
+\end{equation}
+
+
+\subsection{Spinkorreláció}
+
+A spinsűrűség operátorok felírhatók a \eqref{psi} keltő operátorok segítségével,
+\begin{equation}
+	s_\alpha(\RR) = \frac{\hbar}{2} \begin{pmatrix} \psi_\uparrow^\dagger(\RR) & \psi_\downarrow^\dagger(\RR) \end{pmatrix} \sigma_\alpha \begin{pmatrix} \psi_\uparrow(\RR) \\ \psi_\downarrow(\RR) \end{pmatrix},
+\end{equation}
+ahol $\alpha = x, y, z$ és $\sigma_\alpha$ a Pauli-mátrixok.  A teljes spinkorrelációs függvény
+\begin{equation}
+	\left< s(\RR) s(\RR^\prime) \right> = \sum_\alpha \left< s_\alpha(\RR) s_\alpha(\RR^\prime) \right>.
+\end{equation}
+A függvény kiszámolása hasonlóan tehető meg, mint a töltéskorrelációs függvénynél, először számoljuk ki $\left< s_z(\RR) s_z(\RR^\prime) \right>$ értékét.
+\begin{multline}
+	\left< s_z(\RR) s_z(\RR^\prime) \right> = \frac{\hbar^2}{4} \left( \left< \psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime) \right> - \left< \psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \psi_\downarrow^\dagger(\RR^\prime) \psi_\downarrow(\RR^\prime) \right> -
+	\right. \\ \left. -
+	\left< \psi_\downarrow^\dagger(\RR) \psi_\downarrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime) \right> + \left< \psi_\downarrow^\dagger(\RR) \psi_\downarrow(\RR) \psi_\downarrow^\dagger(\RR^\prime) \psi_\downarrow(\RR^\prime) \right> \right),
+\end{multline}
+a \eqref{correlators-F-G} összefüggéseket felhasználva
+\begin{equation}
+	\left< s_z(\RR) s_z(\RR^\prime) \right> = \frac{\hbar^2}{2} \left( -\left| F(\RR - \RR^\prime) \right|^2 - G^2(\RR - \RR^\prime) + G(0) \cdot \delta(\RR - \RR^\prime) \right).
+\end{equation}
+$\left< s_x(\RR) s_x(\RR^\prime) \right>$ és $\left< s_y(\RR) s_y(\RR^\prime) \right>$-t kiszámolva azt látjuk, hogy a három korrelátor értéke megegyezik, így a teljes spinkorrelációs függvény
+\begin{equation}
+\begin{split}
+	\left< s(\RR) s(\RR^\prime) \right> & = \frac{3 \hbar^2}{2} \left( -\left| F(\RR - \RR^\prime) \right|^2 - G^2(\RR - \RR^\prime) + G(0) \cdot \delta(\RR - \RR^\prime) \right) \\
+	& = \frac{3 \hbar^2}{4} \left( \left< \rho(\RR) \rho(\RR^\prime) \right> - 4 \left| F(\RR - \RR^\prime) \right|^2 - 4 \, G^2(0) \right).
+\end{split}
+\end{equation}
+
+
+% ================================================================
+\section{$F(\RR)$ és $G(\RR)$ függvények meghatározása}
+
+\subsection{Normálállapot}
+
+\subsubsection{$F(\RR)$ normálállapotban}
+\subsubsection{$G(\RR)$ normálállapotban}
+
+\subsection{Szupravezető állapot járuléka}
+
+\subsubsection{$F(\RR)$ szupravezető járuléka}
+\subsubsection{$G(\RR)$ szupravezető járuléka}
+
+\subsection{Asszimptotikus viselkedés}
+
+
+
+% ================================================================
+\section{Spin- és töltéskorrelációs függvények}
+
+\subsection{Töltéskorreláció}
+\subsection{Spinkorreláció}
+
+
+
+\pdfbookmark{Hivatkozások}{bm:hivatkozasok}
+
+\begin{thebibliography}{}
+\end{thebibliography}
+
+
+\end{document}
