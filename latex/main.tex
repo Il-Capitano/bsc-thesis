@@ -130,7 +130,7 @@ $$ V_{\KK \LL} = \left\{ \begin{array}{rl}
 ahol $\omega_\text{D}$ a Debeye-frekvencia.  Ez azt jelenti, hogy csak a Fermi-felület közelében lévő elektronok hatnak kölcsön, tehát csak ezek lesznek vezető elektronok.
 
 A kölcsönhatási tag alakjának meghatározásához vezessünk be egy variációs hullámyfüggvényt,
-\begin{equation}
+\begin{equation} \label{phi-tilde}
 	\ket{\tilde{\phi}} \equiv \prod\limits_\KK \left( u_\KK + v_\KK \, c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger \right) \ket{0},
 \end{equation}
 ahol a $\ket{0}$ vákuum állapotba helyezünk be Cooper-párokat valamilyen amplitúdóval.  Az $u_\KK$ és $v_\KK$ együtthatók általános esetben komplexek és ahhoz, hogy $\ket{\tilde{\phi}}$ normálva legyen teljesülnie kell az
@@ -171,77 +171,43 @@ Ezzel felírhatjuk a teljes BCS Hamilton-operátort,
 
 \subsection{Az szupravezető-állapot léptetőoperátorai}
 
-Feltételezzük, hogy $H_\text{BCS}$ felírható léptetőoperátorok segítségével, vagyis
+A BCS Hamilton-operátor spektrumának meghatározásához fejezzük ki azt léptetlőoperátorok segítségével,
 \begin{equation} \label{H-BCS}
-	H_\text{BCS} = \sum\limits_\KK E_\KK \left( \gamma_{\KK \uparrow}^\dagger \gamma_{\KK \uparrow} + \gamma_{\KK \downarrow}^\dagger \gamma_{\KK \downarrow} \right) + E_0,
+	H_\text{BCS} = \sum\limits_\KK E_\KK \left( \gamma_{\KK \uparrow}^\dagger \gamma_{\KK \uparrow} + \gamma_{\KK \downarrow}^\dagger \gamma_{\KK \downarrow} \right) + \text{cst},
 \end{equation}
-ahol a $\gamma_{\KK \sigma}$ operátorok a szupravezető-állapot léptetőoperátorai.  Továbbá feltételezzük, hogy ezek az operátorok felírhatók a $c_{\KK \sigma}$ operátorok lineáris kombinációjaként,
-\begin{equation} \label{gamma-from-c}
-	\gamma_{\KK \uparrow}^\dagger = A \, c_{\KK \uparrow}^\dagger + B \, c_{-\KK \downarrow}, ~~~~~~~~ A, B \in \mathbb{C},
-\end{equation}
-\begin{equation}
-	\gamma_{\KK \downarrow}^\dagger = C \, c_{\KK \downarrow}^\dagger + D \, c_{-\KK \uparrow}, ~~~~~~~~ C, D \in \mathbb{C}.
-\end{equation}
-A $\gamma_{\KK \sigma}$ operátorokra továbbá igaz, hogy
-\begin{equation} \label{gamma-anticommutator-zero}
-	\left\{ \gamma_{\KK \sigma}^\phantomdagger, \gamma_{\KK^\prime \sigma^\prime}^\phantomdagger \right\} = \left\{ \gamma_{\KK \sigma}^\dagger, \gamma_{\KK^\prime \sigma^\prime}^\dagger \right\} = 0,
-\end{equation}
+ahol a $\gamma_{\KK \sigma}$ operátorok a szupravezető-állapot kvázirészecskéinek léptetőoperátorai.  Továbbá igaz rájuk, hogy
 \begin{equation} \label{gamma-anticommutator}
-	\left\{ \gamma_{\KK \sigma}^\phantomdagger, \gamma_{\KK^\prime \sigma^\prime}^\dagger \right\} = \delta_{\KK \KK^\prime} \delta_{\sigma \sigma^\prime},
+\begin{split}
+	\anticommutator{\gamma_{\KK \sigma}^\phantomdagger}{\gamma_{\KK^\prime \sigma^\prime}^\phantomdagger} & = \anticommutator{\gamma_{\KK \sigma}^\dagger}{\gamma_{\KK^\prime \sigma^\prime}^\dagger} = 0, \\
+	\anticommutator{\gamma_{\KK \sigma}^\phantomdagger}{\gamma_{\KK^\prime \sigma^\prime}^\dagger} & = \delta_{\KK \KK^\prime} \delta_{\sigma \sigma^\prime},
+\end{split}
 \end{equation}
+ahol $\anticommutator{A}{B} = AB + BA$ az antikommutátor.  Ezen kívül kell lennie egy alapállapotnak is, amit a \eqref{phi-tilde} variációs hullámfüggvénynek veszünk.  Tudjuk, hogy a lefelé léptető operátornak ezt az állapotot a nullelembe kell vinnie, vagyis
 \begin{equation} \label{gamma-zero}
-	\gamma_{\KK \sigma} \tilde{\phi} = 0,
+	\gamma_{\KK \sigma} \ket{\tilde{\phi}} = \ket{}_0.
 \end{equation}
-ahol $\left\{ A, B \right\} = A B + B A$ az antikommutátor.
 
-Számoljuk ki $\gamma_{\LL \uparrow}$-t \eqref{gamma-from-c} és \eqref{gamma-zero} összefüggések felhasználásával.  Ehhez nézzük meg $c_{\LL \uparrow}$ és $c_{-\LL \downarrow}^\dagger$ hatását a $\tilde{\phi}$ alapállapotra.
+Megmutatható, hogy a
 \begin{equation}
 \begin{split}
-	c_{\LL \uparrow} \tilde{\phi} & = c_{\LL \uparrow} \prod\limits_\KK \left( u_\KK + v_\KK \, c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger \right) \phi_0 = \\
-	& = \prod\limits_{\KK \neq \LL} \left( u_\KK + v_\KK \, c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger \right) c_{\LL \uparrow} \left( u_\LL + v_\LL \, c_{\LL \uparrow}^\dagger c_{-\LL \downarrow}^\dagger \right) \phi_0 = \\
-	& = \prod\limits_{\KK \neq \LL} \left( u_\KK + v_\KK \, c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger \right) \left( u_\LL c_{\LL \uparrow} + v_\LL \left( 1 - c_{\LL \uparrow}^\dagger c_{\LL \uparrow} \right) c_{-\LL \downarrow}^\dagger \right) \phi_0 = \\
-	& = \prod\limits_{\KK \neq \LL} \left( u_\KK + v_\KK \, c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger \right) \left( u_\LL c_{\LL \uparrow} + v_\LL c_{-\LL \downarrow}^\dagger - v_\LL c_{\LL \uparrow}^\dagger c_{\LL \uparrow} c_{-\LL \downarrow}^\dagger \right) \phi_0 = \\
-	& = \prod\limits_{\KK \neq \LL} \left( u_\KK + v_\KK \, c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger \right) v_\LL c_{-\LL \downarrow}^\dagger \phi_0
+	\gamma_{\KK \uparrow} & = u_\KK c_{\KK \uparrow} - v_\KK c_{-\KK \downarrow}^\dagger \\
+	\gamma_{\KK \downarrow} & = u_\KK c_{\KK \downarrow} + v_\KK c_{-\KK \uparrow}^\dagger
 \end{split}
 \end{equation}
-és
-\begin{equation}
-\begin{split}
-	c_{-\LL \downarrow}^\dagger \tilde{\phi} & = c_{-\LL \downarrow}^\dagger \prod\limits_\KK \left( u_\KK + v_\KK \, c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger \right) \phi_0 = \\
-	& = \prod\limits_{\KK \neq \LL} \left( u_\KK + v_\KK \, c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger \right) c_{-\LL \downarrow}^\dagger \left( u_\LL + v_\LL \, c_{\LL \uparrow}^\dagger c_{-\LL \downarrow}^\dagger \right) \phi_0 = \\
-	& = \prod\limits_{\KK \neq \LL} \left( u_\KK + v_\KK \, c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger \right) \left( u_\LL c_{-\LL \downarrow}^\dagger - v_\LL c_{\LL \uparrow}^\dagger c_{-\LL \downarrow}^\dagger c_{-\LL \downarrow}^\dagger \right) \phi_0 = \\
-	& = \prod\limits_{\KK \neq \LL} \left( u_\KK + v_\KK \, c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger \right) u_\LL c_{-\LL \downarrow}^\dagger \phi_0.
-\end{split}
-\end{equation}
-Így $\gamma_{\LL \uparrow}$ kifejezhető a \eqref{gamma-anticommutator} feltétel szerint,
-\begin{equation}
-	\gamma_{\LL \uparrow} \tilde{\phi} = \left( u_\LL c_{\LL \uparrow} - v_\LL c_{-\LL \downarrow}^\dagger \right) \tilde{\phi} = 0 ~~~ \Rightarrow ~~~ \gamma_{\LL \uparrow} = u_\LL c_{\LL \uparrow} - v_\LL c_{-\LL \downarrow}^\dagger.
-\end{equation}
-Megjegyezzük, hogy az együtthatókban van egy komplex fázisnyi szabadsági fok, ezt konvenció szerint úgy választjuk meg, hogy $u_\LL$ együtthatója egység legyen.
+választásra teljesülnek a \eqref{gamma-anticommutator} és \eqref{gamma-zero} összefüggések.
 
-$\gamma_{-\LL \downarrow}$-t hasonlóan kiszámolva végeredményül a különböző $\gamma_{\LL \sigma}$ operátorokra
-\begin{equation} \label{gamma}
-\begin{split}
-	\gamma_{\LL \uparrow}         & = u_\LL c_{\LL \uparrow} - v_\LL c_{-\LL \downarrow}^\dagger, \\
-	\gamma_{\LL \uparrow}^\dagger & = u_\LL^* c_{\LL \uparrow}^\dagger - v_\LL^* c_{-\LL \downarrow}, \\
-	\gamma_{-\LL \downarrow}         & = u_\LL c_{-\LL \downarrow} + v_\LL c_{\LL \uparrow}^\dagger, \\
-	\gamma_{-\LL \downarrow}^\dagger & = u_\LL^* c_{-\LL \downarrow}^\dagger + v_\LL^* c_{\LL \uparrow}
-\end{split}
-\end{equation}
-adódnak.  Az összefüggéseket invertálva megkaphatjuk a $c_{\KK \sigma}$ operátorokat is,
+A $\gamma_{\KK \sigma}$ operátorokra kapott kifejezést invertálva megkaphatjuk a $c_{\KK \sigma}$ operátorokat is,
 \begin{equation}
 \begin{split}
-	c_{\LL \uparrow}         & = u_\LL^* \gamma_{\LL \uparrow} + v_\LL \gamma_{-\LL \downarrow}^\dagger, \\
-	c_{\LL \uparrow}^\dagger & = u_\LL \gamma_{\LL \uparrow}^\dagger + v_\LL^* \gamma_{-\LL \downarrow}, \\
-	c_{-\LL \downarrow}         & = -v_\LL \gamma_{\LL \uparrow}^\dagger + u_\LL^* \gamma_{-\LL \downarrow}, \\
-	c_{-\LL \downarrow}^\dagger & = -v_\LL^* \gamma_{\LL \uparrow} + u_\LL \gamma_{-\LL \downarrow}^\dagger.
+	c_{\KK \uparrow} & = u_\KK^* \gamma_{\KK \uparrow} + v_\KK \gamma_{-\KK \downarrow}^\dagger, \\
+	c_{\KK \downarrow} & = u_\KK^* \gamma_{\KK \downarrow} - v_\KK \gamma_{-\KK \uparrow}^\dagger, \\
 \end{split}
 \end{equation}
 
 
-\subsection{$u_\KK$ és $v_\KK$ kiszámolása}
+\subsection{Az $u_\KK$ és $v_\KK$ együtthatók kiszámolása}
 
-$u_\KK$ és $v_\KK$ kiszámolásához a \eqref{H-BCS} Hamilton-operátort és a léptetőoperátorok tulajdonságait használjuk fel.  Felírható, hogy
+Az $u_\KK$ és $v_\KK$ együtthatók kiszámolásához a \eqref{H-BCS} Hamilton-operátort és a léptetőoperátorok tulajdonságait használjuk fel.  Felírható, hogy
 \begin{equation}
 	H_\text{BCS} \gamma_{\LL \uparrow}^\dagger \tilde{\phi} = \gamma_{\LL \uparrow}^\dagger \left( H_\text{BCS} + E_\LL \right) \tilde{\phi},
 \end{equation}
@@ -338,7 +304,7 @@ Kihasználhatjuk, hogy $\gamma_{\KK \sigma} \ket{\tilde{\phi}} = 0$ és $\bra{\t
 	\left< \psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime) \right> = \frac{1}{V^2} \sum\limits_{\substack{\KK_1, \KK_2, \\ \KK_3, \KK_4}} e^{-i \KK_1 \RR} e^{i \KK_2 \RR} e^{-i \KK_3 \RR^\prime} e^{i \KK_4 \RR^\prime} \cdot \\
 	\cdot \left( \left< v_{\KK_1}^* u_{\KK_2}^* u_{\KK_3} v_{\KK_4} \cdot \gamma_{-\KK_1 \downarrow} \gamma_{\KK_2 \uparrow} \gamma_{\KK_3 \uparrow}^\dagger \gamma_{-\KK_4 \downarrow}^\dagger \right> + \left< v_{\KK_1}^* v_{\KK_2} v_{\KK_3}^* v_{\KK_4} \cdot \gamma_{-\KK_1 \downarrow} \gamma_{-\KK_4 \downarrow}^\dagger \gamma_{-\KK_3 \downarrow} \gamma_{-\KK_4 \downarrow}^\dagger \right> \right)
 \end{multline}
-adódik.  Ezután felhasználhatjuk a \eqref{gamma-anticommutator-zero} és \eqref{gamma-anticommutator} összefüggéseket, illetve azt, hogy
+adódik.  Ezután felhasználhatjuk a \eqref{gamma-anticommutator} összefüggéseket, illetve azt, hogy
 $$ \gamma_{\KK \sigma} \gamma_{\KK^\prime \sigma^\prime}^\dagger \ket{\tilde{\phi}} = \delta_{\KK \KK^\prime} \delta_{\sigma \sigma^\prime} \ket{\tilde{\phi}}. $$
 Ezekkel a végső alak
 \begin{multline}
