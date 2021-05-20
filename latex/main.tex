@@ -16,6 +16,7 @@
 \usepackage{subcaption}
 \usepackage{mathtools}
 \usepackage{physics}
+\usepackage{csquotes}
 
 \hypersetup{allcolors=black}
 \hypersetup{pdfstartview=FitH}
@@ -58,7 +59,35 @@
 
 \begin{document}
 
-\maketitle
+\begin{titlepage}
+\begin{center}
+	\vspace*{1cm}
+	\textbf{\huge Szupravezetőbeli spin- és töltéskorrelációk elméleti vizsgálata}
+
+	\vspace{3.5cm}
+
+	\Large
+	Hajdú Csanád
+
+	\vspace{2.5cm}
+	{\normalsize Témavezető:} \\
+	Dr.\ Zaránd Gergely
+
+	\vfill
+
+	BME Természettudományi Kar \\
+	Elméleti Fizika Tanszék
+
+	\vspace{1.5cm}
+
+	2021.\ 05.\ 21.
+
+	\begin{figure}[b]
+		\centering
+		\includegraphics[width=6cm]{bme-logo.png}
+	\end{figure}
+\end{center}
+\end{titlepage}
 
 \tableofcontents \newpage
 
@@ -66,7 +95,7 @@
 % ================================================================
 \section{Bevezetés}
 
-A szupravezetés a 20.\ század elején lett felfedezve Heike Kamerlingh Onnes holland fizikus által, amikor a higany ellenállását vizsgálta alacsony hőmérsékleten.  Azt tapasztalta, hogy $4,2$\,K alatt az ellenállás ugrásszerűen nullára csökkent.  Azóta sok más elemi fémnél és ötvözetnél is tapasztaltak szupravezetést, mindegyiknél van egy $T_\text{c}$ kritikus hőmérséklet, ami alatt a vezető disszipáció nélkül képes áramot vezetni.  A kritikus hőmérséklet értéke jellemzően $10$\,K alatt van, viszont vannak olyan anyagok is, amik már $100$\,K körül is szupravezetnek, az ilyen anyagokat magas hőmérsékletű szupravezetőknek nevezzük.  Az ilyen anyagok nagy előnye, hogy folyékony hélium helyett folyékony nitrogénnel is lehűthetők annyira, hogy szupravezessenek.
+A szupravezetést a 20.\ század elején fedezve fel Heike Kamerlingh Onnes holland fizikus, amikor a higany ellenállását vizsgálta alacsony hőmérsékleten.  Azt tapasztalta, hogy $4,2$\,K alatt az ellenállás ugrásszerűen nullára csökkent.  Azóta sok más elemi fémnél és ötvözetnél is tapasztaltak szupravezetést.  Mindegyiknél létezik egy $T_\text{c}$ kritikus hőmérséklet, ami alatt a vezető disszipáció nélkül képes áramot vezetni.  A kritikus hőmérséklet értéke jellemzően $10$\,K alatt van, viszont léteznek olyan anyagok is, amik már $100$\,K körül is szupravezetnek.  Az ilyen anyagokat magas hőmérsékletű szupravezetőknek nevezzük.  Utóbbiak nagy előnye, hogy folyékony hélium helyett folyékony nitrogénnel is lehűthetők annyira, hogy szupravezessenek.
 
 \begin{figure}[h!]
 	\centering
@@ -75,16 +104,16 @@ A szupravezetés a 20.\ század elején lett felfedezve Heike Kamerlingh Onnes h
 \end{figure}
 \footnotetext{\href{https://pressbooks.bccampus.ca/collegephysics/chapter/resistance-and-resistivity/}{\texttt{https://pressbooks.bccampus.ca/collegephysics/chapter/resistance-and-resistivity/}}}
 
-A szupravezetés jelenségének fontos tulajdonsága a Meissner-effektus, ami egy minta belsejében a mágneses tér teljes kiszorítását jelenti.  Az ideális vezetésből következik, hogy a szupravezető minta belsejében a mágneses tér erőssége állandó, a Meissner-effektus viszont ennél nagyobb megszorítást tesz, azt hogy a minta belsejében a mágneses tér állandó és zérus.
+A szupravezetés jelenségének fontos tulajdonsága a Meissner-effektus, ami egy minta belsejében a mágneses tér teljes kiszorítását jelenti.  Könnyen belátható, hogy egy ideális vezető belsejében a mágneses tér erőssége állandó, a Meissner-effektus viszont ennél nagyobb megszorítást jelent: a minta belsejében a mágneses tér állandó és zérus, még akkor is, ha a szupravezető állapotra egy külső mágneses tér mellett hűtjük le a mintát.
 
-A szupravezetőket széles körben használják fel, az egyik alapvető jelenség, amit kihasználnak a Josephson-effektus, ahol két szupravezető rész közé egy vékony szigetelőt tesznek be és a két vezetőre egy egyenfeszültséget kötnek.  Ezután azt tapasztaljuk, hogy a mintán egy váltóáram mérhető, aminek a frekvenciája arányos a vezetőkre kapcsolt feszültséggel.  A Josephson-effektust használja ki például az úgynevezett SQUID (superconducting quantum interference device), amivel mágneses tereket lehet nagy pontossággal mérni.  Ezen kívül még a Josephson-effektus alapján van definiálva az SI rendszerben a volt egysége.  Még fontos felhasználási terület a nagyterű szupravezető mágnesek, amiket többek között az orvostudományban is használnak MRI-kben.  Kvantumszámítógépekben is előnyös szupravezetőket használni a kvantumbitekhez, mivel az energiaspektrumukban van egy rés, így viszonylag magas hőmérsékleten is kicsi a zajuk.
+A szupravezetőket széles körben használják.  Az egyik alapvető jelenség, amit felhasználnak a Josephson-effektus, ahol két szupravezető rész közé egy vékony szigetelőt illesztenek és a két vezetőre egy egyenfeszültséget kapcsolnak.  Ekkor a mintán váltóáram mérhető, aminek a frekvenciája $\omega_\text{J} = \frac{2e V}{\hbar}$.  Egy ilyen Josephson-átmenetet használ az úgynevezett SQUID is (superconducting quantum interference device), amivel mágneses tereket lehet nagy pontossággal mérni.  Ezen kívül a Josephson-effektus alapján definiálják az SI rendszerben a volt egységét.  A szupravezetésnek fontos felhasználási területe a nagyterű szupravezető mágnesek, amiket többek között az orvostudományban is használnak MRI készülékekben.  Kvantumszámítógépekben is előnyös szupravezetőket használni a kvantumbitekhez, mivel az energiaspektrumukban lévő gap védelmet biztosít az alacsonyfrekvenciás zaj ellen.
 
-A felfedezése óta számos elmélet született a szupravezetés jelenségének leírására, a két meghatározó elmélet a Ginzburg--Landau-elmélet, ami egy fenomenológikus elmélet, illetve a BCS-elmélet, ami egy mikroszkópikus leírást ad.
-A Ginzburg--Landau-elméletet 1950-ben dolgozták ki Vitaly Ginzburg\footnote{Vitaly Lazarevich Ginzburg, Nobel-díjas (2003) orosz fizikus} és Lev Landau\footnote{Lev Davidovich Landau, Nobel-díjas (1962) orosz fizikus} orosz fizikusok, az elmélet jó leírást ad a szupravezetők makroszkópikus tulajdonságaira, még az olyan anyagoknál is, amikre a BCS-elmélet nem érvényes.  Ilyenek például a magas hőmérsékletű szupravezetők és nehéz fermion rendszerek.  Az elméletből ezen kívül következik még az első- és másodfajú szupravezetők megkülönböztetése.
+A felfedezése óta számos elmélet született a szupravezetés jelenségének leírására.  A két meghatározó elmélet a Ginzburg--Landau-elmélet, ami egy fenomenológikus elmélet, illetve a BCS-elmélet, ami egy mikroszkópikus leírást ad.
+A Ginzburg--Landau-elméletet 1950-ben dolgozták ki Vitaly Ginzburg\footnote{Vitaly Lazarevich Ginzburg, Nobel-díjas (2003) orosz fizikus} és Lev Landau\footnote{Lev Davidovich Landau, Nobel-díjas (1962) orosz fizikus} orosz fizikusok.  Az elmélet jó leírást ad a szupravezetők makroszkópikus tulajdonságaira még olyan anyagoknál is, amikre a BCS-elmélet nem használható.  Ilyenek például a magas hőmérsékletű szupravezetők és a nehéz fermion rendszerek.  Az elméletből ezen kívül levezethető még az első- és másodfajú szupravezetők megkülönböztetése.
 
-A BCS-elméletet John Bardeen\footnote{John Bardeen, kétszeres Nobel-díjas (1956 és 1972) amerikai mérnök és fizikus}, Leon N.\ Cooper\footnote{Leon N.\ Cooper, Nobel-díjas (1972) amerikai fizikus} és John Robert Schrieffer\footnote{John Robert Schrieffer, Nobel-díjas (1972) amerikai fizikus} amerikai fizikusok dolgozták ki, és publikálták 1957-ben, az elmélet egy mikroszkópikus leírásmódot ad a szupravezetés jelenségére.  Az elmélet szerint a vezetési elektronok úgynevezett Cooper-párokat alkotnak egy köztük lévő vonzó kölcsönhatás miatt.  Ezt először Cooper mutatta meg, hogy akármilyen gyenge vonzó kölcsönhatás mellett is a normálállapot instabil lesz és az elektronok párokba rendeződnek.  A vonzó kölcsönhatás elektron-fonon kölcsönhatásokból származik és alacsony hőmérsékleten jön elő.  Az elektronok párokba rendeződését mérésekkel is igazolni lehet, azt tapasztaljuk, hogy a vezető részecskék töltése kétszerese az elektron töltésének.
+A BCS-elméletet John Bardeen\footnote{John Bardeen, kétszeres Nobel-díjas (1956 és 1972) amerikai mérnök és fizikus}, Leon N.\ Cooper\footnote{Leon N.\ Cooper, Nobel-díjas (1972) amerikai fizikus} és John Robert Schrieffer\footnote{John Robert Schrieffer, Nobel-díjas (1972) amerikai fizikus} amerikai fizikusok dolgozták ki, és publikálták 1957-ben.  A BCS-elmélet egy mikroszkópikus leírásmódot ad a szupravezetés jelenségére.  Az elmélet szerint a vezetési elektronok úgynevezett Cooper-párokat alkotnak a köztük lévő, rácsrezgések által közvetített, vonzó kölcsönhatás miatt.  Először Cooper mutatta meg, hogy akármilyen gyenge vonzó kölcsönhatás mellett is a normál állapot instabil lesz, és az elektronok párokba rendeződnek.  Az elektronok párokba rendeződését mérésekkel is igazolni lehet.  A vezető részecskék töltése, így például a Josephson-frekvenciában szereplő töltés is kétszerese az elektron töltésének.
 
-Szupravezetésnél a minta energiaspektrumában megjelenik egy rés, ez az úgynevezett \emph{szupravezető gap}.  Ez a gap a hőmérséklet csökkenésével nő és $0$\,K-nél éri el a maximumát.  Kialakulása fontos szerepet játszik a szupravezetésben, azt tapasztaljuk, hogy ha a gap-et eltüntetjük például egy erős mágneses térrel, akkor a minta már nem fog szupravezetni.  A szupravezető gap értékének hőmérsékletfüggését a \ref{sc-gap}.\ ábrán láthatjuk.
+Szupravezetésnél a minta energiaspektrumában megjelenik egy \enquote{rés}, ez az úgynevezett \emph{szupravezető gap}.  Ez a gap a hőmérséklet csökkenésével nő, és $0$\,K-nél éri el a maximumát.  Kialakulása fontos szerepet játszik a szupravezetésben.  Azt tapasztaljuk, hogy ha a gap-et eltüntetjük például egy erős mágneses térrel, akkor a minta már nem szupravezet.  A szupravezető gap értékének hőmérsékletfüggését a \ref{sc-gap}.\ ábrán láthatjuk.  A gap jelenléte azt is jelenti, hogy kevés termikus gerjesztés van a szupravezető állapotban.
 
 \begin{figure}[h!]
 	\centering
@@ -92,14 +121,13 @@ Szupravezetésnél a minta energiaspektrumában megjelenik egy rés, ez az úgyn
 	\caption[]{Szupravezető gap a hőmérséklet függvényében.\footnotemark}
 	\label{sc-gap}
 \end{figure}
-\footnotetext{\href{https://www.researchgate.net/figure/Sketch-of-the-superconducting-gap-D-as-a-function-of-temperature-T-for-a-superconducting_fig3_305412985}{\texttt{https://www.researchgate.net/figure/Sketch-of-the-superconducting-gap-D-...}}}
-
-A gap jelenléte azt is jelenti, hogy kevés gerjesztés van a szupravezető állapotban, tehát az elektronok többsége alapállapotban van.  Ez az állapot nagyon hasonlít a Bose--Einstein-kondenzációhoz, de a kialakulása másképp történik.
+\footnotetext{\href{https://www.researchgate.net/figure/Sketch-of-the-superconducting-gap-D-as-a-function-of-temperature-T-for-a-superconducting_fig3_305412985}{\texttt{https://www.researchgate.net/figure/Sketch-of-the-superconducting-gap-D-\\ as-a-function-of-temperature-T-for-a-superconducting\_fig3\_305412985}}}
 
 \newpage
-A dolgozat célja az, hogy a szupravezető gap jelenléte mellett vizsgáljuk a spin- és töltéskorrelációs függvényeket, és összehasonlítsuk őket a normálállapotban lévő függvényekkel.  Hosszabb távon cél, hogy megértsük egy szupravezetőbe helyezett mágneses szennyezés körül kialakult úgynevezett Kondo-felhőben a spin-korrelációkat.
 
-A dolgozatban először megnézzük a BCS Hamilton-operátor alakját, majd megmutatjuk, hogy ez transzformálható egy olyan alakra, ahol léptetőoperátorok jelennek meg.  Majd ezekkel a léptetőoperátorokkal felírjuk a korrelációs függvényeket.  Azt fogjuk látni, hogy ezekben két független függvény jelenik meg, amiket kiszámolunk mind normálállapotban, mind szupravezető állapotban.  Ezen függvények asszimpototikus viselkedését is megvizsgáljuk és analitikus közelítőfüggvényeket adunk meg közel- és távoltérben.  Végül ezek segítségével megkapjuk a spin- és töltéskorrelációs függvényeket normál- és szupravezető állapotban.
+A dolgozat célja az, hogy a szupravezető gap jelenléte mellett vizsgáljuk a spin- és töltéskorrelációs függvényeket, és összehasonlítsuk őket a normál állapotban lévő függvényekkel.  Hosszabb távon cél, hogy megértsük egy szupravezetőbe helyezett mágneses szennyezés körül kialakult úgynevezett Kondo-felhőben a spin-korrelációkat.
+
+A dolgozatban először megnézzük a BCS Hamilton-operátor alakját, majd megmutatjuk, hogy ez transzformálható egy olyan alakra, ahol léptetőoperátorok jelennek meg, majd ezekkel a léptetőoperátorokkal felírjuk a korrelációs függvényeket.  Azt fogjuk látni, hogy ezekben két független függvény jelenik meg, amiket kiszámolunk mind normál állapotban, mind szupravezető állapotban.  Ezen függvények asszimpototikus viselkedését is megvizsgáljuk és analitikus közelítő függvényeket adunk meg közel- és távoltérben.  Végül ezek segítségével megkapjuk a spin- és töltéskorrelációs függvényeket normál- és szupravezető állapotban.
 
 A számolásokhoz alapvető kvantumtérelméleti eszközöket használunk, részecske keltő és eltüntető operátorokat, illetve átlagtér közelítést.  Ezen kívül a BCS-elmélet közelítéseivel is élünk.
 
@@ -139,8 +167,8 @@ ahol a $\ket{0}$ vákuum állapotba helyezünk be Cooper-párokat valamilyen amp
 \end{equation}
 relációnak.
 
-Ezzel a formalizmussal a normálállapot hullámfüggvényét is felírhatjuk, ahol minden elektronállapot be van töltve a Fermi-felületig,
-\begin{equation}
+Ezzel a formalizmussal a normál állapot hullámfüggvényét is felírhatjuk, ahol minden elektronállapot be van töltve a Fermi-felületig,
+\begin{equation} \label{u-v-normal}
 	\ket{\tilde{\phi}_\text{n}} = \prod\limits_{\left| \KK \right| < k_\text{F}} c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger \ket{0},
 \end{equation}
 ez az
@@ -238,17 +266,17 @@ A sajátértékekre $E_\KK = \pm \sqrt{\xi_\KK^2 + \left| \Delta_\KK \right|^2}$
 adódik.
 
 
-\subsection{BCS közelítés és a mi közelítésünk}
+\subsection{Levágási séma}
 
-A BCS-elméletben $\Delta_\LL$ definíciója
+A BCS-elméletben $\Delta_\KK$ definíciója
 \begin{equation}
-	\Delta_\LL = \left\{ \begin{array}{ll} \Delta, & \text{ha } \left| \xi_\LL \right| < \hbar \omega_\text{D} \\ 0, & \text{ha } \left| \xi_\LL \right| > \hbar \omega_\text{D} \end{array} \right. ,
+	\Delta_\KK = \Delta(\xi_\KK) = \left\{ \begin{array}{cl} \Delta, & \text{ha } \left| \xi_\KK \right| < \hbar \omega_\text{D} \\ 0, & \text{ha } \left| \xi_\KK \right| > \hbar \omega_\text{D} \end{array} \right. ,
 \end{equation}
 ahol $\omega_\text{D}$ a Debeye-frekvencia.  Ez azt jelenti, hogy csak a Fermi-felület közelében lévő elektronok vesznek részt a szupravezetésben.
 
-A BCS-elméletben használt éles levágás helyett mi egy analitikus függvényt használunk, hogy a számolás során kapott integrálokat egyszerűbben tudjuk analitikusan kezelni.  A használt levágás
-$$ \frac{1}{\left( \frac{\xi_\LL}{\hbar \omega_\text{D}} \right)^4 + 1} $$
-alakú, ami az éles levágáshoz hasonlóan nagyjából a $\left[ -\hbar \omega_\text{D}, \hbar \omega_\text{D} \right]$ tartományon nem zérus, $\Delta_\LL$ értékét mi is konstansnak vesszük a vizsgált tartományon, $\Delta_\LL \equiv \Delta$.
+E helyett az éles levágás helyett mi egy sima függvényt használunk, így a számolás során kapott integrálokat egyszerűbben tudjuk kezelni.  A használt levágás
+$$ w(\xi) = \frac{1}{\left( \frac{\xi}{\hbar \omega_\text{D}} \right)^4 + 1} $$
+alakú, ami az éles levágáshoz hasonlóan nagyjából a $\left[ -\hbar \omega_\text{D}, \hbar \omega_\text{D} \right]$ tartományon nem zérus. A szupravezető gap impulzus- és energiafüggését mi is elhanyagoljuk, értékét konstans $\Delta$-nak választjuk.
 
 A legtöbb szupravezetőben $\left|\Delta\right| \ll \hbar \omega_\text{D} \ll E_\text{F}$, amit a számolásaink során ki is fogunk használni.
 
@@ -257,138 +285,176 @@ A legtöbb szupravezetőben $\left|\Delta\right| \ll \hbar \omega_\text{D} \ll E
 % ================================================================
 \section{Korrelátorok számolása}
 
-Vezessük be a $\psi_\sigma(\RR)$ operátorokat, amik a $c_{\KK \sigma}$ operátorokhoz hasonlóan keltő operátorok, viszont egy $\left( \KK \sigma \right)$ sajátállapotú részecske helyett egy $\left( \RR \sigma \right)$ sajátállapotút rak be az állapotfüggvénybe.  A keltő operátorok transzformációja szerint kifejezhetjük őket egymással,
+A korrelátorok kiszámításához a $\psi_\sigma(\RR)$ téroperátorokat használjuk.  Ezek a $c_{\KK \sigma}$ operátorokhoz hasonlóan eltüntető operátorok, viszont egy $\left( \KK \sigma \right)$ sajátállapotú részecske helyett egy $\left( \RR \sigma \right)$ sajátállapotút tüntet el az állapotfüggvényből.  A téroperátorokat kifejezhetjük a korábban meghatározott kvázirészecske operátorokkal,
 \begin{equation} \label{psi}
 \begin{split}
 	\psi_\uparrow(\RR) & = \frac{1}{\sqrt{V}} \sum\limits_\KK e^{i \KK \RR} c_{\KK \uparrow} = \frac{1}{\sqrt{V}} \sum\limits_\KK e^{i \KK \RR} \left( u_\KK^* \gamma_{\KK \uparrow} + v_\KK \gamma_{-\KK \downarrow}^\dagger \right), \\
-	\psi_\uparrow^\dagger(\RR) & = \frac{1}{\sqrt{V}} \sum\limits_\KK e^{-i \KK \RR} c_{\KK \uparrow}^\dagger = \frac{1}{\sqrt{V}} \sum\limits_\KK e^{-i \KK \RR} \left( u_\KK \gamma_{\KK \uparrow}^\dagger + v_\KK^* \gamma_{-\KK \downarrow} \right), \\
-	\psi_\downarrow(\RR) & = \frac{1}{\sqrt{V}} \sum\limits_\KK e^{-i \KK \RR} c_{-\KK \downarrow} = \frac{1}{\sqrt{V}} \sum\limits_\KK e^{-i \KK \RR} \left( -v_\KK \gamma_{\KK \uparrow}^\dagger + u_\KK^* \gamma_{-\KK \downarrow} \right), \\
-	\psi_\downarrow^\dagger(\RR) & = \frac{1}{\sqrt{V}} \sum\limits_\KK e^{i \KK \RR} c_{-\KK \downarrow}^\dagger = \frac{1}{\sqrt{V}} \sum\limits_\KK e^{i \KK \RR} \left( -v_\KK^* \gamma_{\KK \uparrow} + u_\KK \gamma_{-\KK \downarrow}^\dagger \right).
+	\psi_\downarrow(\RR) & = \frac{1}{\sqrt{V}} \sum\limits_\KK e^{i \KK \RR} c_{\KK \downarrow} = \frac{1}{\sqrt{V}} \sum\limits_\KK e^{i \KK \RR} \left( u_\KK^* \gamma_{\KK \downarrow} - v_\KK \gamma_{-\KK \uparrow}^\dagger \right).
 \end{split}
 \end{equation}
+
+A téroperátorok segítségével kifejezhetjük a töltés- és spinsűrűség operátorokat,
+\begin{equation} \label{charge-density}
+	e \rho(\RR) = e \left( \psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) + \psi_\downarrow^\dagger(\RR) \psi_\downarrow(\RR) \right)
+\end{equation}
+és
+\begin{equation} \label{spin-density}
+	s^\alpha(\RR) = \frac{1}{2} \mqty(\psi_\uparrow^\dagger(\RR) & \psi_\downarrow^\dagger(\RR)) \sigma^\alpha \mqty(\psi_\uparrow(\RR) \\ \psi_\downarrow(\RR)),
+\end{equation}
+ahol $\alpha = x, y, z$ és $\sigma^\alpha$ a Pauli-mátrixokat jelöli, illetve $\hbar = 1$ egységeket használunk.
 
 
 \subsection{Töltéskorreláció}
 
-A \eqref{psi} keltő operátorokkal felírhatjuk a szupravezető állapotban a töltéskorrelációt,
+Először a töltéssűrűség korrelációs függvényt vizsgáljuk.  A \eqref{charge-density} összefüggés alapján felírhatjuk a korrelációs függvényt,
 \begin{equation}
-	e^2 \left< \rho(\RR) \rho(\RR^\prime) \right> = e^2 \sum\limits_{\sigma, \sigma^\prime} \left< \psi_\sigma^\dagger(\RR) \psi_\sigma(\RR) \psi_{\sigma^\prime}^\dagger(\RR^\prime) \psi_{\sigma^\prime}(\RR^\prime) \right>,
+	e^2 \expval{\rho(\RR) \rho(\RR^\prime)} = e^2 \sum\limits_{\sigma, \sigma^\prime} \expval{\psi_\sigma^\dagger(\RR) \psi_\sigma(\RR) \psi_{\sigma^\prime}^\dagger(\RR^\prime) \psi_{\sigma^\prime}(\RR^\prime)},
 \end{equation}
-ahol a várhatóértékhez az $\left< A \right> = \matrixelement{\tilde{\phi}}{A}{\tilde{\phi}}$ jelölést használtuk.  Az összeg egyes tagjait kiszámolhatjuk \eqref{psi} segítségével.
+ahol a várható értékhez az $\expval{A} = \matrixelement{\tilde{\phi}}{A}{\tilde{\phi}}$ jelölést használtuk.  Az összeg egyes tagjait kiszámolhatjuk \eqref{psi} segítségével.
 
-Először írjuk fel $\left< \psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime) \right>$-t,
+Először írjuk fel $\expval{\psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime)}$-t,
 \begin{multline}
-	\left< \psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime) \right> = \frac{1}{V^2} \sum\limits_{\substack{\KK_1, \KK_2, \\ \KK_3, \KK_4}} e^{-i \KK_1 \RR} e^{i \KK_2 \RR} e^{-i \KK_3 \RR^\prime} e^{i \KK_4 \RR^\prime} \cdot \\
+	\expval{\psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime)} = \frac{1}{V^2} \sum\limits_{\substack{\KK_1, \KK_2, \\ \KK_3, \KK_4}} e^{-i \KK_1 \RR} e^{i \KK_2 \RR} e^{-i \KK_3 \RR^\prime} e^{i \KK_4 \RR^\prime} \cdot \\
 	\cdot \left< \left( u_{\KK_1} \gamma_{\KK_1 \uparrow}^\dagger + v_{\KK_1}^* \gamma_{-\KK_1 \downarrow} \right) \left( u_{\KK_2}^* \gamma_{\KK_2 \uparrow} + v_{\KK_2} \gamma_{-\KK_2 \downarrow}^\dagger \right)
 	\right. \\ \left.
 	\left( u_{\KK_3} \gamma_{\KK_3 \uparrow}^\dagger + v_{\KK_3}^* \gamma_{-\KK_3 \downarrow} \right) \left( u_{\KK_4}^* \gamma_{\KK_4 \uparrow} + v_{\KK_4} \gamma_{-\KK_4 \downarrow}^\dagger \right) \right>.
 \end{multline}
 Kihasználhatjuk, hogy $\gamma_{\KK \sigma} \ket{\tilde{\phi}} = 0$ és $\bra{\tilde{\phi}} \gamma_{\KK \sigma}^\dagger = 0$, amivel
 \begin{multline}
-	\left< \psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime) \right> = \frac{1}{V^2} \sum\limits_{\substack{\KK_1, \KK_2, \\ \KK_3, \KK_4}} e^{-i \KK_1 \RR} e^{i \KK_2 \RR} e^{-i \KK_3 \RR^\prime} e^{i \KK_4 \RR^\prime} \cdot \\
-	\cdot \left( \left< v_{\KK_1}^* u_{\KK_2}^* u_{\KK_3} v_{\KK_4} \cdot \gamma_{-\KK_1 \downarrow} \gamma_{\KK_2 \uparrow} \gamma_{\KK_3 \uparrow}^\dagger \gamma_{-\KK_4 \downarrow}^\dagger \right> + \left< v_{\KK_1}^* v_{\KK_2} v_{\KK_3}^* v_{\KK_4} \cdot \gamma_{-\KK_1 \downarrow} \gamma_{-\KK_4 \downarrow}^\dagger \gamma_{-\KK_3 \downarrow} \gamma_{-\KK_4 \downarrow}^\dagger \right> \right)
+	\expval{\psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime)} = \frac{1}{V^2} \sum\limits_{\substack{\KK_1, \KK_2, \\ \KK_3, \KK_4}} e^{-i \KK_1 \RR} e^{i \KK_2 \RR} e^{-i \KK_3 \RR^\prime} e^{i \KK_4 \RR^\prime} \cdot \\
+	\cdot \left( \expval{v_{\KK_1}^* u_{\KK_2}^* u_{\KK_3} v_{\KK_4} \cdot \gamma_{-\KK_1 \downarrow} \gamma_{\KK_2 \uparrow} \gamma_{\KK_3 \uparrow}^\dagger \gamma_{-\KK_4 \downarrow}^\dagger} + \expval{v_{\KK_1}^* v_{\KK_2} v_{\KK_3}^* v_{\KK_4} \cdot \gamma_{-\KK_1 \downarrow} \gamma_{-\KK_4 \downarrow}^\dagger \gamma_{-\KK_3 \downarrow} \gamma_{-\KK_4 \downarrow}^\dagger} \right)
 \end{multline}
-adódik.  Ezután felhasználhatjuk a \eqref{gamma-anticommutator} összefüggéseket, illetve azt, hogy
+adódik.  Ezután felhasználhatjuk a \eqref{gamma-anticommutator} összefüggést, illetve azt, hogy
 $$ \gamma_{\KK \sigma} \gamma_{\KK^\prime \sigma^\prime}^\dagger \ket{\tilde{\phi}} = \delta_{\KK \KK^\prime} \delta_{\sigma \sigma^\prime} \ket{\tilde{\phi}}. $$
 Ezekkel a végső alak
 \begin{multline}
-	\left< \psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime) \right> = \\
+	\expval{\psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime)} = \\
 	= \left( \frac{1}{V} \sum\limits_\KK e^{-i \KK \left( \RR - \RR^\prime \right)} \left| v_\KK \right|^2 \right) \left( \frac{1}{V} \sum\limits_\KK e^{-i \KK \left( \RR - \RR^\prime \right)} \left| u_\KK \right|^2 \right) + \left( \frac{1}{V} \sum\limits_\KK \left| v_\KK \right|^2 \right)^2.
 \end{multline}
 A többi korrelátort is hasonlóan kiszámíthatjuk, azokra
 \begin{multline}
-	\left< \psi_\downarrow^\dagger(\RR) \psi_\downarrow(\RR) \psi_\downarrow^\dagger(\RR^\prime) \psi_\downarrow(\RR^\prime) \right> = \\
+	\expval{\psi_\downarrow^\dagger(\RR) \psi_\downarrow(\RR) \psi_\downarrow^\dagger(\RR^\prime) \psi_\downarrow(\RR^\prime)} = \\
 	= \left( \frac{1}{V} \sum\limits_\KK e^{-i \KK \left( \RR - \RR^\prime \right)} \left| v_\KK \right|^2 \right) \left( \frac{1}{V} \sum\limits_\KK e^{-i \KK \left( \RR - \RR^\prime \right)} \left| u_\KK \right|^2 \right) + \left( \frac{1}{V} \sum\limits_\KK \left| v_\KK \right|^2 \right)^2,
 \end{multline}
 \begin{multline}
-	\left< \psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \psi_\downarrow^\dagger(\RR^\prime) \psi_\downarrow(\RR^\prime) \right> = \\
+	\expval{\psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \psi_\downarrow^\dagger(\RR^\prime) \psi_\downarrow(\RR^\prime)} = \\
 	= \left( \frac{1}{V} \sum\limits_\KK e^{-i \KK \left( \RR - \RR^\prime \right)} u_\KK v_\KK^* \right) \left( \frac{1}{V} \sum\limits_\KK e^{i \KK \left( \RR - \RR^\prime \right)} u_\KK^* v_\KK \right) + \left( \frac{1}{V} \sum\limits_\KK \left| v_\KK \right|^2 \right)^2,
 \end{multline}
 \begin{multline}
-	\left< \psi_\downarrow^\dagger(\RR) \psi_\downarrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime) \right> = \\
+	\expval{\psi_\downarrow^\dagger(\RR) \psi_\downarrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime)} = \\
 	= \left( \frac{1}{V} \sum\limits_\KK e^{i \KK \left( \RR - \RR^\prime \right)} u_\KK v_\KK^* \right) \left( \frac{1}{V} \sum\limits_\KK e^{-i \KK \left( \RR - \RR^\prime \right)} u_\KK^* v_\KK \right) + \left( \frac{1}{V} \sum\limits_\KK \left| v_\KK \right|^2 \right)^2
 \end{multline}
 adódnak.
 
-Az eredmények megértéséhez számoljuk ki a $\left< \psi_\sigma(\RR) \psi_{\sigma^\prime}(\RR^\prime) \right>$ alakú különféle korrelátorokat is, ezeket az előzőekhez hasonlóan tehetjük meg, végeredményül
+Az eredmények megértéséhez számoljuk ki a $\expval{\psi_\sigma(\RR) \psi_{\sigma^\prime}(\RR^\prime)}$ alakú különféle korrelátorokat is, ezeket az előzőekhez hasonlóan tehetjük meg, végeredményül
 \begin{equation}
-\begin{split}
-	G(\RR - \RR^\prime) \coloneqq & \left< \psi_\uparrow^\dagger(\RR) \psi_\uparrow^\phantomdagger(\RR^\prime) \right> = \frac{1}{V} \sum\limits_\KK e^{-i \KK \left( \RR - \RR^\prime \right)} \left| v_\KK \right|^2, \\
-	& \left< \psi_\downarrow^\dagger(\RR) \psi_\downarrow^\phantomdagger(\RR^\prime) \right> = G(\RR - \RR^\prime), \\
-	& \left< \psi_\uparrow^\phantomdagger(\RR) \psi_\uparrow^\dagger(\RR^\prime) \right> = \delta(\RR - \RR^\prime) - G(\RR - \RR^\prime), \\
-	& \left< \psi_\downarrow^\phantomdagger(\RR) \psi_\downarrow^\dagger(\RR^\prime) \right> = \delta(\RR - \RR^\prime) - G(\RR - \RR^\prime), \\
-	F(\RR - \RR^\prime) \coloneqq & \left< \psi_\uparrow^\dagger(\RR) \psi_\downarrow^\dagger(\RR^\prime) \right> = \frac{1}{V} \sum\limits_\KK e^{-i \KK \left( \RR - \RR^\prime \right)} u_\KK v_\KK^*, \\
-	& \left< \psi_\downarrow^\dagger(\RR) \psi_\uparrow^\dagger(\RR^\prime) \right> = -F(\RR - \RR^\prime), \\
-	& \left< \psi_\uparrow^\phantomdagger(\RR) \psi_\downarrow^\phantomdagger(\RR^\prime) \right> = -F^*(\RR - \RR^\prime), \\
-	& \left< \psi_\downarrow^\phantomdagger(\RR) \psi_\uparrow^\phantomdagger(\RR^\prime) \right> = F^*(\RR - \RR^\prime), \\
+\begin{split} \label{F-G-def}
+	G(\RR - \RR^\prime) \equiv & \expval{\psi_\uparrow^\dagger(\RR) \psi_\uparrow^\phantomdagger(\RR^\prime)} = \expval{\psi_\downarrow^\dagger(\RR) \psi_\downarrow^\phantomdagger(\RR^\prime)} = \frac{1}{V} \sum\limits_\KK e^{-i \KK \left( \RR - \RR^\prime \right)} \left| v_\KK \right|^2, \\
+	& \expval{\psi_\uparrow^\phantomdagger(\RR) \psi_\uparrow^\dagger(\RR^\prime)} = \expval{\psi_\downarrow^\phantomdagger(\RR) \psi_\downarrow^\dagger(\RR^\prime)} = \delta(\RR - \RR^\prime) - G(\RR - \RR^\prime), \\
+	F(\RR - \RR^\prime) \equiv & \expval{\psi_\uparrow^\dagger(\RR) \psi_\downarrow^\dagger(\RR^\prime)} = -\expval{\psi_\downarrow^\dagger(\RR) \psi_\uparrow^\dagger(\RR^\prime)} = \frac{1}{V} \sum\limits_\KK e^{-i \KK \left( \RR - \RR^\prime \right)} u_\KK v_\KK^*, \\
+	& \expval{\psi_\downarrow^\phantomdagger(\RR) \psi_\uparrow^\phantomdagger(\RR^\prime)} = -\expval{\psi_\uparrow^\phantomdagger(\RR) \psi_\downarrow^\phantomdagger(\RR^\prime)} = F^*(\RR - \RR^\prime),
 \end{split}
 \end{equation}
 adódnak, ahol bevezettük az $F(\RR)$ és $G(\RR)$ függvényeket.  A nem felírt korrelátorok mind nullák.  Ezekkel kifejezve a korábbi eredményeket,
 \begin{equation}
 \begin{split} \label{density-components}
-	\left< \psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime) \right> & = \left< \psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR^\prime) \right> \left< \psi_\uparrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \right> + \left< \psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \right> \left< \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime) \right>,  \\
-	\left< \psi_\downarrow^\dagger(\RR) \psi_\downarrow(\RR) \psi_\downarrow^\dagger(\RR^\prime) \psi_\downarrow(\RR^\prime) \right> & = \left< \psi_\downarrow^\dagger(\RR) \psi_\downarrow(\RR^\prime) \right> \left< \psi_\downarrow(\RR) \psi_\downarrow^\dagger(\RR^\prime) \right> + \left< \psi_\downarrow^\dagger(\RR) \psi_\downarrow(\RR) \right> \left< \psi_\downarrow^\dagger(\RR^\prime) \psi_\downarrow(\RR^\prime) \right>,  \\
-	\left< \psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \psi_\downarrow^\dagger(\RR^\prime) \psi_\downarrow(\RR^\prime) \right> & = -\left< \psi_\uparrow^\dagger(\RR) \psi_\downarrow^\dagger(\RR^\prime) \right> \left< \psi_\uparrow(\RR) \psi_\downarrow(\RR^\prime) \right> + \left< \psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \right> \left< \psi_\downarrow^\dagger(\RR^\prime) \psi_\downarrow(\RR^\prime) \right>,  \\
-	\left< \psi_\downarrow^\dagger(\RR) \psi_\downarrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime) \right> & = -\left< \psi_\downarrow^\dagger(\RR) \psi_\uparrow^\dagger(\RR^\prime) \right> \left< \psi_\downarrow(\RR) \psi_\uparrow(\RR^\prime) \right> + \left< \psi_\downarrow^\dagger(\RR) \psi_\downarrow(\RR) \right> \left< \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime) \right>,
+	\expval{\psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime)} & = \expval{\psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR^\prime)} \expval{\psi_\uparrow(\RR) \psi_\uparrow^\dagger(\RR^\prime)} + \expval{\psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR)} \expval{\psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime)},  \\
+	\expval{\psi_\downarrow^\dagger(\RR) \psi_\downarrow(\RR) \psi_\downarrow^\dagger(\RR^\prime) \psi_\downarrow(\RR^\prime)} & = \expval{\psi_\downarrow^\dagger(\RR) \psi_\downarrow(\RR^\prime)} \expval{\psi_\downarrow(\RR) \psi_\downarrow^\dagger(\RR^\prime)} + \expval{\psi_\downarrow^\dagger(\RR) \psi_\downarrow(\RR)} \expval{\psi_\downarrow^\dagger(\RR^\prime) \psi_\downarrow(\RR^\prime)},  \\
+	\expval{\psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \psi_\downarrow^\dagger(\RR^\prime) \psi_\downarrow(\RR^\prime)} & = -\expval{\psi_\uparrow^\dagger(\RR) \psi_\downarrow^\dagger(\RR^\prime)} \expval{\psi_\uparrow(\RR) \psi_\downarrow(\RR^\prime)} + \expval{\psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR)} \expval{\psi_\downarrow^\dagger(\RR^\prime) \psi_\downarrow(\RR^\prime)},  \\
+	\expval{\psi_\downarrow^\dagger(\RR) \psi_\downarrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime)} & = -\expval{\psi_\downarrow^\dagger(\RR) \psi_\uparrow^\dagger(\RR^\prime)} \expval{\psi_\downarrow(\RR) \psi_\uparrow(\RR^\prime)} + \expval{\psi_\downarrow^\dagger(\RR) \psi_\downarrow(\RR)} \expval{\psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime)},
 \end{split}
 \end{equation}
 az $F(\RR)$ és $G(\RR)$ függvényekkel kifejezve
 \begin{equation} \label{correlators-F-G}
 \begin{split}
-	\left< \psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime) \right> & = G(\RR - \RR^\prime) \cdot \left( \delta(\RR - \RR^\prime) - G(\RR - \RR^\prime) \right) + G^2(0), \\
-	\left< \psi_\downarrow^\dagger(\RR) \psi_\downarrow(\RR) \psi_\downarrow^\dagger(\RR^\prime) \psi_\downarrow(\RR^\prime) \right> & = G(\RR - \RR^\prime) \cdot \left( \delta(\RR - \RR^\prime) - G(\RR - \RR^\prime) \right) + G^2(0), \\
-	\left< \psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \psi_\downarrow^\dagger(\RR^\prime) \psi_\downarrow(\RR^\prime) \right> & = \left| F(\RR - \RR^\prime) \right|^2 + G^2(0), \\
-	\left< \psi_\downarrow^\dagger(\RR) \psi_\downarrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime) \right> & = \left| F(\RR - \RR^\prime) \right|^2 + G^2(0).
+	\expval{\psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime)} & = G(\RR - \RR^\prime) \cdot \left( \delta(\RR - \RR^\prime) - G(\RR - \RR^\prime) \right) + G^2(0), \\
+	\expval{\psi_\downarrow^\dagger(\RR) \psi_\downarrow(\RR) \psi_\downarrow^\dagger(\RR^\prime) \psi_\downarrow(\RR^\prime)} & = G(\RR - \RR^\prime) \cdot \left( \delta(\RR - \RR^\prime) - G(\RR - \RR^\prime) \right) + G^2(0), \\
+	\expval{\psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \psi_\downarrow^\dagger(\RR^\prime) \psi_\downarrow(\RR^\prime)} & = \left| F(\RR - \RR^\prime) \right|^2 + G^2(0), \\
+	\expval{\psi_\downarrow^\dagger(\RR) \psi_\downarrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime)} & = \left| F(\RR - \RR^\prime) \right|^2 + G^2(0).
 \end{split}
 \end{equation}
-A \eqref{density-components} összefüggésben felismerhetjük a Wick-tételt, ami szerint ki lehet bontani a várhatóértéket több egyszerűbb tag összegére.
+A \eqref{density-components} összefüggésben felismerhetjük a Wick-tételt, ami szerint a téroperátorok szorzatának várható értékét föl lehet írni úgy, mint az összes lehetséges párosítás várható értékének összegét.
 
 A töltéskorrelációs függvényt így felírhatjuk az $F(\RR)$ és $G(\RR)$ függvények segítségével,
 \begin{equation}
-	e^2 \left< \rho(\RR) \rho(\RR^\prime) \right> = e^2 \left( 4 \, G^2(0) + 2 \left| F(\RR - \RR^\prime) \right|^2 - 2 \, G^2(\RR - \RR^\prime) + 2 \, G(0) \cdot \delta(\RR - \RR^\prime) \right).
+	e^2 \expval{\rho(\RR) \rho(\RR^\prime)} = e^2 \left( 4 \, G^2(0) + 2 \left| F(\RR - \RR^\prime) \right|^2 - 2 \, G^2(\RR - \RR^\prime) + 2 \, G(0) \cdot \delta(\RR - \RR^\prime) \right).
+\end{equation}
+A konstans tagok számunkra nem érdekesek, ezért használjuk a $\delta\rho(\RR)$ sűrűség operátorokat a korrelációs függvényhez, amivel
+\begin{equation}
+	e^2 \expval{\delta\rho(\RR) \delta\rho(\RR^\prime)} = e^2 \left( 2 \left| F(\RR - \RR^\prime) \right|^2 - 2 \, G^2(\RR - \RR^\prime) + 2 \, G(0) \cdot \delta(\RR - \RR^\prime) \right).
 \end{equation}
 
 
 \subsection{Spinkorreláció}
 
-A spinsűrűség operátorok felírhatók a \eqref{psi} keltő operátorok segítségével,
+A teljes spinkorrelációs függvény egyszerűen az egyes irányok spinkorrelációs függvényeinek összege.  A \eqref{spin-density} operátorokat felhasználva
 \begin{equation}
-	s_\alpha(\RR) = \frac{\hbar}{2} \begin{pmatrix} \psi_\uparrow^\dagger(\RR) & \psi_\downarrow^\dagger(\RR) \end{pmatrix} \sigma_\alpha \begin{pmatrix} \psi_\uparrow(\RR) \\ \psi_\downarrow(\RR) \end{pmatrix},
+	\left< s(\RR) s(\RR^\prime) \right> = \sum_\alpha \left< s^\alpha(\RR) s^\alpha(\RR^\prime) \right>.
 \end{equation}
-ahol $\alpha = x, y, z$ és $\sigma_\alpha$ a Pauli-mátrixok.  A teljes spinkorrelációs függvény
-\begin{equation}
-	\left< s(\RR) s(\RR^\prime) \right> = \sum_\alpha \left< s_\alpha(\RR) s_\alpha(\RR^\prime) \right>.
-\end{equation}
-A függvény kiszámolása hasonlóan tehető meg, mint a töltéskorrelációs függvénynél, először számoljuk ki $\left< s_z(\RR) s_z(\RR^\prime) \right>$ értékét.
+A függvény kiszámolása hasonlóan tehető meg, mint a töltéskorrelációs függvénynél.  Először számoljuk ki $\expval{s^z(\RR) s^z(\RR^\prime)}$ értékét,
 \begin{multline}
-	\left< s_z(\RR) s_z(\RR^\prime) \right> = \frac{\hbar^2}{4} \left( \left< \psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime) \right> - \left< \psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \psi_\downarrow^\dagger(\RR^\prime) \psi_\downarrow(\RR^\prime) \right> -
+	\expval{s^z(\RR) s^z(\RR^\prime)} = \frac{1}{4} \left( \expval{\psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime)} - \expval{\psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \psi_\downarrow^\dagger(\RR^\prime) \psi_\downarrow(\RR^\prime)} -
 	\right. \\ \left. -
-	\left< \psi_\downarrow^\dagger(\RR) \psi_\downarrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime) \right> + \left< \psi_\downarrow^\dagger(\RR) \psi_\downarrow(\RR) \psi_\downarrow^\dagger(\RR^\prime) \psi_\downarrow(\RR^\prime) \right> \right),
+	\expval{\psi_\downarrow^\dagger(\RR) \psi_\downarrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime)} + \expval{\psi_\downarrow^\dagger(\RR) \psi_\downarrow(\RR) \psi_\downarrow^\dagger(\RR^\prime) \psi_\downarrow(\RR^\prime)} \right),
 \end{multline}
 a \eqref{correlators-F-G} összefüggéseket felhasználva
 \begin{equation}
-	\left< s_z(\RR) s_z(\RR^\prime) \right> = \frac{\hbar^2}{2} \left( -\left| F(\RR - \RR^\prime) \right|^2 - G^2(\RR - \RR^\prime) + G(0) \cdot \delta(\RR - \RR^\prime) \right).
+	\expval{s^z(\RR) s^z(\RR^\prime)} = \frac{1}{2} \left( -\left| F(\RR - \RR^\prime) \right|^2 - G^2(\RR - \RR^\prime) + G(0) \cdot \delta(\RR - \RR^\prime) \right).
 \end{equation}
-$\left< s_x(\RR) s_x(\RR^\prime) \right>$ és $\left< s_y(\RR) s_y(\RR^\prime) \right>$-t kiszámolva azt látjuk, hogy a három korrelátor értéke megegyezik, így a teljes spinkorrelációs függvény
+Az $\expval{s^x(\RR) s^x(\RR^\prime)}$ és $\expval{s^y(\RR) s^y(\RR^\prime)}$ korrelátorokat kiszámolva azt látjuk, hogy azok értéke megegyezik $\expval{s^z(\RR) s^z(\RR^\prime)}$ értékével, így a teljes spinkorrelációs függvény
 \begin{equation}
 \begin{split}
-	\left< s(\RR) s(\RR^\prime) \right> & = \frac{3 \hbar^2}{2} \left( -\left| F(\RR - \RR^\prime) \right|^2 - G^2(\RR - \RR^\prime) + G(0) \cdot \delta(\RR - \RR^\prime) \right) \\
-	& = \frac{3 \hbar^2}{4} \left( \left< \rho(\RR) \rho(\RR^\prime) \right> - 4 \left| F(\RR - \RR^\prime) \right|^2 - 4 \, G^2(0) \right).
+	\expval{s(\RR) s(\RR^\prime)} & = \frac{3 \hbar^2}{2} \left( -\left| F(\RR - \RR^\prime) \right|^2 - G^2(\RR - \RR^\prime) + G(0) \cdot \delta(\RR - \RR^\prime) \right) \\
+	& = \frac{3 \hbar^2}{4} \left( \expval{\delta\rho(\RR) \delta\rho(\RR^\prime)} - 4 \left| F(\RR - \RR^\prime) \right|^2  \right).
 \end{split}
 \end{equation}
 
 
 % ================================================================
-\section{$F(\RR)$ és $G(\RR)$ függvények meghatározása}
+\section{Az $F(\RR)$ és $G(\RR)$ függvények meghatározása}
 
-\subsection{Normálállapot}
+\subsection{Normál állapot}
 
-\subsubsection{$F(\RR)$ normálállapotban}
-\subsubsection{$G(\RR)$ normálállapotban}
+Először azt nézzük meg, hogy normál állapotban mi lesz a függvények alakja.  Ehhez $u_\KK$ és $v_\KK$ értékére a már korábban felírt \eqref{u-v-normal} értékeket használjuk.
+
+\subsubsection{Az $F(\RR)$ függvény normál állapotban}
+
+A \eqref{F-G-def} összefüggés értelmében a függvény értéke
+\begin{equation}
+	F_\text{n}(\RR) = \frac{1}{V} \sum\limits_\KK e^{-i \KK \RR} u_\KK v_\KK^*.
+\end{equation}
+Az \eqref{u-v-normal} értékeket behelyettesítve azt látjuk, hogy normál állapotban a függvény értéke $F_\text{n}(\RR) \equiv 0$.
+
+
+\subsubsection{A $G(\RR)$ függvény normál állapotban}
+
+Itt is használjuk fel a \eqref{F-G-def} összefüggést
+\begin{equation}
+	G_\text{n}(\RR) = \frac{1}{V} \sum\limits_\KK e^{-i \KK \RR} \left| v_\KK \right|^2.
+\end{equation}
+A \eqref{u-v-normal} értékeket behelyettesítve
+\begin{equation}
+\begin{split}
+	G_\text{n}(\RR) & = \frac{1}{V} \sum\limits_{\left| \KK \right| < k_\text{F}} e^{-i \KK \RR} \approx \int\limits_{\left| \KK \right| < k_\text{F}} \frac{\dd[3]k}{\left( 2 \pi \right)^3} e^{-i \KK \RR} = \frac{2}{\left( 2 \pi \right)^2} \, \frac{1}{r} \int\limits_0^{k_\text{F}} \dd{k} ~ k \sin(k r) = \\
+	& = \frac{2}{\left( 2 \pi \right)^2} \cdot \frac{\sin(k_\text{F} r) - k_\text{F} r \cos(k_\text{F} r)}{r^3}.
+\end{split}
+\end{equation}
+A továbbiakban hasznos lesz, ha a $k_\text{F} r$ szerinti oszcillációt figyelmen kívül hagyjuk és a függvény burkolóját vizsgáljuk.  Ehhez vezessük be a $g_\text{n}(\RR)$ komplex függvényt, amivel $G_\text{n}(\RR)$ felírható,
+\begin{equation}
+	G_\text{n}(\RR) = \Im{g_\text{n}(\RR) \cdot e^{i k_\text{F} r}}.
+\end{equation}
+Kifejezve $g_\text{n}(\RR)$-t
+\begin{equation}
+	g_\text{n}(\RR) = \frac{2}{\left( 2 \pi \right)^2} \cdot \frac{1 - i k_\text{F} r}{r^3}.
+\end{equation}
+A burkoló görbe pedig nem lesz más, mint $\left| g_\text{n}(\RR) \right|$.
+
 
 \subsection{Szupravezető állapot járuléka}
 
-\subsubsection{$F(\RR)$ szupravezető járuléka}
+\subsubsection{Az $F(\RR)$ függvény szupravezető járuléka}
+
+
 \subsubsection{$G(\RR)$ szupravezető járuléka}
 
 \subsection{Asszimptotikus viselkedés}
