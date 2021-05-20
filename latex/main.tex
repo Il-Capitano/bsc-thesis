@@ -108,20 +108,40 @@ A számolásokhoz alapvető kvantumtérelméleti eszközöket használunk, rész
 % ================================================================
 \section{Fizikai modell}
 
-\subsection{BCS-elmélet}
+\subsection{A BCS Hamilton-operátor}
 
-A BCS-elméletben használt szupravezető alapállapot hullámfüggvénye
+A BCS-emélet egy egyszerű átlagtér modellt vesz a szupravezetők leírására.  A Hamilton-operátort két részből építi fel, a $H_0$ kinetikus és a $H_\text{int}$ kölcsönhatási tagokból.  A kinetikus tag
 \begin{equation}
-	\tilde{\phi} = \prod\limits_\KK \left( u_\KK + v_\KK \, c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger \right) \phi_0,
+	H_0 = \sum\limits_\KK \xi_\KK \left( c_{\KK \uparrow}^\dagger c_{\KK \uparrow} + c_{\KK \downarrow}^\dagger c_{\KK \downarrow} \right),
 \end{equation}
-ahol $\phi_0$ a vákuum állapot, $c_{\KK \sigma}^\dagger$ a $\left( \KK \sigma \right)$ sajátállapotú elektron keltő operátora, $u_\KK$ és $v_\KK$ pedig általános esetben komplex együtthatók.  A hullámfüggvény normálásának feltétele, hogy
-\begin{equation} \label{u-v-norm}
-	\left| u_\KK \right|^2 + \left| v_\KK \right|^2 = 1.
-\end{equation}
+ahol $c_{\KK \sigma}^\dagger$ a $\left( \KK \sigma \right)$ sajátállapotú elektron keltő operátora és
+$$ \xi_\KK = \frac{\hbar^2 k^2}{2 m} - E_\text{F} $$
+az elektron kinetikus energiája a Fermi-energiához viszonyítva.
 
-Ezzel a formalizmussal a normálállapot alapállapota is leírható, ahol minden elektronállapot be van töltve a Fermi-felületig,
+A kölcsönhatási tagnál azt a közelítést vesszük, hogy az elektronok csak a Cooper-párokon belül hatnak kölcsön.  Így $H_\text{int}$ felírható úgy, mint a Cooper-párok $\left( \KK \uparrow, -\KK \downarrow \right)$ állapotból $\left( \LL \uparrow, -\LL \downarrow \right)$ állapotba való átmenete,
+\begin{equation} \label{H-int-def}
+	H_\text{int} = \sum\limits_{\KK, \LL} V_{\KK \LL} \, c_{\LL \uparrow}^\dagger c_{-\LL \downarrow}^\dagger c_{-\KK \downarrow} c_{\KK \uparrow},
+\end{equation}
+ahol $V_{\KK \LL}$ az átmenet valószínűségi amplitúdója.  A BCS-elméletben ezt a valószínűséget úgy választjuk meg, hogy
+$$ V_{\KK \LL} = \left\{ \begin{array}{rl}
+	-V, & \text{ha } \left| \xi_\LL \right| < \hbar \omega_\text{D} \text{ és } \left| \xi_\KK \right| < \hbar \omega_\text{D} \\
+	0, & \text{egyébként}
+\end{array} \right. , $$
+ahol $\omega_\text{D}$ a Debeye-frekvencia.  Ez azt jelenti, hogy csak a Fermi-felület közelében lévő elektronok hatnak kölcsön, tehát csak ezek lesznek vezető elektronok.
+
+A kölcsönhatási tag alakjának meghatározásához vezessünk be egy variációs hullámyfüggvényt,
 \begin{equation}
-	\tilde{\phi}_\text{n} = \prod\limits_{\left| \KK \right| < k_\text{F}} c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger \phi_0,
+	\ket{\tilde{\phi}} \equiv \prod\limits_\KK \left( u_\KK + v_\KK \, c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger \right) \ket{0},
+\end{equation}
+ahol a $\ket{0}$ vákuum állapotba helyezünk be Cooper-párokat valamilyen amplitúdóval.  Az $u_\KK$ és $v_\KK$ együtthatók általános esetben komplexek és ahhoz, hogy $\ket{\tilde{\phi}}$ normálva legyen teljesülnie kell az
+\begin{equation}
+	\left| u_\KK \right|^2 + \left| v_\KK \right|^2 = 1
+\end{equation}
+relációnak.
+
+Ezzel a formalizmussal a normálállapot hullámfüggvényét is felírhatjuk, ahol minden elektronállapot be van töltve a Fermi-felületig,
+\begin{equation}
+	\ket{\tilde{\phi}_\text{n}} = \prod\limits_{\left| \KK \right| < k_\text{F}} c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger \ket{0},
 \end{equation}
 ez az
 \begin{equation}
@@ -131,67 +151,21 @@ ez az
 \end{equation}
 együtthatóknak felel meg.
 
-\subsection{Hamilton-operátor meghatározása}
-
-A szupravezető állapot Hamilton-operátora két részből áll, a $H_0$ kinetikus és a $H_\text{int}$ kölcsönhatási tagból.  A kinetikus tag egyszerűen az egyes részecskék kinetikus energiájának összege,
+Vezessük be a $\Delta_\KK$ mennyiséget,
 \begin{equation}
-	H_0 = \sum\limits_\KK \xi_\KK \left( c_{\KK \uparrow}^\dagger c_{\KK \uparrow} + c_{\KK \downarrow}^\dagger c_{\KK \downarrow} \right),
+	\Delta_\KK^* \equiv \left\{ \begin{array}{ll}
+	V \, {\sum\limits_\LL}^\prime \expval{c_{\LL \uparrow}^\dagger c_{-\LL \downarrow}^\dagger}, & \text{ha } \left| \xi_\KK \right| < \hbar \omega_\text{D} \\
+	0, & \text{egyébként}
+	\end{array} \right. ,
 \end{equation}
-ahol
-$$ \xi_\KK = \frac{\hbar^2 k^2}{2 m} - E_\text{F}. $$
-A kölcsönhatási tag
-\begin{equation} \label{H-int-def}
-	H_\text{int} = \sum\limits_{\KK, \LL} V_{\KK \LL} \, c_{\LL \uparrow}^\dagger c_{-\LL \downarrow}^\dagger c_{-\KK \downarrow} c_{\KK \uparrow}
-\end{equation}
-lesz, ahol $V_{\KK \LL}$ azt jellemzi, hogy két elektron kölcsönhatásánál mekkora a valószínűsége, hogy a $\left( \KK \uparrow, -\KK \downarrow \right)$ állapotból az $\left( \LL \uparrow, -\LL \downarrow \right)$ állapotba kerüljenek.
-
-A kölcsönhatási tag meghatározásához vezessük be a $\phi_{\KK 0}$ és $\phi_{\KK 1}$ állapotokat, amikben rendre a $\left( \KK \uparrow, -\KK \downarrow \right)$ állapot nincs, illetve be van betöltve.  Ennek segítségével $\tilde{\phi}$ felírható,
+ahol ${\sum_\LL}^\prime$ azt jelenti, hogy az összegzés csak a $\left| \xi_\LL \right| < \hbar \omega_\text{D}$ állapotokra van.  Ezután egy átlagtér közelítést alkalmazva a \eqref{H-int-def} definícióra azt kapjuk, hogy
 \begin{equation}
-	\tilde{\phi} = (u_\KK + v_\KK \, c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger) \phi_{\KK 0} = u_\KK \phi_{\KK 0} + v_\KK \phi_{\KK 1}
-\end{equation}
-alakban.  Hasonló módon bevezethető a $\phi_{\KK i \LL j}$ állapot is, amiben $i$ és $j$ rendre a $\left( \KK \uparrow, -\KK \downarrow \right)$ és $\left( \LL \uparrow, -\LL \downarrow \right)$ állapotok betöltöttségét jelöli.  Ezek segítségével is felírhatjuk $\tilde{\phi}$-t,
-\begin{equation} \label{phi-tilde-kl}
-	\begin{split}
-	\tilde{\phi} & = \left( u_\KK + v_\KK \, c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger \right) \left( u_\LL + v_\LL \, c_{\LL \uparrow}^\dagger c_{-\LL \downarrow}^\dagger \right) \phi_{\KK 0 \LL 0} = \\
-	& = u_\KK u_\LL \phi_{\KK 0 \LL 0} + u_\KK v_\LL \phi_{\KK 0 \LL 1} + v_\KK u_\LL \phi_{\KK 1 \LL 0} + v_\KK v_\LL \phi_{\KK 1 \LL 1}.
-	\end{split}
-\end{equation}
-A \eqref{H-int-def} definícióból ezután következik, hogy
-\begin{equation}
-	\matrixelement{\tilde{\phi}}{H_\text{int}}{\tilde{\phi}} = \sum\limits_{\KK, \LL} \left( V_{\KK \LL} v_\KK^* u_\LL^* u_\KK v_\LL + V_{\LL \KK} u_\KK^* v_\LL^* v_\KK u_\LL \right).
-\end{equation}
-Továbbá definiáljuk a $\Delta_\KK$ mennyiséget is,
-\begin{equation}
-	\Delta_\KK \coloneqq - \sum\limits_\LL V_{\KK \LL} u_\LL^* v_\LL,
-\end{equation}
-aminek segítségével
-\begin{equation} \label{Hintmatrix}
-	\matrixelement{\tilde{\phi}}{H_\text{int}}{\tilde{\phi}} = - \sum\limits_\KK \left( \Delta_\KK u_\KK v_\KK^* + \Delta_\KK^* u_\KK^* v_\KK \right)
-\end{equation}
-felírható.
-
-$H_\text{int}$ alakjának meghatározásához vizsgáljuk meg a $c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger$ operátor várhatóértékét,
-\begin{equation}
-\begin{split}
-	\matrixelement{\tilde{\phi}}{c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger}{\tilde{\phi}} & = v_\KK^* \matrixelement{\phi_{\KK 1}}{c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger}{\phi_{\KK 0}} u_\KK = u_\KK v_\KK^*, \\
-	\matrixelement{\tilde{\phi}}{c_{-\KK \downarrow} c_{\KK \uparrow}}{\tilde{\phi}} & = \matrixelement{\tilde{\phi}}{c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger}{\tilde{\phi}}^* = u_\KK^* v_\KK.
-\end{split}
-\end{equation}
-Ez alapján \eqref{Hintmatrix} átalakítható,
-\begin{equation}
-\begin{split}
-	\matrixelement{\tilde{\phi}}{H_\text{int}}{\tilde{\phi}} & = - \sum\limits_\KK \left( \Delta_\KK \matrixelement{\tilde{\phi}}{c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger}{\tilde{\phi}} + \Delta_\KK^* \matrixelement{\tilde{\phi}}{c_{-\KK \downarrow} c_{\KK \uparrow}}{\tilde{\phi}} \right) \\
-	& = \matrixelement{\tilde{\phi}}{- \sum\limits_\KK \left( \Delta_\KK c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger + \Delta_\KK^* c_{-\KK \downarrow} c_{\KK \uparrow} \right)}{\tilde{\phi}},
-\end{split}
-\end{equation}
-így $H_\text{int}$ teljes alakja
-\begin{equation}
-	H_\text{int} = - \sum\limits_\KK \left( \Delta_\KK c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger + \Delta_\KK^* c_{-\KK \downarrow} c_{\KK \uparrow} \right).
+	H_\text{int} = - \sum\limits_\KK \left( \Delta_\KK c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger + \Delta_\KK^* c_{-\KK \downarrow} c_{\KK \uparrow} \right) + \text{cst}.
 \end{equation}
 
-A teljes Hamilton-operátor így felírható,
+Ezzel felírhatjuk a teljes BCS Hamilton-operátort,
 \begin{equation}
-	H_\text{BCS} = H_0 + H_\text{int} = \sum\limits_\KK \left[ \xi_\KK \left( c_{\KK \uparrow}^\dagger c_{\KK \uparrow} + c_{\KK \downarrow}^\dagger c_{\KK \downarrow} \right) - \Delta_\KK c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger - \Delta_\KK^* c_{-\KK \downarrow} c_{\KK \uparrow} \right].
+	H_\text{BCS} = H_0 + H_\text{int} = \sum\limits_\KK \left[ \xi_\KK \left( c_{\KK \uparrow}^\dagger c_{\KK \uparrow} + c_{\KK \downarrow}^\dagger c_{\KK \downarrow} \right) - \Delta_\KK c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger - \Delta_\KK^* c_{-\KK \downarrow} c_{\KK \uparrow} \right] + \text{cst}.
 \end{equation}
 
 
