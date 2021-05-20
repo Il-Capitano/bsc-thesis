@@ -134,7 +134,7 @@ A kölcsönhatási tag alakjának meghatározásához vezessünk be egy variáci
 	\ket{\tilde{\phi}} \equiv \prod\limits_\KK \left( u_\KK + v_\KK \, c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger \right) \ket{0},
 \end{equation}
 ahol a $\ket{0}$ vákuum állapotba helyezünk be Cooper-párokat valamilyen amplitúdóval.  Az $u_\KK$ és $v_\KK$ együtthatók általános esetben komplexek és ahhoz, hogy $\ket{\tilde{\phi}}$ normálva legyen teljesülnie kell az
-\begin{equation}
+\begin{equation} \label{u-v-norm}
 	\left| u_\KK \right|^2 + \left| v_\KK \right|^2 = 1
 \end{equation}
 relációnak.
@@ -188,7 +188,7 @@ ahol $\anticommutator{A}{B} = AB + BA$ az antikommutátor.  Ezen kívül kell le
 \end{equation}
 
 Megmutatható, hogy a
-\begin{equation}
+\begin{equation} \label{gamma-def}
 \begin{split}
 	\gamma_{\KK \uparrow} & = u_\KK c_{\KK \uparrow} - v_\KK c_{-\KK \downarrow}^\dagger \\
 	\gamma_{\KK \downarrow} & = u_\KK c_{\KK \downarrow} + v_\KK c_{-\KK \uparrow}^\dagger
@@ -200,56 +200,40 @@ A $\gamma_{\KK \sigma}$ operátorokra kapott kifejezést invertálva megkaphatju
 \begin{equation}
 \begin{split}
 	c_{\KK \uparrow} & = u_\KK^* \gamma_{\KK \uparrow} + v_\KK \gamma_{-\KK \downarrow}^\dagger, \\
-	c_{\KK \downarrow} & = u_\KK^* \gamma_{\KK \downarrow} - v_\KK \gamma_{-\KK \uparrow}^\dagger, \\
+	c_{\KK \downarrow} & = u_\KK^* \gamma_{\KK \downarrow} - v_\KK \gamma_{-\KK \uparrow}^\dagger.
 \end{split}
 \end{equation}
 
 
 \subsection{Az $u_\KK$ és $v_\KK$ együtthatók kiszámolása}
 
-Az $u_\KK$ és $v_\KK$ együtthatók kiszámolásához a \eqref{H-BCS} Hamilton-operátort és a léptetőoperátorok tulajdonságait használjuk fel.  Felírható, hogy
-\begin{equation}
-	H_\text{BCS} \gamma_{\LL \uparrow}^\dagger \tilde{\phi} = \gamma_{\LL \uparrow}^\dagger \left( H_\text{BCS} + E_\LL \right) \tilde{\phi},
+Az $u_\KK$ és $v_\KK$ együtthatók meghatározásához a léptetőoperátorok tulajdonságait használjuk fel, a \eqref{H-BCS} egyenletből következik, hogy
+\begin{equation} \label{H-gamma-commutator}
+	\commutator{H_\text{BCS}}{\gamma_{\KK \uparrow}^\dagger} = E_\KK \gamma_{\KK \uparrow}^\dagger.
 \end{equation}
-amit tovább írva,
+A $\commutator{H_\text{BCS}}{\gamma_{\KK \uparrow}^\dagger}$ kommutátor kiszámolásához használjuk fel a \eqref{gamma-def} összefüggést, tehát számoljuk ki egyenként $\commutator{H_\text{BCS}}{c_{\KK \uparrow}^\dagger}$ és $\commutator{H_\text{BCS}}{c_{-\KK \downarrow}}$ értékét.  A $c_{\KK \sigma}$ operátorok felcserélési relációjából könnyen belátható, hogy
 \begin{equation}
-	\left[ H_\text{BCS}, \gamma_{\LL \uparrow}^\dagger \right] = E_\LL \gamma_{\LL \uparrow}^\dagger.
+	\commutator{H_\text{BCS}}{c_{\KK \uparrow}^\dagger} = \xi_\KK c_{\KK \uparrow}^\dagger - \Delta_\KK^* c_{-\KK \downarrow}
 \end{equation}
-$\left[ H_\text{BCS}, \gamma_{\LL \uparrow}^\dagger \right]$ kiszámolásához számoljuk ki egyenként $\left[ H_\text{BCS}, c_{\LL \uparrow}^\dagger \right]$ és $\left[ H_\text{BCS}, c_{-\LL \downarrow} \right]$ értékét,
+és
 \begin{equation}
-\begin{split}
-	\left[ H_\text{BCS}, c_{\LL \uparrow}^\dagger \right] & = \left[ \sum\limits_\KK \left(\xi_\KK \left( c_{\KK \uparrow}^\dagger c_{\KK \uparrow} + c_{\KK \downarrow}^\dagger c_{\KK \downarrow} \right) - \Delta_\KK c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger - \Delta_\KK^* c_{-\KK \downarrow} c_{\KK \uparrow} \right), c_{\LL \uparrow}^\dagger \right] = \\
-	& = \xi_\LL \left[ c_{\LL \uparrow}^\dagger c_{\LL \uparrow}, c_{\LL \uparrow}^\dagger \right] - \Delta_\LL^* \left[ c_{-\LL \downarrow} c_{\LL \uparrow}, c_{\LL \uparrow}^\dagger \right] = \\
-	& = \xi_\LL \left( c_{\LL \uparrow}^\dagger c_{\LL \uparrow} c_{\LL \uparrow}^\dagger - c_{\LL \uparrow}^\dagger c_{\LL \uparrow}^\dagger c_{\LL \uparrow} \right) - \Delta_\LL^* \left( c_{-\LL \downarrow} c_{\LL \uparrow} c_{\LL \uparrow}^\dagger - c_{\LL \uparrow}^\dagger c_{-\LL \downarrow} c_{\LL \uparrow} \right) = \\
-	& = \xi_\LL \left( c_{\LL \uparrow}^\dagger - c_{\LL \uparrow}^\dagger c_{\LL \uparrow}^\dagger c_{\LL \uparrow} \right) - \Delta_\LL^* \left( c_{-\LL \downarrow} - c_{-\LL \downarrow} c_{\LL \uparrow}^\dagger c_{\LL \uparrow} + c_{-\LL \downarrow} c_{\LL \uparrow}^\dagger c_{\LL \uparrow} \right) = \\
-	& = \xi_\LL c_{\LL \uparrow}^\dagger - \Delta_\LL^* c_{-\LL \downarrow},
-\end{split}
+	\commutator{H_\text{BCS}}{c_{-\KK \downarrow}} = -\xi_\KK c_{-\KK \downarrow} - \Delta_\KK c_{\KK \uparrow}^\dagger.
 \end{equation}
-illetve
+Így a \eqref{H-gamma-commutator} összefüggés tovább írható,
 \begin{equation}
-\begin{split}
-	\left[ H_\text{BCS}, c_{-\LL \downarrow} \right] & = \left[ \sum\limits_\KK \left(\xi_\KK \left( c_{\KK \uparrow}^\dagger c_{\KK \uparrow} + c_{\KK \downarrow}^\dagger c_{\KK \downarrow} \right) - \Delta_\KK c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger - \Delta_\KK^* c_{-\KK \downarrow} c_{\KK \uparrow} \right), c_{-\LL \downarrow} \right] = \\
-	& = \xi_\LL \left[ c_{-\LL \downarrow}^\dagger c_{-\LL \downarrow}, c_{-\LL \downarrow} \right] - \Delta_\LL \left[ c_{\LL \uparrow}^\dagger c_{-\LL \downarrow}^\dagger, c_{-\LL \downarrow} \right] = \\
-	& = \xi_\LL \left( c_{-\LL \downarrow}^\dagger c_{-\LL \downarrow} c_{-\LL \downarrow} - c_{-\LL \downarrow} c_{-\LL \downarrow}^\dagger c_{-\LL \downarrow} \right) - \Delta_\LL \left( c_{\LL \uparrow}^\dagger c_{-\LL \downarrow}^\dagger c_{-\LL \downarrow} - c_{-\LL \downarrow} c_{\LL \uparrow}^\dagger c_{-\LL \downarrow}^\dagger \right) = \\
-	& = -\xi_\LL \left( c_{-\LL \downarrow} - c_{-\LL \downarrow} c_{-\LL \downarrow} c_{-\LL \downarrow}^\dagger \right) - \Delta_\LL \left( c_{\LL \uparrow}^\dagger - c_{\LL \uparrow}^\dagger c_{-\LL \downarrow} c_{-\LL \downarrow}^\dagger + c_{\LL \uparrow}^\dagger c_{-\LL \downarrow} c_{-\LL \downarrow}^\dagger \right) = \\
-	& = -\xi_\LL c_{-\LL \downarrow} - \Delta_\LL c_{\LL \uparrow}^\dagger.
-\end{split}
+	u_\KK^* \left( \xi_\KK c_{\KK \uparrow}^\dagger - \Delta_\KK^* c_{-\KK \downarrow} \right) - v_\KK^* \left( -\xi_\KK c_{-\KK \downarrow} - \Delta_\KK c_{\KK \uparrow}^\dagger \right) = E_\KK \left( u_\KK^* c_{\KK \uparrow}^\dagger - v_\KK^* c_{-\KK \downarrow} \right),
 \end{equation}
-A \eqref{gamma} összefüggést felhasználva felírható, hogy
-\begin{equation}
-	u_\LL^* \left( \xi_\LL c_{\LL \uparrow}^\dagger - \Delta_\LL^* c_{-\LL \downarrow} \right) - v_\LL^* \left( -\xi_\LL c_{-\LL \downarrow} - \Delta_\LL c_{\LL \uparrow}^\dagger \right) = E_\LL \left( u_\LL^* c_{\LL \uparrow}^\dagger - v_\LL^* c_{-\LL \downarrow} \right),
-\end{equation}
-amit egy lineáris egyenletrendszerre hozhatunk,
+amit egy lineáris egyenletrendszerként is felírhatunk,
 \begin{equation}
 	\begin{pmatrix}
-		\xi_\LL & \Delta_\LL \\
-		\Delta_\LL^* & -\xi_\LL
-	\end{pmatrix} \begin{pmatrix} u_\LL^* \\ v_\LL^* \end{pmatrix}
-	= E_\LL \begin{pmatrix} u_\LL^* \\ v_\LL^* \end{pmatrix}.
+		\xi_\KK & \Delta_\KK \\
+		\Delta_\KK^* & -\xi_\KK
+	\end{pmatrix} \begin{pmatrix} u_\KK^* \\ v_\KK^* \end{pmatrix}
+	= E_\KK \begin{pmatrix} u_\KK^* \\ v_\KK^* \end{pmatrix}.
 \end{equation}
-A sajátértékekre $E_\LL = \pm \sqrt{\xi_\LL^2 + \left| \Delta_\LL \right|^2}$ adódik, amiből a pozitív előjelűnek van fizikai értelme.  Az egyenletrendszert megoldva úgy, hogy az eredmény kielégítse a \eqref{u-v-norm} feltételt,
+A sajátértékekre $E_\KK = \pm \sqrt{\xi_\KK^2 + \left| \Delta_\KK \right|^2}$ adódik, amiből a pozitív előjelű feleltethető meg a felfelé léptető operátornak.  Végül az $u_\KK$ és $v_\KK$ együtthatókra, figyelembevéve a \eqref{u-v-norm} normálási feltételt,
 \begin{equation}
-	u_\LL^* = \frac{\Delta_\LL}{\sqrt{2 E_\LL \left( E_\LL - \xi_\LL \right)}} ~~~ \text{és} ~~~ v_\LL^* = \frac{E_\LL - \xi_\LL}{\sqrt{2 E_\LL \left( E_\LL - \xi_\LL \right)}}
+	u_\KK = \frac{\Delta_\KK^*}{\sqrt{2 E_\KK \left( E_\KK - \xi_\KK \right)}} ~~~ \text{és} ~~~ v_\KK = \frac{E_\KK - \xi_\KK}{\sqrt{2 E_\KK \left( E_\KK - \xi_\KK \right)}}
 \end{equation}
 adódik.
 
