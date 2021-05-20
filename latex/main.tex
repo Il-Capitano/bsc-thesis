@@ -51,9 +51,9 @@
 	\mathord{\lower 0.1ex \hbox{\kern\dimen0\unhbox1\kern\dimen0}}
 }
 
-\newcommand{\KK}{{\vb{k}}}
-\newcommand{\LL}{{\boldsymbol\uell}}
-\newcommand{\RR}{{\vb{r}}}
+\newcommand{\KK}{{\vb*{k}}}
+\newcommand{\LL}{{\vb*{\ell}}}
+\newcommand{\RR}{{\vb*{r}}}
 \newcommand{\phantomdagger}{{\phantom{\dagger}}}
 
 \begin{document}
@@ -66,11 +66,43 @@
 % ================================================================
 \section{Bevezetés}
 
-A szupravezetés a 20.\ század elején lett felfedezve Heike Kamerlingh Onnes holland fizikus által.  A jelenség leírására több fenomenológikus elmélet is született, az első kvantummechanikai elméletet 1957-ben publikálta Bardeen\footnote{John Bardeen, kétszeres Nobel-díjas (1956 és 1972) amerikai mérnök és fizikus}, Cooper\footnote{Leon N.\ Cooper, Nobel-díjas (1972) amerikai fizikus} és Schrieffer\footnote{John Robert Schrieffer, Nobel-díjas (1972) amerikai fizikus}, amiért 1972-ben megkapták a fizikai Nobel-díjat.  Az elméletük a BCS-elmélet.
+A szupravezetés a 20.\ század elején lett felfedezve Heike Kamerlingh Onnes holland fizikus által, amikor a higany ellenállását vizsgálta alacsony hőmérsékleten.  Azt tapasztalta, hogy $4,2$\,K alatt az ellenállás ugrásszerűen nullára csökkent.  Azóta sok más elemi fémnél és ötvözetnél is tapasztaltak szupravezetést, mindegyiknél van egy $T_\text{c}$ kritikus hőmérséklet, ami alatt a vezető disszipáció nélkül képes áramot vezetni.  A kritikus hőmérséklet értéke jellemzően $10$\,K alatt van, viszont vannak olyan anyagok is, amik már $100$\,K körül is szupravezetnek, az ilyen anyagokat magas hőmérsékletű szupravezetőknek nevezzük.  Az ilyen anyagok nagy előnye, hogy folyékony hélium helyett folyékony nitrogénnel is lehűthetők annyira, hogy szupravezessenek.
 
-A szupravezetés jelensége a mai napig fontos, többek között használják az orvostudományban (MRI), kutatásban (részecskegyorsítók), méréstechnikában (volt definíciója) és az energiaiparban (fúziós erőművek, szélerőművek) is.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=5cm]{higany_R-vs-T.jpg}
+	\caption[]{Egy higany minta ellenállása $T_\text{c}$ körül.\footnotemark}
+\end{figure}
+\footnotetext{\href{https://pressbooks.bccampus.ca/collegephysics/chapter/resistance-and-resistivity/}{\texttt{https://pressbooks.bccampus.ca/collegephysics/chapter/resistance-and-resistivity/}}}
 
-A dolgozat során a BCS-elméletben használt szupravezető alapállapot segítségével levezetjük az elektronok töltéskorrelációs, illetve spinkorrelációs függvényét.  A kapott függvények asszimptotikus viselkedését összevetjük a normálállapotú korrelációs függvényekkel.
+A szupravezetés jelenségének fontos tulajdonsága a Meissner-effektus, ami egy minta belsejében a mágneses tér teljes kiszorítását jelenti.  Az ideális vezetésből következik, hogy a szupravezető minta belsejében a mágneses tér erőssége állandó, a Meissner-effektus viszont ennél nagyobb megszorítást tesz, azt hogy a minta belsejében a mágneses tér állandó és zérus.
+
+A szupravezetőket széles körben használják fel, az egyik alapvető jelenség, amit kihasználnak a Josephson-effektus, ahol két szupravezető rész közé egy vékony szigetelőt tesznek be és a két vezetőre egy egyenfeszültséget kötnek.  Ezután azt tapasztaljuk, hogy a mintán egy váltóáram mérhető, aminek a frekvenciája arányos a vezetőkre kapcsolt feszültséggel.  A Josephson-effektust használja ki például az úgynevezett SQUID (superconducting quantum interference device), amivel mágneses tereket lehet nagy pontossággal mérni.  Ezen kívül még a Josephson-effektus alapján van definiálva az SI rendszerben a volt egysége.  Még fontos felhasználási terület a nagyterű szupravezető mágnesek, amiket többek között az orvostudományban is használnak MRI-kben.  Kvantumszámítógépekben is előnyös szupravezetőket használni a kvantumbitekhez, mivel az energiaspektrumukban van egy rés, így viszonylag magas hőmérsékleten is kicsi a zajuk.
+
+A felfedezése óta számos elmélet született a szupravezetés jelenségének leírására, a két meghatározó elmélet a Ginzburg--Landau-elmélet, ami egy fenomenológikus elmélet, illetve a BCS-elmélet, ami egy mikroszkópikus leírást ad.
+A Ginzburg--Landau-elméletet 1950-ben dolgozták ki Vitaly Ginzburg\footnote{Vitaly Lazarevich Ginzburg, Nobel-díjas (2003) orosz fizikus} és Lev Landau\footnote{Lev Davidovich Landau, Nobel-díjas (1962) orosz fizikus} orosz fizikusok, az elmélet jó leírást ad a szupravezetők makroszkópikus tulajdonságaira, még az olyan anyagoknál is, amikre a BCS-elmélet nem érvényes.  Ilyenek például a magas hőmérsékletű szupravezetők és nehéz fermion rendszerek.  Az elméletből ezen kívül következik még az első- és másodfajú szupravezetők megkülönböztetése.
+
+A BCS-elméletet John Bardeen\footnote{John Bardeen, kétszeres Nobel-díjas (1956 és 1972) amerikai mérnök és fizikus}, Leon N.\ Cooper\footnote{Leon N.\ Cooper, Nobel-díjas (1972) amerikai fizikus} és John Robert Schrieffer\footnote{John Robert Schrieffer, Nobel-díjas (1972) amerikai fizikus} amerikai fizikusok dolgozták ki, és publikálták 1957-ben, az elmélet egy mikroszkópikus leírásmódot ad a szupravezetés jelenségére.  Az elmélet szerint a vezetési elektronok úgynevezett Cooper-párokat alkotnak egy köztük lévő vonzó kölcsönhatás miatt.  Ezt először Cooper mutatta meg, hogy akármilyen gyenge vonzó kölcsönhatás mellett is a normálállapot instabil lesz és az elektronok párokba rendeződnek.  A vonzó kölcsönhatás elektron-fonon kölcsönhatásokból származik és alacsony hőmérsékleten jön elő.  Az elektronok párokba rendeződését mérésekkel is igazolni lehet, azt tapasztaljuk, hogy a vezető részecskék töltése kétszerese az elektron töltésének.
+
+Szupravezetésnél a minta energiaspektrumában megjelenik egy rés, ez az úgynevezett \emph{szupravezető gap}.  Ez a gap a hőmérséklet csökkenésével nő és $0$\,K-nél éri el a maximumát.  Kialakulása fontos szerepet játszik a szupravezetésben, azt tapasztaljuk, hogy ha a gap-et eltüntetjük például egy erős mágneses térrel, akkor a minta már nem fog szupravezetni.  A szupravezető gap értékének hőmérsékletfüggését a \ref{sc-gap}.\ ábrán láthatjuk.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=12cm]{sc_gap.png}
+	\caption[]{Szupravezető gap a hőmérséklet függvényében.\footnotemark}
+	\label{sc-gap}
+\end{figure}
+\footnotetext{\href{https://www.researchgate.net/figure/Sketch-of-the-superconducting-gap-D-as-a-function-of-temperature-T-for-a-superconducting_fig3_305412985}{\texttt{https://www.researchgate.net/figure/Sketch-of-the-superconducting-gap-D-...}}}
+
+A gap jelenléte azt is jelenti, hogy kevés gerjesztés van a szupravezető állapotban, tehát az elektronok többsége alapállapotban van.  Ez az állapot nagyon hasonlít a Bose--Einstein-kondenzációhoz, de a kialakulása másképp történik.
+
+\newpage
+A dolgozat célja az, hogy a szupravezető gap jelenléte mellett vizsgáljuk a spin- és töltéskorrelációs függvényeket, és összehasonlítsuk őket a normálállapotban lévő függvényekkel.  Hosszabb távon cél, hogy megértsük egy szupravezetőbe helyezett mágneses szennyezés körül kialakult úgynevezett Kondo-felhőben a spin-korrelációkat.
+
+A dolgozatban először megnézzük a BCS Hamilton-operátor alakját, majd megmutatjuk, hogy ez transzformálható egy olyan alakra, ahol léptetőoperátorok jelennek meg.  Majd ezekkel a léptetőoperátorokkal felírjuk a korrelációs függvényeket.  Azt fogjuk látni, hogy ezekben két független függvény jelenik meg, amiket kiszámolunk mind normálállapotban, mind szupravezető állapotban.  Ezen függvények asszimpototikus viselkedését is megvizsgáljuk és analitikus közelítőfüggvényeket adunk meg közel- és távoltérben.  Végül ezek segítségével megkapjuk a spin- és töltéskorrelációs függvényeket normál- és szupravezető állapotban.
+
+A számolásokhoz alapvető kvantumtérelméleti eszközöket használunk, részecske keltő és eltüntető operátorokat, illetve átlagtér közelítést.  Ezen kívül a BCS-elmélet közelítéseivel is élünk.
+
 
 
 % ================================================================
