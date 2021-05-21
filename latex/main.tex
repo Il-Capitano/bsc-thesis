@@ -449,7 +449,7 @@ Kifejezve $g_\text{n}(\RR)$-t
 \begin{equation}
 	g_\text{n}(\RR) = \frac{2}{\left( 2 \pi \right)^2} \cdot \frac{1 - i k_\text{F} r}{r^3}.
 \end{equation}
-A burkoló görbe pedig nem lesz más, mint $\left| g_\text{n}(\RR) \right|$.  A függvényeket ábrázolva a \ref{G-normal-fig}.\ ábrán láthatjuk.  A függvényeket az ábrázoláshoz normáltuk az $n$ részecskesűrűséggel.
+A burkoló görbe pedig nem lesz más, mint $\left| g_\text{n}(\RR) \right|$.  A függvényeket ábrázolva a \ref{G-normal-fig}.\ ábrán láthatjuk.  A függvényeket az ábrázoláshoz az $n$ részecskesűrűséget használtuk egységnek.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=10cm]{G_normal.pdf}
@@ -530,8 +530,28 @@ A $G_\text{n}(\RR)$ számolásához hasonlóan itt is bevezethetünk egy $f(\RR)
 	f(\RR) = \frac{2}{\left( 2 \pi \right)^2} \, \frac{k_\text{F}}{\xi_\text{c} r} \, \frac{\Delta^*}{\left| \Delta \right|} \cdot I.
 \end{equation}
 
+Az eredmények ellenőrzésére a \eqref{f-def} összefüggés alapján numerikusan is kiszámoltuk $f(\RR)$ értékét és összehasonlítottuk a kapott közelítések értékéhez.  A számolás során a $\left| \Delta \right| : \hbar \omega_\text{D} : E_\text{F} = 1 : 100 : 10000$ energia arányokat használtuk.  A kapott függvényeket a \ref{F-sc-fig}.\ ábrán láthatjuk.  Az ábrázoláshoz log-log skálát használtunk, hogy jobban elkülönüljelenek a görbék.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=10cm]{F_sc.pdf}
+	\caption{Az $\left| f(\RR) \right|$ értéke $r$ függvényében, illetve a közel- és távoltéri közelítő függvények.}
+	\label{F-sc-fig}
+\end{figure}
+
+Az ábrázolt görbéken azt látjuk, hogy a közel- és távoltéri közelítések jól illeszkednek a numerikus eredményhez a saját tartományukban.  Ezt úgy is megnézhetjük, hogy a közelítő függvények relatív eltérését ábrázoljuk $r$ függvényében, ezt a \ref{F-sc-error-fig}.\ ábrán láthatjuk.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=10cm]{F_sc_error.pdf}
+	\caption{Az $f(\RR)$-t közelítő függvények relatív hibája $r$ függvényében.}
+	\label{F-sc-error-fig}
+\end{figure}
+
 
 \subsubsection{$G(\RR)$ szupravezető járuléka}
+
+
 
 \subsection{Asszimptotikus viselkedés}
 
