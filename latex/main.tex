@@ -545,7 +545,9 @@ Az eredmények ellenőrzésére a \eqref{f-def} összefüggés alapján numeriku
 	\label{F-sc-fig}
 \end{figure}
 
-Az ábrázolt görbéken azt látjuk, hogy a közel- és távoltéri közelítések jól illeszkednek a numerikus eredményhez a saját tartományukban.  Ezt úgy is megnézhetjük, hogy a közelítő függvények relatív eltérését ábrázoljuk $r$ függvényében, ezt a \ref{F-sc-error-fig}.\ ábrán láthatjuk.
+Az ábrázolt görbéken azt látjuk, hogy a közel- és távoltéri közelítések jól illeszkednek a numerikus eredményhez a saját tartományukban.  Ezt úgy is megnézhetjük, hogy a közelítő függvények relatív eltérését ábrázoljuk $r$ függvényében.  Az eltérés meghatározásához használt képlet távoltéri esetben
+$$ \delta f_{r \gg \tilde{\lambda}_\text{D}}(\RR) = \left| \frac{f(\RR) - f_{r \gg \tilde{\lambda}_\text{D}}(\RR)}{f(\RR)} \right|. $$
+Közeltéri esetben is egy ugyanilyen képletet használtunk.  A hibákat ábrázolva az \ref{F-sc-error-fig}.\ ábrán láthatjuk.
 
 \begin{figure}[h!]
 	\centering
@@ -607,11 +609,11 @@ lesz, ahol $R_{1 \text{SC}}$ és $R_{2 \text{SC}}$ az $x_1 = \frac{i + 1}{\sqrt{
 \end{equation}
 és
 \begin{equation}
-	R_{2 \text{SC}} = 2 \pi i \left( \frac{1}{2} - \frac{x_2}{2 \sqrt{1 + x_2^2}} \right) e^{i \tilde{r} x_2} \cdot \frac{1}{4 \tilde{\lambda}_\text{D}^4 x_2^3} \approx -\frac{i \pi x_2}{2} \exp(i \frac{\tilde{r}}{\sqrt{2} \tilde{\lambda}_\text{D}}) \exp(-\frac{\tilde{r}}{\sqrt{2} \tilde{\lambda}_\text{D}}).
+	R_{2 \text{SC}} = 2 \pi i \left( \frac{1}{2} - \frac{x_2}{2 \sqrt{1 + x_2^2}} \right) e^{i \tilde{r} x_2} \cdot \frac{1}{4 \tilde{\lambda}_\text{D}^4 x_2^3} \approx -\frac{i \pi x_2}{2} \exp(-i \frac{\tilde{r}}{\sqrt{2} \tilde{\lambda}_\text{D}}) \exp(-\frac{\tilde{r}}{\sqrt{2} \tilde{\lambda}_\text{D}}).
 \end{equation}
 A kettő összege
 \begin{equation}
-	R_{1 \text{SC}} + R_{2 \text{SC}} \approx R_{2 \text{SC}} = \frac{\pi \left( 1 + i \right)}{2 \sqrt{2} \tilde{\lambda}_\text{D}} \exp(i \frac{\tilde{r}}{\sqrt{2} \tilde{\lambda}_\text{D}}) \exp(-\frac{\tilde{r}}{\sqrt{2} \tilde{\lambda}_\text{D}}).
+	R_{1 \text{SC}} + R_{2 \text{SC}} \approx R_{2 \text{SC}} = \frac{\pi \left( 1 + i \right)}{2 \sqrt{2} \tilde{\lambda}_\text{D}} \exp(-i \frac{\tilde{r}}{\sqrt{2} \tilde{\lambda}_\text{D}}) \exp(-\frac{\tilde{r}}{\sqrt{2} \tilde{\lambda}_\text{D}}).
 \end{equation}
 
 A komplex tengely menti integrál értékét itt is vizsgáljuk meg $\tilde{r} \gg \tilde{\lambda}_\text{D}$ és $\tilde{r} \ll \tilde{\lambda}_\text{D}$ tartományokban.  Távoltéri közelítésben az integrálból kihagyhatjuk a levágást, mivel az exponenciális rész sokkal gyorsabban vág le. Ezzel az integrál értéke
@@ -657,9 +659,28 @@ Közeltérben a \eqref{g-n-near-field} és \eqref{g-sc-near-field} összefüggé
 \end{equation}
 ahol $A$ és $B$ az egyes eseteknél számolt együtthatók különbsége.
 
+A $g(\RR)$ értékét numerikusan is kiszámoltuk, hogy ellenőrizzük mennyire illeszkednek a közel- és távoltéri közelítő függvények.  A számolás során a $\left| \Delta \right| : \hbar \omega_\text{D} : \EF = 1 : 100 : 10000$ energia arányokat használtuk.  A kapott függvényeket a \ref{G-sc-fig}.\ ábrán láthatjuk.  Az ábrázoláshoz log-log skálát használtunk.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=10cm]{G_sc.pdf}
+	\caption{A $\left| g(\RR) \right|$ értéke $r$ függvényében, illetve a közel- és távoltéri közelítő függvények.}
+	\label{G-sc-fig}
+\end{figure}
 
-\subsection{Asszimptotikus viselkedés}
+Az ábrán azt látjuk, hogy a közel- és távoltéri közelítések jól illeszkednek a numerikus eredményhez a megfelelő tartományokban.  Az illeszkedés jóságát jellemezhetjük a függvények $g(\RR)$-től való relatív eltérésével.  Az eltérés meghatározásához használt képlet távoltéri esetben
+$$ \delta f_{r \gg \tilde{\lambda}_\text{D}}(\RR) = \left| \frac{f(\RR) - f_{r \gg \tilde{\lambda}_\text{D}}(\RR)}{f(\RR)} \right|. $$
+Közeltéri esetben is egy ugyanilyen képletet használtunk.  A relatív eltéréseket ábrázolva a \ref{G-sc-error-fig}.\ ábrán láthatjuk.
 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=10cm]{G_sc_error.pdf}
+	\caption{A $g(\RR)$-t közelítő függvények relatív hibája $r$ függvényében.}
+	\label{G-sc-error-fig}
+\end{figure}
+
+\subsection{Eredmények összefoglalása}
+
+Az előzőekben meghatároztuk az $F(\RR)$ és $G(\RR)$ függvények alakját mind normál, mind szupravezető állapotban.  A függvényekhez ezen kívül adtunk egy közeltéri és egy távoltéri közelítést is.  A kettő közül a távoltéri mindig kiszámolható analitikusan.
 
 
 % ================================================================
