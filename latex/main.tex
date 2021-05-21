@@ -172,7 +172,7 @@ Ezzel a formalizmussal a normál állapot hullámfüggvényét is felírhatjuk, 
 	\ket{\tilde{\phi}_\text{n}} = \prod\limits_{\left| \KK \right| < k_\text{F}} c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger \ket{0},
 \end{equation}
 ez az
-\begin{equation}
+\begin{equation} \label{u-v-sc}
 	u_\KK = \left\{ \begin{array}{ll} 0, & \text{ha } \left| \KK \right| < k_\text{F} \\ 1, & \text{ha } \left| \KK \right| > k_\text{F} \end{array} \right.
 	~~~ \text{és} ~~~
 	v_\KK = \left\{ \begin{array}{ll} 1, & \text{ha } \left| \KK \right| < k_\text{F} \\ 0, & \text{ha } \left| \KK \right| > k_\text{F} \end{array} \right.
@@ -275,7 +275,9 @@ A BCS-elméletben $\Delta_\KK$ definíciója
 ahol $\omega_\text{D}$ a Debeye-frekvencia.  Ez azt jelenti, hogy csak a Fermi-felület közelében lévő elektronok vesznek részt a szupravezetésben.
 
 E helyett az éles levágás helyett mi egy sima függvényt használunk, így a számolás során kapott integrálokat egyszerűbben tudjuk kezelni.  A használt levágás
-$$ w(\xi) = \frac{1}{\left( \frac{\xi}{\hbar \omega_\text{D}} \right)^4 + 1} $$
+\begin{equation} \label{cutoff}
+	w(\xi) = \frac{1}{\left( \frac{\xi}{\hbar \omega_\text{D}} \right)^4 + 1}
+\end{equation}
 alakú, ami az éles levágáshoz hasonlóan nagyjából a $\left[ -\hbar \omega_\text{D}, \hbar \omega_\text{D} \right]$ tartományon nem zérus. A szupravezető gap impulzus- és energiafüggését mi is elhanyagoljuk, értékét konstans $\Delta$-nak választjuk.
 
 A legtöbb szupravezetőben $\left|\Delta\right| \ll \hbar \omega_\text{D} \ll E_\text{F}$, amit a számolásaink során ki is fogunk használni.
@@ -451,7 +453,7 @@ A burkoló görbe pedig nem lesz más, mint $\left| g_\text{n}(\RR) \right|$.  A
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=10cm]{G_normal.pdf}
-	\caption{A $G_\text{n}(\RR)$ és $\left| g_\text{n}(\RR) \right|$ függvények normált értéke $k_\text{F} r$ függvényében}
+	\caption{A $G_\text{n}(\RR)$ és $\left| g_\text{n}(\RR) \right|$ függvények normált értéke $k_\text{F} r$ függvényében.}
 	\label{G-normal-fig}
 \end{figure}
 
@@ -459,6 +461,74 @@ A burkoló görbe pedig nem lesz más, mint $\left| g_\text{n}(\RR) \right|$.  A
 \subsection{Szupravezető állapot járuléka}
 
 \subsubsection{Az $F(\RR)$ függvény szupravezető járuléka}
+
+Ugyanúgy, mint korábban itt is írjuk fel a \eqref{F-G-def} összefüggés alapján a szupravezető állapotban $F(\RR)$ értékét.  A számolás során felhasználjuk a \eqref{u-v-sc} értékeket, illetve a \eqref{cutoff} levágást.
+\begin{equation}
+\begin{split}
+	F(\RR) & = \frac{1}{V} \sum\limits_\KK e^{-i \KK \RR} u_\KK v_\KK^* \approx \int \frac{\dd[3]k}{\left( 2 \pi \right)^3} ~ e^{-i \KK \RR} u_\KK v_\KK^* \cdot \frac{1}{\left( \frac{\xi_\KK}{\hbar \omega_\text{D}} \right)^4 + 1} = \\
+	& = \int\limits_0^{2 \pi} \dd{\varphi} \int\limits_0^\pi \dd{\vartheta} \int\limits_0^\infty \frac{\dd{k}}{\left( 2 \pi \right)^3} ~ k^2 \sin\vartheta ~ e^{-i k r \cos\vartheta} \frac{\Delta^*}{2 \sqrt{\left| \Delta \right|^2 + \xi^2}} \cdot \frac{1}{\left( \frac{\xi}{\hbar \omega_\text{D}} \right)^4 + 1} = \\
+	& = \frac{2}{\left( 2 \pi \right)^2} \, \frac{1}{r} \Im{ \int\limits_0^\infty \dd{k} ~ k \, e^{i k r} \frac{\Delta^*}{2 \sqrt{\left| \Delta \right|^2 + \xi^2}} \cdot \frac{1}{\left( \frac{\xi}{\hbar \omega_\text{D}} \right)^4 + 1} }
+\end{split}
+\end{equation}
+Mivel a Fermi-felülethez közeli tartományon integrálunk, közelíthetjük a kitevőben lévő $k$ értékét az alábbi módon,
+\begin{equation}
+	k = \sqrt{\frac{2 m \left( E_\text{F} + \xi \right)}{\hbar^2}} \approx k_\text{F} + \frac{k_\text{F}}{2 E_\text{F}} \cdot \xi.
+\end{equation}
+A integrálban tényezőként lévő $k$ értékét egyszerűen $k_\text{F}$-el közelítjük, mert a pontosabb közelítésből csak egy elhanyagolható nagyságú korrekció származna.
+
+Még érdemes bevezetni a $\Delta$ és $\hbar \omega_\text{D}$ energiákhoz tartozó hosszskálákat, a szupravezető korrelációs hosszat és a Debeye hullámhosszat,
+\begin{equation}
+	\xi_\text{c} \equiv \frac{2 E_\text{F}}{k_\text{F} \left| \Delta \right|} ~~~ \text{és} ~~~ \lambda_\text{D} \equiv \frac{2 E_\text{F}}{k_\text{F} \hbar \omega_\text{D}},
+\end{equation}
+illetve az $r$ és $\lambda_\text{D}$ viszonyított értékét a szupravezető korrelációs hosszhoz,
+\begin{equation}
+	\tilde{r} \equiv \frac{r}{\xi_\text{c}} ~~~ \text{és} ~~~ \tilde{\lambda}_\text{D} \equiv \frac{\lambda_\text{D}}{\xi_\text{c}}.
+\end{equation}
+
+Mindezeket felhasználva
+\begin{equation}
+	F(\RR) \approx \frac{2}{\left( 2 \pi \right)^2} \, \frac{k_\text{F}}{2 E_\text{F} r} \Im{ \int\limits_{-\infty}^\infty \dd{\xi} ~ k_\text{F} e^{i k_\text{F} r} e^{i \frac{k_\text{F}}{2 E_\text{F}} \xi \, r} \frac{\Delta^*}{2 \sqrt{\left| \Delta \right|^2 + \xi^2}} \cdot \frac{1}{\left( \frac{\xi}{\hbar \omega_\text{D}} \right)^4 + 1} }.
+\end{equation}
+Írjuk át az integrált az $x = \frac{\xi}{\left| \Delta \right|}$ változó szerint,
+\begin{equation} \label{f-def}
+	F(\RR) \approx \frac{2}{\left( 2 \pi \right)^2} \, \frac{k_\text{F}}{\xi_\text{c} r} \Im{ e^{i k_\text{F} r} \frac{\Delta^*}{\left| \Delta \right|} \int\limits_{-\infty}^\infty \dd{x} ~ e^{i \tilde{r} x} \frac{1}{2 \sqrt{1 + x^2}} \cdot \frac{1}{\left( \tilde{\lambda}_\text{D} x \right)^4 + 1} }.
+\end{equation}
+A továbbiakban jelöljük az integrált $I$-vel.  Ha az integrált kiterjesztjük a komplex síkra azt látjuk, hogy a $\sqrt{1 + x^2}$ miatt a komplex tengely mentén van egy szakadás, illetve az $\frac{1}{\left( \tilde{\lambda}_\text{D} x \right)^4 + 1}$ miatt négy pontban.  Az integrálási görbét transzformáljuk úgy, hogy a komplex tengely menti szakadást körülölelje.  Ekkor meg fog jelenni két reziduum $x_1 = \frac{i + 1}{\sqrt{2} \tilde{\lambda}_\text{D}}$ és $x_2 = \frac{i - 1}{\sqrt{2} \tilde{\lambda}_\text{D}}$ pontok körül.  Az integrálási változót írjuk át $x = i y$ szerint.  Így az integrál
+\begin{equation}
+	I = \int\limits_1^\infty \dd{y} ~ \frac{1}{\sqrt{y^2 - 1}} \, e^{-\tilde{r} y} \frac{1}{\left( \tilde{\lambda}_\text{D} y \right)^4 + 1} + R_1 + R_2,
+\end{equation}
+ahol $R_1$ és $R_2$ az $x_1$ és $x_2$ pont beli reziduumokat jelöli.
+
+A reziddumokat könnyen felírhatjuk,
+\begin{equation}
+	R_1 = 2 \pi i \, e^{i \tilde{r} x_1} \frac{1}{2 \sqrt{1 + x_1^2}} \cdot \frac{1}{4 \tilde{\lambda}_\text{D}^4 x_1^3} \approx -\frac{i \pi}{4} \exp(i \frac{\tilde{r}}{\sqrt{2} \tilde{\lambda}_\text{D}}) \exp(-\frac{\tilde{r}}{\sqrt{2} \tilde{\lambda}_\text{D}})
+\end{equation}
+és
+\begin{equation}
+	R_2 = 2 \pi i \, e^{i \tilde{r} x_2} \frac{1}{2 \sqrt{1 + x_2^2}} \cdot \frac{1}{4 \tilde{\lambda}_\text{D}^4 x_2^3} \approx -\frac{i \pi}{4} \exp(-i \frac{\tilde{r}}{\sqrt{2} \tilde{\lambda}_\text{D}}) \exp(-\frac{\tilde{r}}{\sqrt{2} \tilde{\lambda}_\text{D}}).
+\end{equation}
+A kettő összege
+\begin{equation}
+	R_1 + R_2 \approx -\frac{i \pi}{2} \exp(-\frac{\tilde{r}}{\sqrt{2} \tilde{\lambda}_\text{D}}) \cos(\frac{\tilde{r}}{\sqrt{2} \tilde{\lambda}_\text{D}}).
+\end{equation}
+
+A komplex tengely menti integrál értékét vizsgáljuk meg $\tilde{r} \gg \tilde{\lambda}_\text{D}$ és $\tilde{r} \ll \tilde{\lambda}_\text{D}$ esetekben.  Távoltéri közelítésben az integrálból kihagyhatjuk a levágást, mivel az exponenciális rész sokkal gyorsabban vág le.  Ezzel az integrált kiszámolhatjuk,
+\begin{equation}
+	\int\limits_1^\infty \dd{y} ~ \frac{1}{\sqrt{y^2 - 1}} \, e^{-\tilde{r} y} = K_0(\tilde{r}),
+\end{equation}
+ahol $K_n(x)$ a másodfajú módosított Bessel-függvények.
+
+Közeltéri közelítésben az integrálban lévő exponenciális függvényt sorba fejthetjük $\tilde{r}$ szerint,
+\begin{multline}
+	\int\limits_1^\infty \dd{y} ~ \frac{1}{\sqrt{y^2 - 1}} \left( 1 - \tilde{r} y \right) \frac{1}{\left( \tilde{\lambda}_\text{D} y \right)^4 + 1} = \\
+	= \int\limits_1^\infty \dd{y} ~ \frac{1}{\sqrt{y^2 - 1}} \cdot \frac{1}{\left( \tilde{\lambda}_\text{D} y \right)^4 + 1} - \tilde{r} \int\limits_1^\infty \dd{y} ~ \frac{y}{\sqrt{y^2 - 1}} \cdot \frac{1}{\left( \tilde{\lambda}_\text{D} y \right)^4 + 1}.
+\end{multline}
+A kapott integrálokat numerikusan egyszerűen kiértékelhetjük.
+
+A $G_\text{n}(\RR)$ számolásához hasonlóan itt is bevezethetünk egy $f(\RR)$ komplex mennyiséget, ami az $F(\RR)$ függvény burkolóját jellemzi.  A \eqref{f-def} összefüggés alapján felírhatjuk, hogy
+\begin{equation}
+	f(\RR) = \frac{2}{\left( 2 \pi \right)^2} \, \frac{k_\text{F}}{\xi_\text{c} r} \, \frac{\Delta^*}{\left| \Delta \right|} \cdot I.
+\end{equation}
 
 
 \subsubsection{$G(\RR)$ szupravezető járuléka}
