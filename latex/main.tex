@@ -58,6 +58,7 @@
 \newcommand{\phantomdagger}{{\phantom{\dagger}}}
 \newcommand{\kF}{{k_\text{F}}}
 \newcommand{\EF}{{E_\text{F}}}
+\newcommand{\vF}{{v_\text{F}}}
 
 \begin{document}
 
@@ -91,6 +92,11 @@
 \end{center}
 \end{titlepage}
 
+\null
+\thispagestyle{empty}
+\addtocounter{page}{-1}
+\newpage
+
 \tableofcontents \newpage
 
 
@@ -102,9 +108,8 @@ A szupravezetést a 20.\ század elején fedezve fel Heike Kamerlingh Onnes holl
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=5cm]{higany_R-vs-T.jpg}
-	\caption[]{Egy higany minta ellenállása $T_\text{c}$ körül.\footnotemark}
+	\caption{Egy higany minta ellenállása $T_\text{c}$ körül. \cite{openstax}}
 \end{figure}
-\footnotetext{\href{https://pressbooks.bccampus.ca/collegephysics/chapter/resistance-and-resistivity/}{\texttt{https://pressbooks.bccampus.ca/collegephysics/chapter/resistance-and-resistivity/}}}
 
 A szupravezetés jelenségének fontos tulajdonsága a Meissner-effektus, ami egy minta belsejében a mágneses tér teljes kiszorítását jelenti.  Könnyen belátható, hogy egy ideális vezető belsejében a mágneses tér erőssége állandó, a Meissner-effektus viszont ennél nagyobb megszorítást jelent: a minta belsejében a mágneses tér állandó és zérus, még akkor is, ha a szupravezető állapotra egy külső mágneses tér mellett hűtjük le a mintát.
 
@@ -120,10 +125,9 @@ Szupravezetésnél a minta energiaspektrumában megjelenik egy \enquote{rés}, e
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=12cm]{sc_gap.png}
-	\caption[]{Szupravezető gap a hőmérséklet függvényében.\footnotemark}
+	\caption{Szupravezető gap a hőmérséklet függvényében. \cite{superconductor-gap}}
 	\label{sc-gap}
 \end{figure}
-\footnotetext{\href{https://www.researchgate.net/figure/Sketch-of-the-superconducting-gap-D-as-a-function-of-temperature-T-for-a-superconducting_fig3_305412985}{\texttt{https://www.researchgate.net/figure/Sketch-of-the-superconducting-gap-D-\\ as-a-function-of-temperature-T-for-a-superconducting\_fig3\_305412985}}}
 
 \newpage
 
@@ -140,7 +144,7 @@ A számolásokhoz alapvető kvantumtérelméleti eszközöket használunk, rész
 
 \subsection{A BCS Hamilton-operátor}
 
-A BCS-emélet egy egyszerű átlagtér modellt vesz a szupravezetők leírására.  A Hamilton-operátort két részből építi fel, a $H_0$ kinetikus és a $H_\text{int}$ kölcsönhatási tagokból.  A kinetikus tag
+A BCS-emélet egy egyszerű átlagtér modellt alkalmaz a szupravezetők leírására.  A Hamilton-operátort két részből építi fel, a $H_0$ kinetikus és a $H_\text{int}$ kölcsönhatási tagokból.  A kinetikus tag
 \begin{equation}
 	H_0 = \sum\limits_\KK \xi_\KK \left( c_{\KK \uparrow}^\dagger c_{\KK \uparrow} + c_{\KK \downarrow}^\dagger c_{\KK \downarrow} \right),
 \end{equation}
@@ -157,9 +161,9 @@ $$ V_{\KK \LL} = \left\{ \begin{array}{rl}
 	-V, & \text{ha } \left| \xi_\LL \right| < \hbar \omega_\text{D} \text{ és } \left| \xi_\KK \right| < \hbar \omega_\text{D} \\
 	0, & \text{egyébként}
 \end{array} \right. , $$
-ahol $\omega_\text{D}$ a Debeye-frekvencia.  Ez azt jelenti, hogy csak a Fermi-felület közelében lévő elektronok hatnak kölcsön, tehát csak ezek lesznek vezető elektronok.
+ahol $\omega_\text{D}$ a Debeye-frekvencia.  Ez azt jelenti, hogy csak a Fermi-felület közelében lévő elektronok hatnak kölcsön.
 
-A kölcsönhatási tag alakjának meghatározásához vezessünk be egy variációs hullámyfüggvényt,
+Bardeen, Cooper és Schrieffer a Hamilton-operátor alapállapotát a köveztkező variációs hullámfüggvénnyel közelítette,
 \begin{equation} \label{phi-tilde}
 	\ket{\tilde{\phi}} \equiv \prod\limits_\KK \left( u_\KK + v_\KK \, c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger \right) \ket{0},
 \end{equation}
@@ -167,54 +171,56 @@ ahol a $\ket{0}$ vákuum állapotba helyezünk be Cooper-párokat valamilyen amp
 \begin{equation} \label{u-v-norm}
 	\left| u_\KK \right|^2 + \left| v_\KK \right|^2 = 1
 \end{equation}
-relációnak.
-
-Ezzel a formalizmussal a normál állapot hullámfüggvényét is felírhatjuk, ahol minden elektronállapot be van töltve a Fermi-felületig,
-\begin{equation} \label{u-v-normal}
+relációnak.  Ezzel a formalizmussal a normál állapot hullámfüggvényét is felírhatjuk, ahol minden elektronállapot be van töltve a Fermi-felületig,
+\begin{equation}
 	\ket{\tilde{\phi}_\text{n}} = \prod\limits_{\left| \KK \right| < \kF} c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger \ket{0},
 \end{equation}
 ez az
-\begin{equation} \label{u-v-sc}
+\begin{equation} \label{u-v-normal}
 	u_\KK = \left\{ \begin{array}{ll} 0, & \text{ha } \left| \KK \right| < \kF \\ 1, & \text{ha } \left| \KK \right| > \kF \end{array} \right.
 	~~~ \text{és} ~~~
 	v_\KK = \left\{ \begin{array}{ll} 1, & \text{ha } \left| \KK \right| < \kF \\ 0, & \text{ha } \left| \KK \right| > \kF \end{array} \right.
 \end{equation}
 együtthatóknak felel meg.
 
-Vezessük be a $\Delta_\KK$ mennyiséget,
+A \eqref{H-int-def}-ben lévő kölcsönhatást átlagtér közelítéssel átírhatjuk,
+\begin{equation}
+	c_{\LL \uparrow}^\dagger c_{-\LL \downarrow}^\dagger c_{-\KK \downarrow} c_{\KK \uparrow} \approx \expval{c_{\LL \uparrow}^\dagger c_{-\LL \downarrow}^\dagger} c_{-\KK \downarrow} c_{\KK \uparrow} + c_{\LL \uparrow}^\dagger c_{-\LL \downarrow}^\dagger \expval{c_{-\KK \downarrow}^\phantomdagger c_{\KK \uparrow}^\phantomdagger} - \expval{c_{\LL \uparrow}^\dagger c_{-\LL \downarrow}^\dagger} \expval{c_{-\KK \downarrow}^\phantomdagger c_{\KK \uparrow}^\phantomdagger}.
+\end{equation}
+Ezen kívül vezessük be a $\Delta_\KK$ mennyiséget,
 \begin{equation}
 	\Delta_\KK^* \equiv \left\{ \begin{array}{ll}
 	V \, {\sum\limits_\LL}^\prime \expval{c_{\LL \uparrow}^\dagger c_{-\LL \downarrow}^\dagger}, & \text{ha } \left| \xi_\KK \right| < \hbar \omega_\text{D} \\
 	0, & \text{egyébként}
 	\end{array} \right. ,
 \end{equation}
-ahol ${\sum_\LL}^\prime$ azt jelenti, hogy az összegzés csak a $\left| \xi_\LL \right| < \hbar \omega_\text{D}$ állapotokra van.  Ezután egy átlagtér közelítést alkalmazva a \eqref{H-int-def} definícióra azt kapjuk, hogy
+ahol ${\sum_\LL}^\prime$ azt jelöli, hogy az összegzés csak a $\left| \xi_\LL \right| < \hbar \omega_\text{D}$ állapotokra történik.  Ezután a fenti átlagtér közelítést alkalmazva \eqref{H-int-def} a következőképp közelíthető,
 \begin{equation}
-	H_\text{int} = - \sum\limits_\KK \left( \Delta_\KK c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger + \Delta_\KK^* c_{-\KK \downarrow} c_{\KK \uparrow} \right) + \text{cst}.
+	H_\text{int} \approx - \sum\limits_\KK \left( \Delta_\KK c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger + \Delta_\KK^* c_{-\KK \downarrow} c_{\KK \uparrow} \right) + \text{cst}.
 \end{equation}
 
 Ezzel felírhatjuk a teljes BCS Hamilton-operátort,
 \begin{equation}
-	H_\text{BCS} = H_0 + H_\text{int} = \sum\limits_\KK \left[ \xi_\KK \left( c_{\KK \uparrow}^\dagger c_{\KK \uparrow} + c_{\KK \downarrow}^\dagger c_{\KK \downarrow} \right) - \Delta_\KK c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger - \Delta_\KK^* c_{-\KK \downarrow} c_{\KK \uparrow} \right] + \text{cst}.
+	H_\text{BCS} = H_0 + H_\text{int} \approx \sum\limits_\KK \left[ \xi_\KK \left( c_{\KK \uparrow}^\dagger c_{\KK \uparrow} + c_{\KK \downarrow}^\dagger c_{\KK \downarrow} \right) - \Delta_\KK c_{\KK \uparrow}^\dagger c_{-\KK \downarrow}^\dagger - \Delta_\KK^* c_{-\KK \downarrow} c_{\KK \uparrow} \right] + \text{cst}.
 \end{equation}
 
 
 \subsection{Az szupravezető-állapot léptetőoperátorai}
 
-A BCS Hamilton-operátor spektrumának meghatározásához fejezzük ki azt léptetlőoperátorok segítségével,
+A BCS Hamilton-operátor spektrumának meghatározásához azt léptetlőoperátorok segítségével fejezzük ki,
 \begin{equation} \label{H-BCS}
 	H_\text{BCS} = \sum\limits_\KK E_\KK \left( \gamma_{\KK \uparrow}^\dagger \gamma_{\KK \uparrow} + \gamma_{\KK \downarrow}^\dagger \gamma_{\KK \downarrow} \right) + \text{cst},
 \end{equation}
-ahol a $\gamma_{\KK \sigma}$ operátorok a szupravezető-állapot kvázirészecskéinek léptetőoperátorai.  Továbbá igaz rájuk, hogy
+ahol a $\gamma_{\KK \sigma}$ operátorok a szupravezető-állapot kvázirészecskéinek léptetőoperátorai.  Ezek kielégítik a következő relációkat,
 \begin{equation} \label{gamma-anticommutator}
 \begin{split}
 	\anticommutator{\gamma_{\KK \sigma}^\phantomdagger}{\gamma_{\KK^\prime \sigma^\prime}^\phantomdagger} & = \anticommutator{\gamma_{\KK \sigma}^\dagger}{\gamma_{\KK^\prime \sigma^\prime}^\dagger} = 0, \\
 	\anticommutator{\gamma_{\KK \sigma}^\phantomdagger}{\gamma_{\KK^\prime \sigma^\prime}^\dagger} & = \delta_{\KK \KK^\prime} \delta_{\sigma \sigma^\prime},
 \end{split}
 \end{equation}
-ahol $\anticommutator{A}{B} = AB + BA$ az antikommutátor.  Ezen kívül kell lennie egy alapállapotnak is, amit a \eqref{phi-tilde} variációs hullámfüggvénynek veszünk.  Tudjuk, hogy a lefelé léptető operátornak ezt az állapotot a nullelembe kell vinnie, vagyis
+ahol $\anticommutator{A}{B} = AB + BA$ az antikommutátor.  Az alapállapotot az eltüntető operátoroknak a nullelembe kell vinniük, vagyis
 \begin{equation} \label{gamma-zero}
-	\gamma_{\KK \sigma} \ket{\tilde{\phi}} = \ket{}_0.
+	\gamma_{\KK \sigma} \ket{\tilde{\phi}} = 0.
 \end{equation}
 
 Megmutatható, hogy a
@@ -224,9 +230,9 @@ Megmutatható, hogy a
 	\gamma_{\KK \downarrow} & = u_\KK c_{\KK \downarrow} + v_\KK c_{-\KK \uparrow}^\dagger
 \end{split}
 \end{equation}
-választásra teljesülnek a \eqref{gamma-anticommutator} és \eqref{gamma-zero} összefüggések.
+választással teljesülnek a \eqref{gamma-anticommutator} és \eqref{gamma-zero} összefüggések.
 
-A $\gamma_{\KK \sigma}$ operátorokra kapott kifejezést invertálva megkaphatjuk a $c_{\KK \sigma}$ operátorokat is,
+A $\gamma_{\KK \sigma}$ operátorokra kapott \eqref{gamma-def} kifejezést invertálva megkaphatjuk a $c_{\KK \sigma}$ operátorokat is,
 \begin{equation}
 \begin{split}
 	c_{\KK \uparrow} & = u_\KK^* \gamma_{\KK \uparrow} + v_\KK \gamma_{-\KK \downarrow}^\dagger, \\
@@ -235,9 +241,9 @@ A $\gamma_{\KK \sigma}$ operátorokra kapott kifejezést invertálva megkaphatju
 \end{equation}
 
 
-\subsection{Az $u_\KK$ és $v_\KK$ együtthatók kiszámolása}
+\subsection{Az $u_\KK$ és $v_\KK$ együtthatók meghatározása}
 
-Az $u_\KK$ és $v_\KK$ együtthatók meghatározásához a léptetőoperátorok tulajdonságait használjuk fel, a \eqref{H-BCS} egyenletből következik, hogy
+Az $u_\KK$ és $v_\KK$ együtthatók meghatározásához a léptetőoperátorok tulajdonságait használjuk fel.  A \eqref{H-BCS} egyenletből következik, hogy
 \begin{equation} \label{H-gamma-commutator}
 	\commutator{H_\text{BCS}}{\gamma_{\KK \uparrow}^\dagger} = E_\KK \gamma_{\KK \uparrow}^\dagger.
 \end{equation}
@@ -262,7 +268,7 @@ amit egy lineáris egyenletrendszerként is felírhatunk,
 	= E_\KK \begin{pmatrix} u_\KK^* \\ v_\KK^* \end{pmatrix}.
 \end{equation}
 A sajátértékekre $E_\KK = \pm \sqrt{\xi_\KK^2 + \left| \Delta_\KK \right|^2}$ adódik, amiből a pozitív előjelű feleltethető meg a felfelé léptető operátornak.  Végül az $u_\KK$ és $v_\KK$ együtthatókra, figyelembevéve a \eqref{u-v-norm} normálási feltételt,
-\begin{equation}
+\begin{equation} \label{u-v-sc}
 	u_\KK = \frac{\Delta_\KK^*}{\sqrt{2 E_\KK \left( E_\KK - \xi_\KK \right)}} ~~~ \text{és} ~~~ v_\KK = \frac{E_\KK - \xi_\KK}{\sqrt{2 E_\KK \left( E_\KK - \xi_\KK \right)}}
 \end{equation}
 adódik.
@@ -280,16 +286,14 @@ E helyett az éles levágás helyett mi egy sima függvényt használunk, így a
 \begin{equation} \label{cutoff}
 	w(\xi) = \frac{1}{\left( \frac{\xi}{\hbar \omega_\text{D}} \right)^4 + 1}
 \end{equation}
-alakú, ami az éles levágáshoz hasonlóan nagyjából a $\left[ -\hbar \omega_\text{D}, \hbar \omega_\text{D} \right]$ tartományon nem zérus. A szupravezető gap impulzus- és energiafüggését mi is elhanyagoljuk, értékét konstans $\Delta$-nak választjuk.
-
-A legtöbb szupravezetőben $\left|\Delta\right| \ll \hbar \omega_\text{D} \ll \EF$, amit a számolásaink során ki is fogunk használni.
+alakú, ami az éles levágáshoz hasonlóan nagyjából a $\left[ -\hbar \omega_\text{D}, \hbar \omega_\text{D} \right]$ tartományon nem zérus. A szupravezető gap impulzus- és energiafüggését mi is elhanyagoljuk, értékét konstans $\Delta$-nak választjuk.  A legtöbb szupravezetőben $\left|\Delta\right| \ll \hbar \omega_\text{D} \ll \EF$, amit a számolásaink során ki is fogunk használni.
 
 
 
 % ================================================================
-\section{Korrelátorok számolása}
+\section{Korrelátorok számítása}
 
-A korrelátorok kiszámításához a $\psi_\sigma(\RR)$ téroperátorokat használjuk.  Ezek a $c_{\KK \sigma}$ operátorokhoz hasonlóan eltüntető operátorok, viszont egy $\left( \KK \sigma \right)$ sajátállapotú részecske helyett egy $\left( \RR \sigma \right)$ sajátállapotút tüntet el az állapotfüggvényből.  A téroperátorokat kifejezhetjük a korábban meghatározott kvázirészecske operátorokkal,
+A korrelátorok kiszámításához a $\psi_\sigma(\RR)$ téroperátorokat használjuk.  Ezek a $c_{\KK \sigma}$ operátorokhoz hasonlóan eltüntető operátorok, viszont $\psi_\sigma(\RR)$ egy $\left( \KK \sigma \right)$ sajátállapotú részecske helyett egy $\left( \RR \sigma \right)$ sajátállapotút tüntet el az állapotfüggvényből.  A téroperátorokat kifejezhetjük a korábban meghatározott kvázirészecske operátorokkal,
 \begin{equation} \label{psi}
 \begin{split}
 	\psi_\uparrow(\RR) & = \frac{1}{\sqrt{V}} \sum\limits_\KK e^{i \KK \RR} c_{\KK \uparrow} = \frac{1}{\sqrt{V}} \sum\limits_\KK e^{i \KK \RR} \left( u_\KK^* \gamma_{\KK \uparrow} + v_\KK \gamma_{-\KK \downarrow}^\dagger \right), \\
@@ -299,13 +303,13 @@ A korrelátorok kiszámításához a $\psi_\sigma(\RR)$ téroperátorokat haszn�
 
 A téroperátorok segítségével kifejezhetjük a töltés- és spinsűrűség operátorokat,
 \begin{equation} \label{charge-density}
-	e \rho(\RR) = e \left( \psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) + \psi_\downarrow^\dagger(\RR) \psi_\downarrow(\RR) \right)
+	e \, \rho(\RR) = e \left( \psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) + \psi_\downarrow^\dagger(\RR) \psi_\downarrow(\RR) \right)
 \end{equation}
 és
 \begin{equation} \label{spin-density}
 	s^\alpha(\RR) = \frac{1}{2} \mqty(\psi_\uparrow^\dagger(\RR) & \psi_\downarrow^\dagger(\RR)) \sigma^\alpha \mqty(\psi_\uparrow(\RR) \\ \psi_\downarrow(\RR)),
 \end{equation}
-ahol $\alpha = x, y, z$ és $\sigma^\alpha$ a Pauli-mátrixokat jelöli, illetve $\hbar = 1$ egységeket használunk.
+ahol $\alpha = x, y, z$, és $\sigma^\alpha$ a Pauli-mátrixokat jelöli, illetve $\hbar = 1$ egységeket használunk.
 
 
 \subsection{Töltéskorreláció}
@@ -350,7 +354,7 @@ A többi korrelátort is hasonlóan kiszámíthatjuk, azokra
 \end{multline}
 adódnak.
 
-Az eredmények megértéséhez számoljuk ki a $\expval{\psi_\sigma(\RR) \psi_{\sigma^\prime}(\RR^\prime)}$ alakú különféle korrelátorokat is, ezeket az előzőekhez hasonlóan tehetjük meg, végeredményül
+Az eredmények megértéséhez számoljuk ki a $\expval{\psi_\sigma(\RR) \psi_{\sigma^\prime}(\RR^\prime)}$ alakú különféle korrelátorokat is.  Ezeket az előzőekhez hasonlóan tehetjük meg, végeredményül
 \begin{equation}
 \begin{split} \label{F-G-def}
 	G(\RR - \RR^\prime) \equiv & \expval{\psi_\uparrow^\dagger(\RR) \psi_\uparrow^\phantomdagger(\RR^\prime)} = \expval{\psi_\downarrow^\dagger(\RR) \psi_\downarrow^\phantomdagger(\RR^\prime)} = \frac{1}{V} \sum\limits_\KK e^{-i \KK \left( \RR - \RR^\prime \right)} \left| v_\KK \right|^2, \\
@@ -359,7 +363,11 @@ Az eredmények megértéséhez számoljuk ki a $\expval{\psi_\sigma(\RR) \psi_{\
 	& \expval{\psi_\downarrow^\phantomdagger(\RR) \psi_\uparrow^\phantomdagger(\RR^\prime)} = -\expval{\psi_\uparrow^\phantomdagger(\RR) \psi_\downarrow^\phantomdagger(\RR^\prime)} = F^*(\RR - \RR^\prime),
 \end{split}
 \end{equation}
-adódnak, ahol bevezettük az $F(\RR)$ és $G(\RR)$ függvényeket.  A nem felírt korrelátorok mind nullák.  Ezekkel kifejezve a korábbi eredményeket,
+adódnak, ahol bevezettük az $F(\RR)$ és $G(\RR)$ függvényeket,
+\begin{equation}
+	F(\RR) = \sum\limits_\KK e^{-i \KK \RR} u_\KK v_\KK^* ~~~ \text{és} ~~~ G(\RR) = \sum\limits_\KK e^{-i \KK \RR} \left| v_\KK \right|^2.
+\end{equation}
+A nem felírt korrelátorok mind eltűnnek.  Ezekkel kifejezve a korábbi eredményeket,
 \begin{equation}
 \begin{split} \label{density-components}
 	\expval{\psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime)} & = \expval{\psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR^\prime)} \expval{\psi_\uparrow(\RR) \psi_\uparrow^\dagger(\RR^\prime)} + \expval{\psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR)} \expval{\psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime)},  \\
@@ -377,15 +385,15 @@ az $F(\RR)$ és $G(\RR)$ függvényekkel kifejezve
 	\expval{\psi_\downarrow^\dagger(\RR) \psi_\downarrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime)} & = \left| F(\RR - \RR^\prime) \right|^2 + G^2(0).
 \end{split}
 \end{equation}
-A \eqref{density-components} összefüggésben felismerhetjük a Wick-tételt, ami szerint a téroperátorok szorzatának várható értékét föl lehet írni úgy, mint az összes lehetséges párosítás várható értékének összegét.
+A \eqref{density-components} összefüggésben felismerhetjük a Wick-tételt, ami szerint a téroperátorok szorzatának várható értékét föl lehet írni úgy, mint az összes lehetséges párosítás összegét.
 
 A töltéskorrelációs függvényt így felírhatjuk az $F(\RR)$ és $G(\RR)$ függvények segítségével,
 \begin{equation}
 	e^2 \expval{\rho(\RR) \rho(\RR^\prime)} = e^2 \left( 4 \, G^2(0) + 2 \left| F(\RR - \RR^\prime) \right|^2 - 2 \, G^2(\RR - \RR^\prime) + 2 \, G(0) \cdot \delta(\RR - \RR^\prime) \right).
 \end{equation}
-A konstans tagok számunkra nem érdekesek, ezért használjuk a $\delta\rho(\RR)$ sűrűség operátorokat a korrelációs függvényhez, amivel
-\begin{equation}
-	e^2 \expval{\delta\rho(\RR) \delta\rho(\RR^\prime)} = e^2 \left( 2 \left| F(\RR - \RR^\prime) \right|^2 - 2 \, G^2(\RR - \RR^\prime) + 2 \, G(0) \cdot \delta(\RR - \RR^\prime) \right).
+A konstans tagok számunkra nem érdekesek, ezért használjuk a $\delta\rho(\RR)$ sűrűség operátorokat a korrelációs függvényhez.  Felhasználva, hogy $\expval{\rho(\RR)} = 2 \, G(0) \equiv \expval{\rho}$ a töltéskorrelációs függvény
+\begin{equation} \label{charge-F-G}
+	e^2 \expval{\delta\rho(\RR) \delta\rho(\RR^\prime)} = e^2 \left( 2 \left| F(\RR - \RR^\prime) \right|^2 - 2 \, G^2(\RR - \RR^\prime) + \expval{\rho} \cdot \delta(\RR - \RR^\prime) \right).
 \end{equation}
 
 
@@ -393,23 +401,23 @@ A konstans tagok számunkra nem érdekesek, ezért használjuk a $\delta\rho(\RR
 
 A teljes spinkorrelációs függvény egyszerűen az egyes irányok spinkorrelációs függvényeinek összege.  A \eqref{spin-density} operátorokat felhasználva
 \begin{equation}
-	\left< s(\RR) s(\RR^\prime) \right> = \sum_\alpha \left< s^\alpha(\RR) s^\alpha(\RR^\prime) \right>.
+	\left< \va*{s}(\RR) \cdot \va*{s}(\RR^\prime) \right> = \sum_\alpha \left< s^\alpha(\RR) s^\alpha(\RR^\prime) \right>.
 \end{equation}
-A függvény kiszámolása hasonlóan tehető meg, mint a töltéskorrelációs függvénynél.  Először számoljuk ki $\expval{s^z(\RR) s^z(\RR^\prime)}$ értékét,
+Az egyes tagokat hasonlóan számíthatjuk ki, mint a töltéskorrelációs függvénynél.  Először számoljuk ki $\expval{s^z(\RR) s^z(\RR^\prime)}$ értékét,
 \begin{multline}
 	\expval{s^z(\RR) s^z(\RR^\prime)} = \frac{1}{4} \left( \expval{\psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime)} - \expval{\psi_\uparrow^\dagger(\RR) \psi_\uparrow(\RR) \psi_\downarrow^\dagger(\RR^\prime) \psi_\downarrow(\RR^\prime)} -
 	\right. \\ \left. -
 	\expval{\psi_\downarrow^\dagger(\RR) \psi_\downarrow(\RR) \psi_\uparrow^\dagger(\RR^\prime) \psi_\uparrow(\RR^\prime)} + \expval{\psi_\downarrow^\dagger(\RR) \psi_\downarrow(\RR) \psi_\downarrow^\dagger(\RR^\prime) \psi_\downarrow(\RR^\prime)} \right),
 \end{multline}
-a \eqref{correlators-F-G} összefüggéseket felhasználva
+ami a \eqref{correlators-F-G} összefüggéseket felhasználva
 \begin{equation}
 	\expval{s^z(\RR) s^z(\RR^\prime)} = \frac{1}{2} \left( -\left| F(\RR - \RR^\prime) \right|^2 - G^2(\RR - \RR^\prime) + G(0) \cdot \delta(\RR - \RR^\prime) \right).
 \end{equation}
 Az $\expval{s^x(\RR) s^x(\RR^\prime)}$ és $\expval{s^y(\RR) s^y(\RR^\prime)}$ korrelátorokat kiszámolva azt látjuk, hogy azok értéke megegyezik $\expval{s^z(\RR) s^z(\RR^\prime)}$ értékével, így a teljes spinkorrelációs függvény
 \begin{equation}
-\begin{split}
-	\expval{s(\RR) s(\RR^\prime)} & = \frac{3 \hbar^2}{2} \left( -\left| F(\RR - \RR^\prime) \right|^2 - G^2(\RR - \RR^\prime) + G(0) \cdot \delta(\RR - \RR^\prime) \right) \\
-	& = \frac{3 \hbar^2}{4} \left( \expval{\delta\rho(\RR) \delta\rho(\RR^\prime)} - 4 \left| F(\RR - \RR^\prime) \right|^2  \right).
+\begin{split} \label{spin-F-G}
+	\expval{\va*{s}(\RR) \cdot \va*{s}(\RR^\prime)} & = \frac{3}{2} \left( -\left| F(\RR - \RR^\prime) \right|^2 - G^2(\RR - \RR^\prime) + G(0) \cdot \delta(\RR - \RR^\prime) \right) \\
+	& = \frac{3}{4} \left( \expval{\delta\rho(\RR) \delta\rho(\RR^\prime)} - 4 \left| F(\RR - \RR^\prime) \right|^2  \right).
 \end{split}
 \end{equation}
 
@@ -419,39 +427,31 @@ Az $\expval{s^x(\RR) s^x(\RR^\prime)}$ és $\expval{s^y(\RR) s^y(\RR^\prime)}$ k
 
 \subsection{Normál állapot}
 
-Először azt nézzük meg, hogy normál állapotban mi lesz a függvények alakja.  Ehhez $u_\KK$ és $v_\KK$ értékére a már korábban felírt \eqref{u-v-normal} értékeket használjuk.
+Először a normál állapotban vizsgéjuk az $F(\RR)$ és $G(\RR)$ függvények alakját.  Ehhez $u_\KK$ és $v_\KK$ értékére a már korábban felírt \eqref{u-v-normal} értékeket használjuk.
 
-\subsubsection{Az $F(\RR)$ függvény normál állapotban}
-
-A \eqref{F-G-def} összefüggés értelmében a függvény értéke
+A \eqref{F-G-def} összefüggés értelmében $F(\RR)$ értéke
 \begin{equation}
 	F_\text{n}(\RR) = \frac{1}{V} \sum\limits_\KK e^{-i \KK \RR} u_\KK v_\KK^*.
 \end{equation}
-Az \eqref{u-v-normal} értékeket behelyettesítve azt látjuk, hogy normál állapotban a függvény értéke $F_\text{n}(\RR) \equiv 0$.
+A \eqref{u-v-normal} értékeket behelyettesítve azt látjuk, hogy normál állapotban a függvény értéke $F_\text{n}(\RR) \equiv 0$, tehát nincs szupravezető párkorreláció.
 
 
-\subsubsection{A $G(\RR)$ függvény normál állapotban}
-
-Itt is használjuk fel a \eqref{F-G-def} összefüggést
+A $G(\RR)$ függvény meghatározásához a \eqref{F-G-def} összefüggést felhasználva
 \begin{equation}
-	G_\text{n}(\RR) = \frac{1}{V} \sum\limits_\KK e^{-i \KK \RR} \left| v_\KK \right|^2.
+	G_\text{n}(\RR) = \frac{1}{V} \sum\limits_\KK e^{-i \KK \RR} \left| v_\KK \right|^2
 \end{equation}
-A \eqref{u-v-normal} értékeket behelyettesítve
+adódik, ide a \eqref{u-v-normal} értékeket behelyettesítve
 \begin{equation}
 \begin{split}
-	G_\text{n}(\RR) & = \frac{1}{V} \sum\limits_{\left| \KK \right| < \kF} e^{-i \KK \RR} \approx \int\limits_{\left| \KK \right| < \kF} \frac{\dd[3]k}{\left( 2 \pi \right)^3} ~ e^{-i \KK \RR} = \frac{2}{\left( 2 \pi \right)^2} \, \frac{1}{r} \int\limits_0^{\kF} \dd{k} ~ k \sin(k r) = \\
-	& = \frac{2}{\left( 2 \pi \right)^2} \cdot \frac{\sin(\kF r) - \kF r \cos(\kF r)}{r^3}.
+	G_\text{n}(\RR) & = \frac{1}{V} \sum\limits_{\left| \KK \right| < \kF} e^{-i \KK \RR} = \int\limits_{\left| \KK \right| < \kF} \frac{\dd[3]k}{\left( 2 \pi \right)^3} ~ e^{-i \KK \RR} = \frac{1}{2 \pi^2} \, \frac{1}{r} \int\limits_0^{\kF} \dd{k} ~ k \sin(k r) = \\
+	& = \frac{1}{2 \pi^2} \, \frac{\sin(\kF r) - \kF r \cos(\kF r)}{r^3}.
 \end{split}
 \end{equation}
-A továbbiakban hasznos lesz, ha a $\kF r$ szerinti oszcillációt figyelmen kívül hagyjuk és a függvény burkolóját vizsgáljuk.  Ehhez vezessük be a $g_\text{n}(\RR)$ komplex függvényt, amivel $G_\text{n}(\RR)$ felírható,
+A továbbiakban hasznos lesz, ha a $\kF r$ szerinti oszcillációt figyelmen kívül hagyjuk és a függvény burkolóját vizsgáljuk.  Ehhez vezessük be a $g_\text{n}(r)$ komplex függvényt, amivel $G_\text{n}(\RR)$ a következő alakban írható,
 \begin{equation}
-	G_\text{n}(\RR) = \Im{g_\text{n}(\RR) \cdot e^{i \kF r}}.
+	G_\text{n}(\RR) = \Im{g_\text{n}(r) \cdot e^{i \kF r}}, ~~~ g_\text{n}(\RR) = \frac{1}{2 \pi^2} \cdot \frac{1 - i \kF r}{r^3}.
 \end{equation}
-Kifejezve $g_\text{n}(\RR)$-t
-\begin{equation}
-	g_\text{n}(\RR) = \frac{2}{\left( 2 \pi \right)^2} \cdot \frac{1 - i \kF r}{r^3}.
-\end{equation}
-A burkoló görbe pedig nem lesz más, mint $\left| g_\text{n}(\RR) \right|$.  A függvényeket ábrázolva a \ref{G-normal-fig}.\ ábrán láthatjuk.  A függvényeket az ábrázoláshoz az $n$ részecskesűrűséget használtuk egységnek.
+Így $\left| g_\text{n}(\RR) \right|$ nem más, mint $G_\text{n}(\RR)$ burkológörbéje.  A $G_\text{n}(\RR)$ és $g_\text{n}(r)$ függvényeket a \ref{G-normal-fig}.\ ábrán láthatjuk.  A függvényeket az $n$ részecskesűrűséggel normáltuk.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=10cm]{G_normal.pdf}
@@ -460,48 +460,50 @@ A burkoló görbe pedig nem lesz más, mint $\left| g_\text{n}(\RR) \right|$.  A
 \end{figure}
 
 
-\subsection{Szupravezető állapot járuléka}
+\subsection{A szupravezető állapot beli korrelációk}
 
-\subsubsection{Az $F(\RR)$ függvény szupravezető járuléka}
+\subsubsection{Az $F(\RR)$ függvény szupravezető beli alakja}
 
-Ugyanúgy, mint korábban itt is írjuk fel a \eqref{F-G-def} összefüggés alapján a szupravezető állapotban $F(\RR)$ értékét.  A számolás során felhasználjuk a \eqref{u-v-sc} értékeket, illetve a \eqref{cutoff} levágást.
+Ugyanúgy, mint korábban, itt is írjuk fel a \eqref{F-G-def} összefüggés alapján a szupravezető állapotban $F(\RR)$ értékét.  A számolás során felhasználjuk a \eqref{u-v-sc} értékeket, illetve a \eqref{cutoff} levágást.
 \begin{equation}
 \begin{split}
-	F(\RR) & = \frac{1}{V} \sum\limits_\KK e^{-i \KK \RR} u_\KK v_\KK^* \approx \int \frac{\dd[3]k}{\left( 2 \pi \right)^3} ~ e^{-i \KK \RR} u_\KK v_\KK^* \cdot \frac{1}{\left( \frac{\xi_\KK}{\hbar \omega_\text{D}} \right)^4 + 1} = \\
-	& = \int\limits_0^{2 \pi} \dd{\varphi} \int\limits_0^\pi \dd{\vartheta} \int\limits_0^\infty \frac{\dd{k}}{\left( 2 \pi \right)^3} ~ k^2 \sin\vartheta ~ e^{-i k r \cos\vartheta} \frac{\Delta^*}{2 \sqrt{\left| \Delta \right|^2 + \xi^2}} \cdot \frac{1}{\left( \frac{\xi}{\hbar \omega_\text{D}} \right)^4 + 1} = \\
-	& = \frac{2}{\left( 2 \pi \right)^2} \, \frac{1}{r} \Im{ \int\limits_0^\infty \dd{k} ~ k \, e^{i k r} \frac{\Delta^*}{2 \sqrt{\left| \Delta \right|^2 + \xi^2}} \cdot \frac{1}{\left( \frac{\xi}{\hbar \omega_\text{D}} \right)^4 + 1} }
+	F(\RR) & = \frac{1}{V} {\sum\limits_\KK}^\prime e^{-i \KK \RR} u_\KK v_\KK^* = \int \frac{\dd[3]k}{\left( 2 \pi \right)^3} ~ e^{-i \KK \RR} u_\KK v_\KK^* \cdot \frac{1}{\left( \frac{\xi_\KK}{\omega_\text{D}} \right)^4 + 1} = \\
+	& = \int\limits_0^{2 \pi} \dd{\varphi} \int\limits_0^\pi \dd{\vartheta} \int\limits_0^\infty \frac{\dd{k}}{\left( 2 \pi \right)^3} ~ k^2 \sin\vartheta ~ e^{-i k r \cos\vartheta} \frac{\Delta^*}{2 \sqrt{\left| \Delta \right|^2 + \xi^2}} \cdot \frac{1}{\left( \frac{\xi}{\omega_\text{D}} \right)^4 + 1} = \\
+	& = \frac{1}{2 \pi^2} \, \frac{1}{r} \Im{ \int\limits_0^\infty \dd{k} ~ k \, e^{i k r} \frac{\Delta^*}{2 \sqrt{\left| \Delta \right|^2 + \xi^2}} \cdot \frac{1}{\left( \frac{\xi}{\omega_\text{D}} \right)^4 + 1} }
 \end{split}
 \end{equation}
 Mivel a Fermi-felülethez közeli tartományon integrálunk, közelíthetjük a kitevőben lévő $k$ értékét az alábbi módon,
 \begin{equation} \label{k-xi-approx}
-	k = \sqrt{\frac{2 m \left( \EF + \xi \right)}{\hbar^2}} \approx \kF + \frac{\kF}{2 \EF} \cdot \xi.
+	k = \sqrt{2 m \left( \EF + \xi \right)} \approx \kF + \frac{\xi}{\vF},
 \end{equation}
+ahol $\vF = \frac{\kF}{m}$ a Fermi-sebesség.
+
 A integrálban tényezőként lévő $k$ értékét egyszerűen $\kF$-el közelítjük, mert a pontosabb közelítésből csak egy elhanyagolható nagyságú korrekció származna.
 
-Még érdemes bevezetni a $\Delta$ és $\hbar \omega_\text{D}$ energiákhoz tartozó hosszskálákat, a szupravezető korrelációs hosszat és a Debeye hullámhosszat,
+Még érdemes bevezetni a $\Delta$ és $\omega_\text{D}$ energiákhoz tartozó hosszskálákat, a szupravezető korrelációs hosszat és a Debeye hullámhosszat,
 \begin{equation}
-	\xi_\text{c} \equiv \frac{2 \EF}{\kF \left| \Delta \right|} ~~~ \text{és} ~~~ \lambda_\text{D} \equiv \frac{2 \EF}{\kF \hbar \omega_\text{D}},
+	\xi_\text{c} \equiv \frac{\vF}{\left| \Delta \right|} ~~~ \text{és} ~~~ \lambda_\text{D} \equiv \frac{\vF}{\omega_\text{D}},
 \end{equation}
-illetve az $r$ és $\lambda_\text{D}$ viszonyított értékét a szupravezető korrelációs hosszhoz,
+illetve az $r$ és $\lambda_\text{D}$ szupravezető korrelációs hosszhoz viszonyított értékét,
 \begin{equation}
 	\tilde{r} \equiv \frac{r}{\xi_\text{c}} ~~~ \text{és} ~~~ \tilde{\lambda}_\text{D} \equiv \frac{\lambda_\text{D}}{\xi_\text{c}}.
 \end{equation}
 
 Mindezeket felhasználva
 \begin{equation}
-	F(\RR) \approx \frac{2}{\left( 2 \pi \right)^2} \, \frac{\kF}{2 \EF r} \Im{ \int\limits_{-\infty}^\infty \dd{\xi} ~ \kF \, e^{i \kF r} e^{i \frac{\kF}{2 \EF} \xi \, r} \frac{\Delta^*}{2 \sqrt{\left| \Delta \right|^2 + \xi^2}} \cdot \frac{1}{\left( \frac{\xi}{\hbar \omega_\text{D}} \right)^4 + 1} }.
+	F(\RR) \approx \frac{1}{2 \pi^2} \, \frac{1}{\vF r} \Im{ \int\limits_{-\infty}^\infty \dd{\xi} ~ \kF \, e^{i \kF r} e^{i \, \xi \frac{r}{\vF}} \frac{\Delta^*}{2 \sqrt{\left| \Delta \right|^2 + \xi^2}} \cdot \frac{1}{\left( \frac{\xi}{\omega_\text{D}} \right)^4 + 1} }.
 \end{equation}
-Írjuk át az integrált az $x = \frac{\xi}{\left| \Delta \right|}$ változó szerint,
+Az integrált az $x = \frac{\xi}{\left| \Delta \right|}$ változó szerint átírva a következő kifejezést kapjuk,
 \begin{equation} \label{f-def}
-	F(\RR) \approx \frac{2}{\left( 2 \pi \right)^2} \, \frac{\kF}{\xi_\text{c} r} \Im{ e^{i \kF r} \frac{\Delta^*}{\left| \Delta \right|} \int\limits_{-\infty}^\infty \dd{x} ~ e^{i \tilde{r} x} \frac{1}{2 \sqrt{1 + x^2}} \cdot \frac{1}{\left( \tilde{\lambda}_\text{D} x \right)^4 + 1} }.
+	F(\RR) \approx \frac{1}{2 \pi^2} \, \frac{1}{\vF r} \Im{ e^{i \kF r} \frac{\Delta^*}{\left| \Delta \right|} \int\limits_{-\infty}^\infty \dd{x} ~ e^{i \tilde{r} x} \frac{1}{2 \sqrt{1 + x^2}} \cdot \frac{1}{\left( \tilde{\lambda}_\text{D} x \right)^4 + 1} }.
 \end{equation}
-A továbbiakban jelöljük az integrált $I$-vel.  Ha az integrált kiterjesztjük a komplex síkra azt látjuk, hogy a $\sqrt{1 + x^2}$ miatt a komplex tengely mentén van egy szakadás, illetve az $\frac{1}{\left( \tilde{\lambda}_\text{D} x \right)^4 + 1}$ miatt négy pontban.  Az integrálási görbét transzformáljuk úgy, hogy a komplex tengely menti szakadást körülölelje.  Ekkor meg fog jelenni két reziduum $x_1 = \frac{i + 1}{\sqrt{2} \tilde{\lambda}_\text{D}}$ és $x_2 = \frac{i - 1}{\sqrt{2} \tilde{\lambda}_\text{D}}$ pontok körül.  Az integrálási változót írjuk át $x = i y$ szerint.  Így az integrál
+A továbbiakban jelöljük az itt megjelenő integrált $I$-vel.  Ha az integrált kiterjesztjük a komplex síkra azt látjuk, hogy a $\sqrt{1 + x^2}$ miatt a képzetes tengely mentén az integrandusnak szakadása van, illetve a $\frac{1}{\left( \tilde{\lambda}_\text{D} x \right)^4 + 1}$ tényező miatt négy pontban pólusok jelennek meg.  Az integrálási görbét transzformáljuk úgy, hogy az a képzetes tengely menti szakadást körülvegye.  Az integrálási változót $x = i y$ szerint transzformálva az integrál
 \begin{equation}
 	I = \int\limits_1^\infty \dd{y} ~ \frac{1}{\sqrt{y^2 - 1}} \, e^{-\tilde{r} y} \frac{1}{\left( \tilde{\lambda}_\text{D} y \right)^4 + 1} + R_1 + R_2,
 \end{equation}
-ahol $R_1$ és $R_2$ az $x_1$ és $x_2$ pont beli reziduumokat jelöli.
+ahol $R_1$ és $R_2$ az $x_1 = \frac{i + 1}{\sqrt{2} \tilde{\lambda}_\text{D}}$ és $x_2 = \frac{i - 1}{\sqrt{2} \tilde{\lambda}_\text{D}}$ pont beli reziduumok járulékát jelöli.
 
-A reziddumokat könnyen felírhatjuk,
+A reziddumok járulékát könnyen felírhatjuk,
 \begin{equation}
 	R_1 = 2 \pi i \, e^{i \tilde{r} x_1} \frac{1}{2 \sqrt{1 + x_1^2}} \cdot \frac{1}{4 \tilde{\lambda}_\text{D}^4 x_1^3} \approx -\frac{i \pi}{4} \exp(i \frac{\tilde{r}}{\sqrt{2} \tilde{\lambda}_\text{D}}) \exp(-\frac{\tilde{r}}{\sqrt{2} \tilde{\lambda}_\text{D}})
 \end{equation}
@@ -514,69 +516,81 @@ A kettő összege
 	R_1 + R_2 \approx \frac{\pi}{2} \exp(-\frac{\tilde{r}}{\sqrt{2} \tilde{\lambda}_\text{D}}) \cos(\frac{\tilde{r}}{\sqrt{2} \tilde{\lambda}_\text{D}}).
 \end{equation}
 
-A komplex tengely menti integrál értékét vizsgáljuk meg $\tilde{r} \gg \tilde{\lambda}_\text{D}$ és $\tilde{r} \ll \tilde{\lambda}_\text{D}$ esetekben.  Távoltéri közelítésben az integrálból kihagyhatjuk a levágást, mivel az exponenciális rész sokkal gyorsabban vág le.  Ezzel az integrált kiszámolhatjuk,
+A képzetes tengely menti integrál értékét vizsgáljuk meg $\tilde{r} \gg \tilde{\lambda}_\text{D}$ és $\tilde{r} \ll \tilde{\lambda}_\text{D}$ esetekben.  Az $\tilde{r} \gg \tilde{\lambda}_\text{D}$ távoltéri közelítésben az integrálból kihagyhatjuk a levágást, mivel az exponenciális rész sokkal gyorsabban vág le.  Ezzel az integrált meghatározhatjuk,
 \begin{equation}
-	\int\limits_1^\infty \dd{y} ~ \frac{1}{\sqrt{y^2 - 1}} \, e^{-\tilde{r} y} = K_0(\tilde{r}),
+	I \approx \int\limits_1^\infty \dd{y} ~ \frac{1}{\sqrt{y^2 - 1}} \, e^{-\tilde{r} y} = K_0(\tilde{r}),
 \end{equation}
-ahol $K_n(x)$ a másodfajú módosított Bessel-függvények.  A reziduumok $\exp(-\frac{\tilde{r}}{\sqrt{2} \tilde{\lambda}_\text{D}})$ szerint csengenek le távoltérben, ami sokkal gyorsabb, mint a $K_0(\tilde{r})$ lecsengése, tehát itt azoktól is eltekinthetünk.
+ahol $K_n(x)$ a másodfajú módosított Bessel-függvényeket jelöli.  A reziduumok járuléka $\exp(-\frac{\tilde{r}}{\sqrt{2} \tilde{\lambda}_\text{D}})$ szerint cseng le távoltérben, ami sokkal gyorsabb, mint $K_0(\tilde{r} \gg 1) \sim \frac{\exp(-\tilde{r})}{\sqrt{\tilde{r}}}$ lecsengése, tehát itt azoktól is eltekinthetünk.  Így végül távoltérben az $F(\RR)$ függvény alakja
+\begin{equation}
+	F(\RR) \stackrel{\tilde{r} \gg \tilde{\lambda}_\text{D}}{\approx} \frac{1}{2 \pi^2} \, \frac{1}{\vF r} \cdot K_0(\tilde{r}) \cdot \sin(\kF r) \stackrel{\tilde{r} \gg 1}{\approx} \frac{1}{2 \pi^2} \, \frac{1}{\vF r} \sqrt{\frac{\pi}{2 \tilde{r}}} \cdot e^{-\tilde{r}} \cdot \sin(\kF r).
+\end{equation}
 
-Közeltéri közelítésben az integrálban lévő exponenciális függvényt sorba fejthetjük $\tilde{r}$ szerint,
+Az $\tilde{r} \ll \tilde{\lambda}_\text{D}$ közeltéri közelítésben az integrálban lévő exponenciális függvényt sorba fejthetjük $\tilde{r}$ szerint,
 \begin{multline} \label{f-near-field}
 	\int\limits_1^\infty \dd{y} ~ \frac{1}{\sqrt{y^2 - 1}} \left( 1 - \tilde{r} y \right) \frac{1}{\left( \tilde{\lambda}_\text{D} y \right)^4 + 1} = \\
-	= \int\limits_1^\infty \dd{y} ~ \frac{1}{\sqrt{y^2 - 1}} \cdot \frac{1}{\left( \tilde{\lambda}_\text{D} y \right)^4 + 1} - \tilde{r} \int\limits_1^\infty \dd{y} ~ \frac{y}{\sqrt{y^2 - 1}} \cdot \frac{1}{\left( \tilde{\lambda}_\text{D} y \right)^4 + 1}.
+	= \int\limits_1^\infty \dd{y} ~ \frac{1}{\sqrt{y^2 - 1}} \cdot \frac{1}{\left( \tilde{\lambda}_\text{D} y \right)^4 + 1} - \tilde{r} \int\limits_1^\infty \dd{y} ~ \frac{y}{\sqrt{y^2 - 1}} \cdot \frac{1}{\left( \tilde{\lambda}_\text{D} y \right)^4 + 1},
 \end{multline}
-A kapott integrálokat numerikusan egyszerűen kiértékelhetjük.
+és kapott integrálokat numerikusan könnyen kiértékelhetjük.
 
-A $G_\text{n}(\RR)$ számolásához hasonlóan itt is bevezethetünk egy $f(\RR)$ komplex mennyiséget, ami az $F(\RR)$ függvény burkolóját jellemzi.  A \eqref{f-def} összefüggés alapján felírhatjuk, hogy
+A $G_\text{n}(\RR)$ számolásához hasonlóan itt is bevezethetünk egy $f(r)$ komplex mennyiséget, ami az $F(\RR)$ függvény burkolóját jellemzi.  A \eqref{f-def} összefüggés alapján felírhatjuk, hogy
 \begin{equation}
-	f(\RR) = \frac{2}{\left( 2 \pi \right)^2} \, \frac{\kF}{\xi_\text{c} r} \, \frac{\Delta^*}{\left| \Delta \right|} \cdot I = \frac{2}{\left( 2 \pi \right)^2} \, \frac{\kF}{\xi_\text{c} r} \cdot \left\{ \begin{array}{cl}
+	f(r) = \frac{1}{2 \pi^2} \, \frac{\kF}{\xi_\text{c} r} \, \frac{\Delta^*}{\left| \Delta \right|} \cdot I \approx \frac{1}{2 \pi^2} \, \frac{\kF}{\xi_\text{c} r} \, \frac{\Delta^*}{\left| \Delta \right|} \cdot \left\{ \begin{array}{cl}
 		K_0(\tilde{r}), & \text{ha } \tilde{r} \gg \tilde{\lambda}_\text{D} \\
-		A - B \cdot \tilde{r}, & \text{ha } \tilde{r} \ll \tilde{\lambda}_\text{D}
+		A - B \cdot \tilde{r} + R_1 + R_2, & \text{ha } \tilde{r} \ll \tilde{\lambda}_\text{D}
 	\end{array} \right. ,
 \end{equation}
-ahol $A$ és $B$ az \eqref{f-near-field} összefüggésben szereplő integrálok értékei.
+ahol $A$ és $B$ az \eqref{f-near-field} összefüggésben szereplő integrálok értékei.  Ezzel az $F(\RR)$ függvény
+\begin{equation}
+	F(\RR) = \Im{e^{i \kF r} \cdot f(r)} \approx \frac{1}{2 \pi^2} \, \frac{\kF}{\xi_\text{c} r} \, \Im{\frac{\Delta^*}{\left| \Delta \right|} \cdot e^{i \kF r}} \cdot \left\{ \begin{array}{cl}
+		K_0(\tilde{r}), & \text{ha } \tilde{r} \gg \tilde{\lambda}_\text{D} \\
+		A - B \cdot \tilde{r} + R_1 + R_2, & \text{ha } \tilde{r} \ll \tilde{\lambda}_\text{D}
+	\end{array} \right. ,
+\end{equation}
 
-Az eredmények ellenőrzésére a \eqref{f-def} összefüggés alapján numerikusan is kiszámoltuk $f(\RR)$ értékét és összehasonlítottuk a kapott közelítések értékéhez.  A számolás során a $\left| \Delta \right| : \hbar \omega_\text{D} : \EF = 1 : 100 : 10000$ energia arányokat használtuk.  A kapott függvényeket a \ref{F-sc-fig}.\ ábrán láthatjuk.  Az ábrázoláshoz log-log skálát használtunk, hogy jobban elkülönüljelenek a görbék.
+Az analitikus eredmények ellenőrzésére a \eqref{f-def} összefüggés alapján numerikusan is kiszámoltuk $f(r)$ értékét, és összehasonlítottuk a kapott közelítések értékével.  A számolás során a $\left| \Delta \right| : \omega_\text{D} : \EF = 1 : 100 : 10000$ energia arányokat használtuk.  A kapott függvényeket a \ref{F-sc-fig}.\ ábrán láthatjuk.  Az ábrázoláshoz log-log skálát használtunk, hogy jobban elkülönüljelenek a görbék.
+
+Az ábrázolt görbéken azt látjuk, hogy a közel- és távoltéri közelítések jól illeszkednek a numerikus eredményhez a megfelelő tartományokban.  Ezt úgy is ellenőrizhetjük, hogy a közelítő függvények relatív eltérését ábrázoljuk $r$ függvényében.  Az eltérés meghatározásához használt képlet távoltéri esetben
+$$ \delta f_{\tilde{r} \gg \tilde{\lambda}_\text{D}}(r) = \left| \frac{f(r) - f_{\tilde{r} \gg \tilde{\lambda}_\text{D}}(r)}{f(r)} \right|, $$
+és közeltéri esetben is egy ugyanilyen képletet használtunk.  A relatív eltéréseket a \ref{F-sc-error-fig}.\ ábrán láthatjuk.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=10cm]{F_sc.pdf}
-	\caption{Az $\left| f(\RR) \right|$ értéke $r$ függvényében, illetve a közel- és távoltéri közelítő függvények.}
-	\label{F-sc-fig}
+	\begin{subfigure}{0.48\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{F_sc.pdf}
+		\caption{\centering Az $\left| f(r) \right|$ értéke $r$ függvényében, illetve a közel- és távoltéri közelítő függvények.}
+		\label{F-sc-fig}
+	\end{subfigure}%
+	\begin{subfigure}{0.48\linewidth}
+		\centering
+		\includegraphics[width=0.98\linewidth]{F_sc_error.pdf}
+		\caption{\centering Az $f(r)$-t közelítő függvények relatív hibája $r$ függvényében.}
+		\label{F-sc-error-fig}
+	\end{subfigure}
+	\caption{}
 \end{figure}
 
-Az ábrázolt görbéken azt látjuk, hogy a közel- és távoltéri közelítések jól illeszkednek a numerikus eredményhez a saját tartományukban.  Ezt úgy is megnézhetjük, hogy a közelítő függvények relatív eltérését ábrázoljuk $r$ függvényében.  Az eltérés meghatározásához használt képlet távoltéri esetben
-$$ \delta f_{r \gg \tilde{\lambda}_\text{D}}(\RR) = \left| \frac{f(\RR) - f_{r \gg \tilde{\lambda}_\text{D}}(\RR)}{f(\RR)} \right|. $$
-Közeltéri esetben is egy ugyanilyen képletet használtunk.  A hibákat ábrázolva az \ref{F-sc-error-fig}.\ ábrán láthatjuk.
 
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=10cm]{F_sc_error.pdf}
-	\caption{Az $f(\RR)$-t közelítő függvények relatív hibája $r$ függvényében.}
-	\label{F-sc-error-fig}
-\end{figure}
+\subsubsection{A $G(\RR)$ függvény szupravezető beli alakja}
 
-
-\subsubsection{A $G(\RR)$ függvény szupravezető járuléka}
-
-A $G(\RR)$ függvény szupravezető járulékának kiszámításához két mennyiséget kell kiszámolnunk.  Először a $\tilde{G}_\text{n}(\RR)$ függvényt, ami a normál állapotban lévő $G_\text{n}(\RR)$ függvénynek a levágással vett járuléka.  Ezután hasonló módon kiszámoljuk a $\tilde{G}_\text{SC}(\RR)$ függvényt, ami a szupravezető állapotban a levágással számolt járulék.  Ezekkel a függvényekkel ezután kifejezhetjük a szupravezető állapotban a teljes $G(\RR)$ függvényt,
+A $G(\RR)$ függvény szupravezető beli alakjának kiszámolásához két mennyiséget kell meghatároznunk.  Először a $\tilde{G}_\text{n}(\RR)$ függvényt, ami a normál állapotban lévő $G_\text{n}(\RR)$ függvénynek a levágással vett járuléka, a $\tilde{G}_\text{SC}(\RR)$ függvényt, ami a szupravezető állapotban a levágással számolt járulék.  Ezekkel a függvényekkel ezután kifejezhetjük a szupravezető állapotban a teljes $G(\RR)$ függvényt,
 \begin{equation}
 	G(\RR) = G_\text{n}(\RR) - \tilde{G}_\text{n}(\RR) + \tilde{G}_\text{SC}(\RR).
 \end{equation}
 
 A $\tilde{G}_\text{n}(\RR)$ járulék kiszámolásánál hasonlóan járunk el, mint korábban,
 \begin{equation}
-	\tilde{G}_\text{n}(\RR) \approx \int\limits_{\left| \KK \right| < \kF} \frac{\dd[3]{k}}{\left( 2 \pi \right)^3} ~ e^{-i \KK \RR} \cdot \frac{1}{\left( \frac{\xi_\KK}{\hbar \omega_\text{D}} \right)^4 + 1} = \frac{2}{\left( 2 \pi \right)^2} \, \frac{1}{r} \Im{ \int\limits_0^{\kF} \dd{k} ~ k \, e^{i k r} \cdot \frac{1}{\left( \frac{\xi}{\hbar \omega_\text{D}} \right)^4 + 1} }.
+	\tilde{G}_\text{n}(\RR) = \int\limits_{\left| \KK \right| < \kF} \frac{\dd[3]{k}}{\left( 2 \pi \right)^3} ~ e^{-i \KK \RR} \cdot \frac{1}{\left( \frac{\xi_\KK}{\omega_\text{D}} \right)^4 + 1} = \frac{1}{2 \pi^2} \, \frac{1}{r} \Im{ \int\limits_0^{\kF} \dd{k} ~ k \, e^{i k r} \cdot \frac{1}{\left( \frac{\xi}{\omega_\text{D}} \right)^4 + 1} }.
 \end{equation}
-Itt is tegyük meg a \eqref{k-xi-approx} közelítést, azzal a különbséggel, hogy a tényezőként lévő $k$ értékét is így közelítjük.  Erre azért van szükség, mert az integrál vezető rendű tagjai ki fognak esni később.  A közelítő mennyiségeket behelyettesítve
+Itt is elvégezhetjük a \eqref{k-xi-approx} közelítést azzal a különbséggel, hogy a szorzó tényezőként megjelenő $k$ értékét is pontosabbal közelítjük.  Erre azért van szükség, mert az integrál vezető rendet követő tagjait is pontosan kell közelítenünk.  A közelítő mennyiségeket behelyettesítve
 \begin{equation}
-	\tilde{G}_\text{n}(\RR) \approx \frac{2}{\left( 2 \pi \right)^2} \, \frac{\kF}{2 \EF r} \Im{ \int\limits_{-\infty}^0 \dd{\xi} ~ \left( \kF + \frac{\kF}{2 \EF} \xi \right) e^{i \kF r} e^{i \frac{\kF}{2 \EF} \xi \, r} \cdot \frac{1}{\left( \frac{\xi}{\hbar \omega_\text{D}} \right)^4 + 1} }.
+	\tilde{G}_\text{n}(\RR) = \frac{1}{2 \pi^2} \, \frac{1}{\vF r} \Im{ \int\limits_{-\infty}^0 \dd{\xi} ~ \left( \kF + \frac{\xi}{\vF} \right) e^{i \kF r} e^{i \, \xi \frac{r}{\vF}} \cdot \frac{1}{\left( \frac{\xi}{\omega_\text{D}} \right)^4 + 1} }.
 \end{equation}
-Írjuk át az integrált $x = \frac{\xi}{\left| \Delta \right|}$ változó szerint,
+Az integrált $x = \frac{\xi}{\left| \Delta \right|}$ változó szerint átírva így
 \begin{equation}
-	\tilde{G}_\text{n}(\RR) \approx \frac{2}{\left( 2 \pi \right)^2} \, \frac{\kF}{\xi_\text{c} r} \Im{ e^{i \kF r} \int\limits_{-\infty}^0 \dd{x} ~ \left( 1 + \frac{x}{\kF \xi_\text{c}} \right) e^{i \tilde{r} x} \cdot \frac{1}{\left( \tilde{\lambda}_\text{D} x \right)^4 + 1} }.
+	\tilde{G}_\text{n}(\RR) = \frac{1}{2 \pi^2} \, \frac{\kF}{\xi_\text{c} r} \Im{ e^{i \kF r} \int\limits_{-\infty}^0 \dd{x} ~ \left( 1 + \frac{x}{\kF \xi_\text{c}} \right) e^{i \tilde{r} x} \cdot \frac{1}{\left( \tilde{\lambda}_\text{D} x \right)^4 + 1} }.
 \end{equation}
-A továbbiakban itt jelöljük az integrált $I_\text{n}$-el.  Hasonlóan az $F(\RR)$ számolásához itt is transzformáljuk az integrálási görbét a komplex síkon úgy, hogy a képzetes tengely mentén integráljunk.  Ekkor itt is meg fog jelenni egy reziduum az $x_2 = \frac{i - 1}{\sqrt{2} \tilde{\lambda}_\text{D}}$ pontban.  Így $I_\text{n}$ értéke
+A továbbiakban jelöljük az itt megjelenő integrált $I_\text{n}$-el.  Hasonlóan az $F(\RR)$ számolásához itt is transzformáljuk az integrálási görbét a komplex síkon úgy, hogy a képzetes tengely mentén integráljunk.  Most is megjelennik egy reziduum az $x_2 = \frac{i - 1}{\sqrt{2} \tilde{\lambda}_\text{D}}$ pontban, így $I_\text{n}$ értéke
 \begin{equation}
 	I_\text{n} = \int\limits_0^\infty \dd{y} ~ \left( -i + \frac{y}{\kF \xi_\text{c}} \right) e^{-\tilde{r} y} \cdot \frac{1}{\left( \tilde{\lambda}_\text{D} y \right)^4 + 1} + R_{2 \text{n}},
 \end{equation}
@@ -585,27 +599,27 @@ ahol
 	R_{2 \text{n}} = 2 \pi i \left( 1 + \frac{x_2}{\kF \xi_\text{c}} \right) e^{i \tilde{r} x_2} \cdot \frac{1}{4 \tilde{\lambda}_\text{D}^4 x_2^3} = \left( -\frac{i \pi}{2} - \frac{\pi}{2 \kF \xi_\text{c} \tilde{\lambda}_\text{D}^2} \right) \exp(-i \frac{\tilde{r}}{\sqrt{2} \tilde{\lambda}_\text{D}}) \exp(-\frac{\tilde{r}}{\sqrt{2} \tilde{\lambda}_\text{D}}).
 \end{equation}
 
-Vizsgáljuk meg az integrál értékét $\tilde{r} \gg \tilde{\lambda}_\text{D}$ és $\tilde{r} \ll \tilde{\lambda}_\text{D}$ közelítések mellett is.  Távoltéri közelítésben a levágást elhanyagolhatjuk, tehát az integrál értéke
+Vizsgáljuk meg az integrál értékét $\tilde{r} \gg \tilde{\lambda}_\text{D}$ és $\tilde{r} \ll \tilde{\lambda}_\text{D}$ közelítések mellett is.  Az $\tilde{r} \gg \tilde{\lambda}_\text{D}$ távoltéri közelítésben a levágást elhanyagolhatjuk, tehát az integrál értéke
 \begin{equation} \label{g-n-far-field}
-	\int\limits_0^\infty \dd{y} ~ \left( -i + \frac{y}{\kF \xi_\text{c}} \right) e^{-\tilde{r} y} = -\frac{i}{\tilde{r}} + \frac{1}{\kF \xi_\text{c} \tilde{r}^2}.
+	\int\limits_0^\infty \dd{y} ~ \left( -i + \frac{y}{\kF \xi_\text{c}} \right) e^{-\tilde{r} y} = -\frac{i}{\tilde{r}} + \frac{1}{\kF \xi_\text{c} \tilde{r}^2},
 \end{equation}
-Közeltéri közelítésben az exponenciális tagot sorba fejthetjük, tehát az integrál értéke
+míg az $\tilde{r} \ll \tilde{\lambda}_\text{D}$ közeltéri közelítésben az exponenciális tagot sorba fejthetjük, tehát az integrál értéke
 \begin{multline} \label{g-n-near-field}
 	\int\limits_0^\infty \dd{y} ~ \left( -i + \frac{y}{\kF \xi_\text{c}} \right) \left( 1 - \tilde{r} y \right) \cdot \frac{1}{\left( \tilde{\lambda}_\text{D} y \right)^4 + 1} = \\
 	= \frac{-i \pi}{2 \sqrt{2} \tilde{\lambda}_\text{D}} + \frac{\pi}{4 \kF \xi_\text{c} \tilde{\lambda}_\text{D}^2} - \tilde{r} \cdot \left( \frac{-i \pi}{4 \tilde{\lambda}_\text{D}^2} + \frac{\pi}{2 \sqrt{2} \kF \xi_\text{c} \tilde{\lambda}_\text{D}^3} \right)
 \end{multline}
 
-A szupravezető állapot $\tilde{G}_\text{SC}(\RR)$ járuléka is hasonlóan számítható, a levezetésben annyi különbség van, hogy a \eqref{k-xi-approx} közelítést nem alkalmazzuk az integrálban tényezőként megjelenő $k$-ra.  Az $x = \frac{\xi}{\left| \Delta \right|}$ változó szerint felírt integrállal a függvény értéke
+A szupravezető állapot $\tilde{G}_\text{SC}(\RR)$ járuléka is hasonlóan számítható, a levezetésben annyi különbség van, hogy a \eqref{k-xi-approx} közelítést nem alkalmazzuk az integrálban tényezőként megjelenő $k$-ra.  Az $x = \frac{\xi}{\left| \Delta \right|}$ változó szerint felírt integrállal a $G_\text{SC}(\RR)$ függvény értéke
 \begin{equation}
-	\tilde{G}_\text{SC}(\RR) \approx \frac{2}{\left( 2 \pi \right)^2} \, \frac{\kF}{\xi_\text{c} r} \Im{ e^{i \kF r} \int\limits_{-\infty}^\infty \dd{x} ~ \frac{\sqrt{1 + x^2} - x}{2 \sqrt{1 + x^2}} \, e^{i \tilde{r} x} \cdot \frac{1}{\left( \tilde{\lambda}_\text{D} x \right)^4 + 1} }.
+	\tilde{G}_\text{SC}(\RR) \approx \frac{1}{2 \pi^2} \, \frac{\kF}{\xi_\text{c} r} \Im{ e^{i \kF r} \int\limits_{-\infty}^\infty \dd{x} ~ \frac{\sqrt{1 + x^2} - x}{2 \sqrt{1 + x^2}} \, e^{i \tilde{r} x} \cdot \frac{1}{\left( \tilde{\lambda}_\text{D} x \right)^4 + 1} }.
 \end{equation}
-A továbbiakban jelöljük az integrált $I_\text{SC}$-vel.  Hasonlóan a korábbi számításokhoz, itt is transzformáljuk az integrálási görbét úgy, hogy a komplex tengely mentén integráljunk.  Az integrál értéke
+A továbbiakban jelöljük a zárójel beli integrált $I_\text{SC}$-vel.  Hasonlóan a korábbi számításokhoz, itt is transzformáljuk az integrálási görbét úgy, hogy a képzetes tengely mentén integráljunk.  Az integrál értéke
 \begin{equation}
 	I_\text{SC} = \int\limits_1^\infty \dd{y} ~ \frac{y}{\sqrt{y^2 - 1}} \, e^{-\tilde{r} y} \cdot \frac{1}{\left( \tilde{\lambda}_\text{D} y \right)^4 + 1} + R_{1 \text{SC}} + R_{2 \text{SC}}
 \end{equation}
-lesz, ahol $R_{1 \text{SC}}$ és $R_{2 \text{SC}}$ az $x_1 = \frac{i + 1}{\sqrt{2} \tilde{\lambda}_\text{D}}$ és $x_2 = \frac{i - 1}{\sqrt{2} \tilde{\lambda}_\text{D}}$ pontokban lévő reziduumok.  Ezek értéke
+lesz, ahol $R_{1 \text{SC}}$ és $R_{2 \text{SC}}$ az $x_1 = \frac{i + 1}{\sqrt{2} \tilde{\lambda}_\text{D}}$ és $x_2 = \frac{i - 1}{\sqrt{2} \tilde{\lambda}_\text{D}}$ pontokban lévő reziduumok járuléka,
 \begin{equation}
-	R_{1 \text{SC}} = 2 \pi i \left( \frac{1}{2} - \frac{x_1}{2 \sqrt{1 + x_1^2}} \right) e^{i \tilde{r} x_1} \cdot \frac{1}{4 \tilde{\lambda}_\text{D}^4 x_1^3} \approx \frac{i \pi}{4 x_1} \exp(i \frac{\tilde{r}}{\sqrt{2} \tilde{\lambda}_\text{D}}) \exp(-\frac{\tilde{r}}{\sqrt{2} \tilde{\lambda}_\text{D}})
+	R_{1 \text{SC}} = 2 \pi i \left( \frac{1}{2} - \frac{x_1}{2 \sqrt{1 + x_1^2}} \right) e^{i \tilde{r} x_1} \cdot \frac{1}{4 \tilde{\lambda}_\text{D}^4 x_1^3} \approx \frac{i \pi}{4 x_1} \exp(i \frac{\tilde{r}}{\sqrt{2} \tilde{\lambda}_\text{D}}) \exp(-\frac{\tilde{r}}{\sqrt{2} \tilde{\lambda}_\text{D}}),
 \end{equation}
 és
 \begin{equation}
@@ -616,84 +630,205 @@ A kettő összege
 	R_{1 \text{SC}} + R_{2 \text{SC}} \approx R_{2 \text{SC}} = \frac{\pi \left( 1 + i \right)}{2 \sqrt{2} \tilde{\lambda}_\text{D}} \exp(-i \frac{\tilde{r}}{\sqrt{2} \tilde{\lambda}_\text{D}}) \exp(-\frac{\tilde{r}}{\sqrt{2} \tilde{\lambda}_\text{D}}).
 \end{equation}
 
-A komplex tengely menti integrál értékét itt is vizsgáljuk meg $\tilde{r} \gg \tilde{\lambda}_\text{D}$ és $\tilde{r} \ll \tilde{\lambda}_\text{D}$ tartományokban.  Távoltéri közelítésben az integrálból kihagyhatjuk a levágást, mivel az exponenciális rész sokkal gyorsabban vág le. Ezzel az integrál értéke
+A képzetes tengely menti integrál értékét itt is vizsgáljuk meg $\tilde{r} \gg \tilde{\lambda}_\text{D}$ és $\tilde{r} \ll \tilde{\lambda}_\text{D}$ tartományokban.  Távoltéri közelítésben az integrálból kihagyhatjuk a levágást, mivel az exponenciális rész sokkal gyorsabban vág le. Ezzel az integrál értéke
 \begin{equation} \label{g-sc-far-field}
-	\int\limits_1^\infty \dd{y} ~ \frac{y}{\sqrt{y^2 - 1}} \, e^{-\tilde{r} y} = K_1(\tilde{r})
+	\int\limits_1^\infty \dd{y} ~ \frac{y}{\sqrt{y^2 - 1}} \, e^{-\tilde{r} y} = K_1(\tilde{r}).
 \end{equation}
-lesz, ahol $K_n(x)$ a másodfajú módosított Bessel-függvények.
 
 Közeltéri közelítésben az integrálban lévő exponenciális függvényt sorba fejthetjük $\tilde{r}$ szerint,
 \begin{multline} \label{g-sc-near-field}
 	\int\limits_1^\infty \dd{y} ~ \frac{y}{\sqrt{y^2 - 1}} \left( 1 - \tilde{r} y \right) \frac{1}{\left( \tilde{\lambda}_\text{D} y \right)^4 + 1} = \\
-	= \int\limits_1^\infty \dd{y} ~ \frac{y}{\sqrt{y^2 - 1}} \cdot \frac{1}{\left( \tilde{\lambda}_\text{D} y \right)^4 + 1} - \tilde{r} \int\limits_1^\infty \dd{y} ~ \frac{y^2}{\sqrt{y^2 - 1}} \cdot \frac{1}{\left( \tilde{\lambda}_\text{D} y \right)^4 + 1}.
+	= \int\limits_1^\infty \dd{y} ~ \frac{y}{\sqrt{y^2 - 1}} \cdot \frac{1}{\left( \tilde{\lambda}_\text{D} y \right)^4 + 1} - \tilde{r} \int\limits_1^\infty \dd{y} ~ \frac{y^2}{\sqrt{y^2 - 1}} \cdot \frac{1}{\left( \tilde{\lambda}_\text{D} y \right)^4 + 1},
 \end{multline}
-A kapott integrálokat numerikusan egyszerűen kiértékelhetjük.
+és a kapott integrálokat numerikusan kiértékelhetjük.
 
-A már korábban bevezetett $g_\text{n}(\RR)$-hez hasonlóan itt is definiálhatunk ilyen mennyiségeket,
+A már korábban bevezetett $g_\text{n}(r)$-hez hasonlóan itt is definiálhatunk burkoló mennyiségeket,
 \begin{equation}
-	\tilde{g}_\text{n}(\RR) = \frac{2}{\left( 2 \pi \right)^2} \, \frac{\kF}{\xi_\text{c} r} \cdot I_\text{n}
+	\tilde{g}_\text{n}(r) = \frac{1}{2 \pi^2} \, \frac{\kF}{\xi_\text{c} r} \cdot I_\text{n}, ~~~
+	\tilde{g}_\text{SC}(r) = \frac{1}{2 \pi^2} \, \frac{\kF}{\xi_\text{c} r} \cdot I_\text{SC},
 \end{equation}
-és
+és a teljes $G(\RR)$ függvény $g(r)$ burkolóját kifejezhetjük ezekkel,
 \begin{equation}
-	\tilde{g}_\text{SC}(\RR) = \frac{2}{\left( 2 \pi \right)^2} \, \frac{\kF}{\xi_\text{c} r} \cdot I_\text{SC}.
-\end{equation}
-
-A teljes $G(\RR)$ függvény $g(\RR)$ burkolóját kifejezhetjük ezekkel,
-\begin{equation}
-	g(\RR) = g_\text{n}(\RR) - \tilde{g}_\text{n}(\RR) + \tilde{g}_\text{SC}(\RR).
+	g(r) = g_\text{n}(r) - \tilde{g}_\text{n}(r) + \tilde{g}_\text{SC}(r).
 \end{equation}
 Vizsgáljuk meg ennek a függvénynek a távol- és közeltéri értékeit.  Távoltérben a \eqref{g-n-far-field} és \eqref{g-sc-far-field} összefüggéseket használhatjuk,
 \begin{equation}
 \begin{split}
-	g(\RR) & \stackrel{\tilde{r} \gg \tilde{\lambda}_\text{D}}{=} \frac{2}{\left( 2 \pi \right)^2} \cdot \left( \frac{1 - i \kF r}{r^3} - \frac{\kF}{\xi_\text{c} r} \cdot \left( -\frac{i}{\tilde{r}} + \frac{1}{\kF \xi_\text{c} \tilde{r}^2} \right) + \frac{\kF}{\xi_\text{c} r} \cdot K_1(\tilde{r}) \right) = \\
-	& \stackrel{\phantom{\tilde{r} \gg \tilde{\lambda}_\text{D}}}{=} \frac{2}{\left( 2 \pi \right)^2} \, \frac{\kF}{\xi_\text{c} r} \cdot K_1(\tilde{r}).
+	g(r) & \stackrel{\tilde{r} \gg \tilde{\lambda}_\text{D}}{\approx} \frac{1}{2 \pi^2} \cdot \left( \frac{1 - i \kF r}{r^3} - \frac{\kF}{\xi_\text{c} r} \cdot \left( -\frac{i}{\tilde{r}} + \frac{1}{\kF \xi_\text{c} \tilde{r}^2} \right) + \frac{\kF}{\xi_\text{c} r} \cdot K_1(\tilde{r}) \right) = \\
+	& \stackrel{\phantom{\tilde{r} \gg \tilde{\lambda}_\text{D}}}{=} \frac{1}{2 \pi^2} \, \frac{\kF}{\xi_\text{c} r} \cdot K_1(\tilde{r}).
 \end{split}
 \end{equation}
-Azt látjuk, hogy távoltérben a $g_\text{n}(\RR)$ teljesen kiesik, és csak a szupravezető járulék marad meg.
+Azt látjuk, hogy távoltérben a $g_\text{n}(r)$ teljesen kiesik, és csak a szupravezető járulék marad meg,
+\begin{equation}
+	g(r) \stackrel{\tilde{r} \gg \tilde{\lambda}_\text{D}}{\approx} \frac{1}{2 \pi^2} \, \frac{\kF}{\xi_\text{c} r} \cdot K_1(\tilde{r}),
+\end{equation}
+ezzel a $G(\RR)$ függvényt felírva
+\begin{equation}
+	G(\RR) \stackrel{\tilde{r} \gg \tilde{\lambda}_\text{D}}{\approx} \frac{1}{2 \pi^2} \, \frac{\kF}{\xi_\text{c} r} \cdot K_1(\tilde{r}) \cdot \sin(\kF r) \stackrel{\tilde{r} \gg 1}{\approx} \frac{1}{2 \pi^2} \, \frac{\kF}{\xi_\text{c} r} \sqrt{\frac{\pi}{2 \tilde{r}}} \cdot e^{-\tilde{r}} \cdot \sin(\kF r).
+\end{equation}
 
 Közeltérben a \eqref{g-n-near-field} és \eqref{g-sc-near-field} összefüggéseket használhatjuk,
 \begin{equation}
-\begin{split}
-	g(\RR) & \stackrel{\tilde{r} \ll \tilde{\lambda}_\text{D}}{=} \frac{2}{\left( 2 \pi \right)^2} \cdot \left( \frac{1 - i \kF r}{r^3} + \frac{\kF}{\xi_\text{c} r} \cdot \left( A - B \cdot \tilde{r} - R_{2 \text{n}} + R_{1 \text{SC}} + R_{2 \text{SC}} \right) \right),
-\end{split}
+	g(r) \stackrel{\tilde{r} \ll \tilde{\lambda}_\text{D}}{\approx} \frac{1}{2 \pi^2} \cdot \left( \frac{1 - i \kF r}{r^3} + \frac{\kF}{\xi_\text{c} r} \cdot \left( A - B \cdot \tilde{r} - R_{2 \text{n}} + R_{1 \text{SC}} + R_{2 \text{SC}} \right) \right),
 \end{equation}
-ahol $A$ és $B$ az egyes eseteknél számolt együtthatók különbsége.
+ahol $A$ és $B$ az egyes eseteknél számolt együtthatók különbsége.  Mivel $r \ll \lambda_\text{D} \ll \xi_\text{c}$, itt a második tag csak kis korrekciót ad,
+\begin{equation}
+	g(r) \stackrel{\tilde{r} \ll \tilde{\lambda}_\text{D}}{\approx} \frac{1}{2 \pi^2} \cdot \frac{1 - i \kF r}{r^3}.
+\end{equation}
 
-A $g(\RR)$ értékét numerikusan is kiszámoltuk, hogy ellenőrizzük mennyire illeszkednek a közel- és távoltéri közelítő függvények.  A számolás során a $\left| \Delta \right| : \hbar \omega_\text{D} : \EF = 1 : 100 : 10000$ energia arányokat használtuk.  A kapott függvényeket a \ref{G-sc-fig}.\ ábrán láthatjuk.  Az ábrázoláshoz log-log skálát használtunk.
+Végül $g(r)$ segítségével felírhatjuk a $G(\RR)$ függvény alakját,
+\begin{equation}
+	G(\RR) = \Im{ e^{i \kF r} \cdot g(r) } \approx \frac{1}{2 \pi^2} \cdot \left\{ \begin{array}{cl}
+		\frac{\kF}{\xi_\text{c} r} \cdot K_1(\tilde{r}) \cdot \sin(\kF r), & \text{ha } \tilde{r} \gg \tilde{\lambda}_\text{D} \\
+		\frac{\sin(\kF r) - \kF r \cos(\kF r)}{r^3}, & \text{ha } \tilde{r} \ll \tilde{\lambda}_\text{D}
+	\end{array} \right.
+\end{equation}
+
+Az eredmények ellenőrzésére $g(r)$ értékét numerikusan is kiszámoltuk, és összehasonlítottuk a kapott közelítések értékével.  A számolás során a $\left| \Delta \right| : \omega_\text{D} : \EF = 1 : 100 : 10000$ energia arányokat használtuk.  A kapott függvényeket az \ref{G-sc-fig}.\ ábrán láthatjuk.  Az ábrázoláshoz log-log skálát használtunk.
+
+Az ábrázolt görbéken azt látjuk, hogy a közel- és távoltéri közelítések jól illeszkednek a numerikus eredményhez a megfelelő tartományokban.  Ezt úgy is ellenőrizhetjük, hogy a közelítő függvények $g(r)$-től való relatív eltérését kiszámoljuk.  Az eltérés meghatározásához használt képlet távoltéri esetben
+$$ \delta g_{\tilde{r} \gg \tilde{\lambda}_\text{D}}(r) = \left| \frac{g(r) - g_{\tilde{r} \gg \tilde{\lambda}_\text{D}}(r)}{g(r)} \right|, $$
+és közeltéri esetben is egy ugyanilyen képletet használtunk.  A relatív eltéréseket az \ref{G-sc-error-fig}.\ ábrán láthatjuk.
+
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=10cm]{G_sc.pdf}
-	\caption{A $\left| g(\RR) \right|$ értéke $r$ függvényében, illetve a közel- és távoltéri közelítő függvények.}
-	\label{G-sc-fig}
+	\begin{subfigure}{0.48\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{G_sc.pdf}
+		\caption{\centering A $\left| g(r) \right|$ értéke $r$ függvényében, illetve a közel- és távoltéri közelítő függvények.}
+		\label{G-sc-fig}
+	\end{subfigure}
+	\begin{subfigure}{0.48\linewidth}
+		\centering
+		\includegraphics[width=0.98\linewidth]{G_sc_error.pdf}
+		\caption{\centering A $g(r)$-t közelítő függvények relatív hibája $r$ függvényében.}
+		\label{G-sc-error-fig}
+	\end{subfigure}
+	\caption{}
 \end{figure}
 
-Az ábrán azt látjuk, hogy a közel- és távoltéri közelítések jól illeszkednek a numerikus eredményhez a megfelelő tartományokban.  Az illeszkedés jóságát jellemezhetjük a függvények $g(\RR)$-től való relatív eltérésével.  Az eltérés meghatározásához használt képlet távoltéri esetben
-$$ \delta f_{r \gg \tilde{\lambda}_\text{D}}(\RR) = \left| \frac{f(\RR) - f_{r \gg \tilde{\lambda}_\text{D}}(\RR)}{f(\RR)} \right|. $$
-Közeltéri esetben is egy ugyanilyen képletet használtunk.  A relatív eltéréseket ábrázolva a \ref{G-sc-error-fig}.\ ábrán láthatjuk.
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=10cm]{G_sc_error.pdf}
-	\caption{A $g(\RR)$-t közelítő függvények relatív hibája $r$ függvényében.}
-	\label{G-sc-error-fig}
-\end{figure}
-
-\subsection{Eredmények összefoglalása}
-
-Az előzőekben meghatároztuk az $F(\RR)$ és $G(\RR)$ függvények alakját mind normál, mind szupravezető állapotban.  A függvényekhez ezen kívül adtunk egy közeltéri és egy távoltéri közelítést is.  A kettő közül a távoltéri mindig kiszámolható analitikusan.
 
 
 % ================================================================
 \section{Spin- és töltéskorrelációs függvények}
 
-\subsection{Töltéskorreláció}
-\subsection{Spinkorreláció}
+A spin- és töltéskorrelációs függvényeket már korábban kifejeztük az $F(\RR)$ és $G(\RR)$ függvények segítségével, így azokat egyszerűen ki tudjuk számolni ezek segítségével.  Itt is érdemes burkoló görbéket számolni, amik egyszerűen $\left| f(r) \right|^2$ és $\left| g(r) \right|^2$ lesznek.  A korrelációs függvények burkolójára használjuk az alábbi jelölést,
+\begin{equation}
+	e^2 \, \overline{\expval{\delta\rho(\RR) \delta\rho(0)}} ~~~ \text{és} ~~~ \overline{\expval{\va*{s}(\RR) \cdot \va*{s}(0)}}.
+\end{equation}
+A burkolókat így könnyen felírhatjuk a \eqref{charge-F-G} és \eqref{spin-F-G} összefüggések segítségével,
+\begin{equation} \label{charge-spin-bound}
+\begin{split}
+	e^2 \, \overline{\expval{\delta\rho(\RR) \delta\rho(0)}} & = 2 \, e^2 \left( \left| f(r) \right|^2 - \left| g(r) \right|^2 \right), \\
+	\overline{\expval{\va*{s}(\RR) \cdot \va*{s}(0)}} & = \frac{3}{2} \left( -\left| f(r) \right|^2 - \left| g(r) \right|^2 \right).
+\end{split}
+\end{equation}
+
+
+\subsection{Töltéskorrelációs függvény}
+
+A töltéskorrelációs függvény burkolóját a \eqref{charge-spin-bound} összefüggés szerint számolhatjuk ki.  Itt is vizsgáljuk az $\tilde{r} \gg \tilde{\lambda}_\text{D}$ és $\tilde{r} \ll \tilde{\lambda}_\text{D}$ tartományokat.  Az $\tilde{r} \gg \tilde{\lambda}_\text{D}$ távoltéri közelítésben
+\begin{equation} \label{f2-g2-far}
+\begin{split}
+	\left| f(r) \right|^2 & \approx \left( \frac{1}{2 \pi^2} \, \frac{\kF}{\xi_\text{c} r} \right)^2 \cdot K_0^2(\tilde{r}), \\
+	\left| g(r) \right|^2 & \approx \left( \frac{1}{2 \pi^2} \, \frac{\kF}{\xi_\text{c} r} \right)^2 \cdot K_1^2(\tilde{r}),
+\end{split}
+\end{equation}
+tehát a töltéskorrelációs függvény burkolója
+\begin{equation}
+\begin{split}
+	e^2 \, \overline{\expval{\delta\rho(\RR) \delta\rho(0)}} & \stackrel{\tilde{r} \gg \tilde{\lambda}_\text{D}}{\approx} 2 \, e^2 \left( \frac{1}{2 \pi^2} \, \frac{\kF}{\xi_\text{c} r} \right)^2 \cdot \left( K_0^2(\tilde{r}) - K_1^2(\tilde{r}) \right) \\
+	& \stackrel{\tilde{r} \gg 1}{\approx} -2 \, e^2 \left( \frac{1}{2 \pi^2} \, \frac{\kF}{\xi_\text{c} r} \right)^2 \cdot  \frac{\pi}{2 \tilde{r}^2} \exp(-2 \, \tilde{r}).
+\end{split}
+\end{equation}
+
+Az $\tilde{r} \ll \tilde{\lambda}_\text{D}$ közeltéri közelítésben
+\begin{equation} \label{f2-g2-near}
+\begin{split}
+	\left| g(r) \right|^2 & \approx \left( \frac{1}{2 \pi^2} \right)^2 \cdot \frac{1 + \left( \kF r \right)^2}{r^6}, \\
+	\left| f(r) \right|^2 & \ll \left| g(r) \right|^2,
+\end{split}
+\end{equation}
+amivel a töltéskorrelációs függvény burkolója
+\begin{equation}
+	e^2 \, \overline{\expval{\delta\rho(\RR) \delta\rho(0)}} \stackrel{\tilde{r} \ll \tilde{\lambda}_\text{D}}{\approx} -2 \, e^2 \left( \frac{1}{2 \pi^2} \right)^2 \cdot \frac{1 + \left( \kF r \right)^2}{r^6}.
+\end{equation}
+
+A korábbiakhoz hasonlóan a korrelációs függvényt numerikusan is ellenőriztük.  A számolás során itt is a $\left| \Delta \right| : \omega_\text{D} : \EF = 1 : 100 : 10000$ energia arányokat használtuk.  A $\overline{\expval{\delta\rho(\RR) \delta\rho(0)}}$ burkoló függvényt a közelítő függvényekkel együtt, illetve a közelítések relatív hibáit a \ref{rho-fig}.\ ábrán láthatjuk.  A haszált közelítő függvények itt is jól illeszkednek a megfelelő tartományokban a numerikusan számolt görbéhez.
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[t]{0.48\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{rho.pdf}
+		\caption{\centering A töltéskorrelációs függvény burkoló görbéje az $r$ függvényében, illetve a közel- \newline és távoltéri közelítő függvények.}
+	\end{subfigure}%
+	\begin{subfigure}[t]{0.48\linewidth}
+		\centering
+		\includegraphics[width=0.96\linewidth]{rho_error.pdf}
+		\caption{\centering A töltéskorrelációs függvény burkoló görbéjét közelítő függvények relatív hibája \newline $r$ függvényében.}
+	\end{subfigure}
+	\caption{}
+	\label{rho-fig}
+\end{figure}
+
+
+\subsection{Spinkorrelációs függvény}
+
+A spinkorrelációs függvény burkolóját a \eqref{charge-spin-bound} összefüggés alaján számolhatjuk ki.  Az $\tilde{r} \gg \tilde{\lambda}_\text{d}$ távoltéri közelítésben a \eqref{f2-g2-far} összefüggést használjuk fel, amivel a spinkorrelációs függvény
+\begin{equation}
+\begin{split}
+	\overline{\expval{\va*{s}(\RR) \cdot \va*{s}(0)}} & \stackrel{\tilde{r} \gg \tilde{\lambda}_\text{D}}{\approx} -\frac{3}{2} \left( \frac{1}{2 \pi^2} \, \frac{\kF}{\xi_\text{c} r} \right)^2 \cdot \left( K_0^2(\tilde{r}) + K_1^2(\tilde{r}) \right) \\
+	& \stackrel{\tilde{r} \gg 1}{\approx} -\frac{3}{2} \left( \frac{1}{2 \pi^2} \, \frac{\kF}{\xi_\text{c} r} \right)^2 \cdot \frac{\pi}{\tilde{r}} \exp(-2 \, \tilde{r}).
+\end{split}
+\end{equation}
+
+Az $\tilde{r} \ll \tilde{\lambda}_\text{D}$ közeltéri közelítésben a \eqref{f2-g2-near} összefüggés alapján a spinkorrelációs függvény
+\begin{equation}
+\begin{split}
+	\overline{\expval{\va*{s}(\RR) \cdot \va*{s}(0)}} & \stackrel{\tilde{r} \ll \tilde{\lambda}_\text{D}}{\approx} -\frac{3}{2} \left( \frac{1}{2 \pi^2} \right)^2 \cdot \frac{1 + \left( \kF r \right)^2}{r^6}.
+\end{split}
+\end{equation}
+
+Itt is csináltunk egy numerikus ellenőrzést ugyanolyan paraméterekkel, mint a töltéskorrelációs függvény esetén.  Az $\overline{\expval{\va*{s}(\RR) \cdot \va*{s}(0)}}$ burkoló függvényt a közelítő függvényekkel együtt, illetve a közelítések relatív hibáit a \ref{s-fig}.\ ábrán láthatjuk.  A használt közelítő függvények itt is jól illeszkednek a megfelelő tartományokban.
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}[t]{0.48\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{s.pdf}
+		\caption{\centering A spinkorrelációs függvény burkoló görbéje az $r$ függvényében, illetve a közel- \newline és távoltéri közelítő függvények.}
+	\end{subfigure}%
+	\begin{subfigure}[t]{0.48\linewidth}
+		\centering
+		\includegraphics[width=0.96\linewidth]{s_error.pdf}
+		\caption{\centering A spinkorrelációs függvény burkoló görbéjét közelítő függvények relatív hibája \newline $r$ függvényében.}
+	\end{subfigure}
+	\caption{}
+	\label{s-fig}
+\end{figure}
+
+
+
+% ================================================================
+\section{Konklúzió}
+
+
 
 
 
 \pdfbookmark{Hivatkozások}{bm:hivatkozasok}
 
 \begin{thebibliography}{}
+
+\bibitem{openstax}
+OpenStax College. (2017). \emph{College Physics}. OpenStax College. \\
+\href{https://openstax.org/details/books/college-physics-ap-courses}{\texttt{https://openstax.org/details/books/college-physics-ap-courses}}
+
+\bibitem{superconductor-gap}
+Electric control of superconducting transition through a spin-orbit coupled interface - Scientific Figure on ResearchGate. \\
+\href{https://www.researchgate.net/figure/Sketch-of-the-superconducting-gap-D-as-a-function-of-temperature-T-for-a-superconducting_fig3_305412985}{\texttt{https://www.researchgate.net/figure/Sketch-of-the-superconducting-gap-D- as-a-function-of-temperature-T-for-a-superconducting\_fig3\_305412985}}
+
 \end{thebibliography}
 
 
