@@ -18,6 +18,7 @@
 \usepackage{physics}
 \usepackage{csquotes}
 \usepackage[nottoc,numbib]{tocbibind}
+\usepackage{float}
 
 \hypersetup{allcolors=black}
 \hypersetup{pdfstartview=FitH}
@@ -60,6 +61,7 @@
 \newcommand{\kF}{{k_\text{F}}}
 \newcommand{\EF}{{E_\text{F}}}
 \newcommand{\vF}{{v_\text{F}}}
+\newcommand{\xic}{{\xi_\text{c}}}
 
 \begin{document}
 
@@ -457,6 +459,7 @@ A továbbiakban hasznos lesz, ha a $\kF r$ szerinti oszcillációt figyelmen kí
 	G_\text{n}(\RR) = \Im{g_\text{n}(r) \cdot e^{i \kF r}}, ~~~ g_\text{n}(\RR) = \frac{1}{2 \pi^2} \cdot \frac{1 - i \kF r}{r^3}.
 \end{equation}
 Így $\left| g_\text{n}(\RR) \right|$ nem más, mint $G_\text{n}(\RR)$ burkológörbéje.  A $G_\text{n}(\RR)$ és $g_\text{n}(r)$ függvényeket a \ref{G-normal-fig}.\ ábrán láthatjuk.  A függvényeket az $n$ részecskesűrűséggel normáltuk.
+
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=10cm]{G_normal.pdf}
@@ -487,11 +490,11 @@ A integrálban tényezőként lévő $k$ értékét egyszerűen $\kF$-el közel�
 
 Még érdemes bevezetni a $\Delta$ és $\omega_\text{D}$ energiákhoz tartozó hosszskálákat, a szupravezető korrelációs hosszat és a Debeye hullámhosszat,
 \begin{equation}
-	\xi_\text{c} \equiv \frac{\vF}{\left| \Delta \right|} ~~~ \text{és} ~~~ \lambda_\text{D} \equiv \frac{\vF}{\omega_\text{D}},
+	\xic \equiv \frac{\vF}{\left| \Delta \right|} ~~~ \text{és} ~~~ \lambda_\text{D} \equiv \frac{\vF}{\omega_\text{D}},
 \end{equation}
 illetve az $r$ és $\lambda_\text{D}$ szupravezető korrelációs hosszhoz viszonyított értékét,
 \begin{equation}
-	\tilde{r} \equiv \frac{r}{\xi_\text{c}} ~~~ \text{és} ~~~ \tilde{\lambda}_\text{D} \equiv \frac{\lambda_\text{D}}{\xi_\text{c}}.
+	\tilde{r} \equiv \frac{r}{\xic} ~~~ \text{és} ~~~ \tilde{\lambda}_\text{D} \equiv \frac{\lambda_\text{D}}{\xic}.
 \end{equation}
 
 Mindezeket felhasználva
@@ -527,7 +530,11 @@ A képzetes tengely menti integrál értékét vizsgáljuk meg $\tilde{r} \gg \t
 \end{equation}
 ahol $K_n(x)$ a másodfajú módosított Bessel-függvényeket jelöli.  A reziduumok járuléka $\exp(-\frac{\tilde{r}}{\sqrt{2} \tilde{\lambda}_\text{D}})$ szerint cseng le távoltérben, ami sokkal gyorsabb, mint $K_0(\tilde{r} \gg 1) \sim \frac{\exp(-\tilde{r})}{\sqrt{\tilde{r}}}$ lecsengése, tehát itt azoktól is eltekinthetünk.  Így végül távoltérben az $F(\RR)$ függvény alakja
 \begin{equation}
-	F(\RR) \stackrel{\tilde{r} \gg \tilde{\lambda}_\text{D}}{\approx} \frac{1}{2 \pi^2} \, \frac{1}{\vF r} \cdot K_0(\tilde{r}) \cdot \sin(\kF r) \stackrel{\tilde{r} \gg 1}{\approx} \frac{1}{2 \pi^2} \, \frac{1}{\vF r} \sqrt{\frac{\pi}{2 \tilde{r}}} \cdot e^{-\tilde{r}} \cdot \sin(\kF r).
+	F(\RR \gg \lambda_\text{D}) \approx \frac{1}{2 \pi^2} \, \frac{1}{\vF r} \cdot K_0(\tilde{r}) \cdot \sin(\kF r).
+\end{equation}
+A függvény asszimptotikus viselkedését is meghatározhatjuk ebből,
+\begin{equation}
+	F(\RR \gg \xic) \approx \frac{1}{2 \pi^2} \, \frac{1}{\vF r} \sqrt{\frac{\pi}{2 \tilde{r}}} \cdot e^{-\tilde{r}} \cdot \sin(\kF r).
 \end{equation}
 
 Az $\tilde{r} \ll \tilde{\lambda}_\text{D}$ közeltéri közelítésben az integrálban lévő exponenciális függvényt sorba fejthetjük $\tilde{r}$ szerint,
@@ -539,18 +546,18 @@ Az $\tilde{r} \ll \tilde{\lambda}_\text{D}$ közeltéri közelítésben az integ
 
 A $G_\text{n}(\RR)$ számolásához hasonlóan itt is bevezethetünk egy $f(r)$ komplex mennyiséget, ami az $F(\RR)$ függvény burkolóját jellemzi.  A \eqref{f-def} összefüggés alapján felírhatjuk, hogy
 \begin{equation}
-	f(r) = \frac{1}{2 \pi^2} \, \frac{\kF}{\xi_\text{c} r} \, \frac{\Delta^*}{\left| \Delta \right|} \cdot I \approx \frac{1}{2 \pi^2} \, \frac{\kF}{\xi_\text{c} r} \, \frac{\Delta^*}{\left| \Delta \right|} \cdot \left\{ \begin{array}{cl}
-		K_0(r / \xi_\text{c}), & \text{ha } r \gg \lambda_\text{D} \\
-		A - B \cdot r / \xi_\text{c} + R_1 + R_2, & \text{ha } r \ll \lambda_\text{D}
+	f(r) = \frac{1}{2 \pi^2} \, \frac{\kF}{\xic r} \, \frac{\Delta^*}{\left| \Delta \right|} \cdot I \approx \frac{1}{2 \pi^2} \, \frac{\kF}{\xic r} \, \frac{\Delta^*}{\left| \Delta \right|} \cdot \left\{ \begin{array}{cl}
+		K_0(r / \xic), & \text{ha } r \gg \lambda_\text{D} \\
+		A - B \cdot r / \xic + R_1 + R_2, & \text{ha } r \ll \lambda_\text{D}
 	\end{array} \right. ,
 \end{equation}
 ahol $A$ és $B$ az \eqref{f-near-field} összefüggésben szereplő integrálok értékei.  Ezzel az $F(\RR)$ függvény
 \begin{equation}
 \begin{split}
 	F(\RR) & = \Im{e^{i \kF r} \cdot f(r)} \approx \\
-	& \approx \frac{1}{2 \pi^2} \, \frac{\kF}{\xi_\text{c} r} \, \Im{\frac{\Delta^*}{\left| \Delta \right|} \cdot e^{i \kF r}} \cdot \left\{ \begin{array}{cl}
-		K_0(r / \xi_\text{c}), & \text{ha } r \gg \lambda_\text{D} \\
-		A - B \cdot r / \xi_\text{c} + R_1 + R_2, & \text{ha } r \ll \lambda_\text{D}
+	& \approx \frac{1}{2 \pi^2} \, \frac{\kF}{\xic r} \, \Im{\frac{\Delta^*}{\left| \Delta \right|} \cdot e^{i \kF r}} \cdot \left\{ \begin{array}{cl}
+		K_0(r / \xic), & \text{ha } r \gg \lambda_\text{D} \\
+		A - B \cdot r / \xic + R_1 + R_2, & \text{ha } r \ll \lambda_\text{D}
 	\end{array} \right. .
 \end{split}
 \end{equation}
@@ -596,30 +603,30 @@ Itt is elvégezhetjük a \eqref{k-xi-approx} közelítést azzal a különbségg
 \end{equation}
 Az integrált $x = \frac{\xi}{\left| \Delta \right|}$ változó szerint átírva így
 \begin{equation}
-	\tilde{G}_\text{n}(\RR) = \frac{1}{2 \pi^2} \, \frac{\kF}{\xi_\text{c} r} \Im{ e^{i \kF r} \int\limits_{-\infty}^0 \dd{x} ~ \left( 1 + \frac{x}{\kF \xi_\text{c}} \right) e^{i \tilde{r} x} \cdot \frac{1}{\left( \tilde{\lambda}_\text{D} x \right)^4 + 1} }.
+	\tilde{G}_\text{n}(\RR) = \frac{1}{2 \pi^2} \, \frac{\kF}{\xic r} \Im{ e^{i \kF r} \int\limits_{-\infty}^0 \dd{x} ~ \left( 1 + \frac{x}{\kF \xic} \right) e^{i \tilde{r} x} \cdot \frac{1}{\left( \tilde{\lambda}_\text{D} x \right)^4 + 1} }.
 \end{equation}
 A továbbiakban jelöljük az itt megjelenő integrált $I_\text{n}$-el.  Hasonlóan az $F(\RR)$ számolásához itt is transzformáljuk az integrálási görbét a komplex síkon úgy, hogy a képzetes tengely mentén integráljunk.  Most is megjelennik egy reziduum az $x_2 = \frac{i - 1}{\sqrt{2} \tilde{\lambda}_\text{D}}$ pontban, így $I_\text{n}$ értéke
 \begin{equation}
-	I_\text{n} = \int\limits_0^\infty \dd{y} ~ \left( -i + \frac{y}{\kF \xi_\text{c}} \right) e^{-\tilde{r} y} \cdot \frac{1}{\left( \tilde{\lambda}_\text{D} y \right)^4 + 1} + R_{2 \text{n}},
+	I_\text{n} = \int\limits_0^\infty \dd{y} ~ \left( -i + \frac{y}{\kF \xic} \right) e^{-\tilde{r} y} \cdot \frac{1}{\left( \tilde{\lambda}_\text{D} y \right)^4 + 1} + R_{2 \text{n}},
 \end{equation}
 ahol
 \begin{equation}
-	R_{2 \text{n}} = 2 \pi i \left( 1 + \frac{x_2}{\kF \xi_\text{c}} \right) e^{i \tilde{r} x_2} \cdot \frac{1}{4 \tilde{\lambda}_\text{D}^4 x_2^3} = \left( -\frac{i \pi}{2} - \frac{\pi}{2 \kF \xi_\text{c} \tilde{\lambda}_\text{D}^2} \right) \exp(-i \frac{\tilde{r}}{\sqrt{2} \tilde{\lambda}_\text{D}}) \exp(-\frac{\tilde{r}}{\sqrt{2} \tilde{\lambda}_\text{D}}).
+	R_{2 \text{n}} = 2 \pi i \left( 1 + \frac{x_2}{\kF \xic} \right) e^{i \tilde{r} x_2} \cdot \frac{1}{4 \tilde{\lambda}_\text{D}^4 x_2^3} = \left( -\frac{i \pi}{2} - \frac{\pi}{2 \kF \xic \tilde{\lambda}_\text{D}^2} \right) \exp(-i \frac{\tilde{r}}{\sqrt{2} \tilde{\lambda}_\text{D}}) \exp(-\frac{\tilde{r}}{\sqrt{2} \tilde{\lambda}_\text{D}}).
 \end{equation}
 
 Vizsgáljuk meg az integrál értékét $\tilde{r} \gg \tilde{\lambda}_\text{D}$ és $\tilde{r} \ll \tilde{\lambda}_\text{D}$ közelítések mellett is.  Az $\tilde{r} \gg \tilde{\lambda}_\text{D}$ távoltéri közelítésben a levágást elhanyagolhatjuk, tehát az integrál értéke
 \begin{equation} \label{g-n-far-field}
-	\int\limits_0^\infty \dd{y} ~ \left( -i + \frac{y}{\kF \xi_\text{c}} \right) e^{-\tilde{r} y} = -\frac{i}{\tilde{r}} + \frac{1}{\kF \xi_\text{c} \tilde{r}^2},
+	\int\limits_0^\infty \dd{y} ~ \left( -i + \frac{y}{\kF \xic} \right) e^{-\tilde{r} y} = -\frac{i}{\tilde{r}} + \frac{1}{\kF \xic \tilde{r}^2},
 \end{equation}
 míg az $\tilde{r} \ll \tilde{\lambda}_\text{D}$ közeltéri közelítésben az exponenciális tagot sorba fejthetjük, tehát az integrál értéke
 \begin{multline} \label{g-n-near-field}
-	\int\limits_0^\infty \dd{y} ~ \left( -i + \frac{y}{\kF \xi_\text{c}} \right) \left( 1 - \tilde{r} y \right) \cdot \frac{1}{\left( \tilde{\lambda}_\text{D} y \right)^4 + 1} = \\
-	= \frac{-i \pi}{2 \sqrt{2} \tilde{\lambda}_\text{D}} + \frac{\pi}{4 \kF \xi_\text{c} \tilde{\lambda}_\text{D}^2} - \tilde{r} \cdot \left( \frac{-i \pi}{4 \tilde{\lambda}_\text{D}^2} + \frac{\pi}{2 \sqrt{2} \kF \xi_\text{c} \tilde{\lambda}_\text{D}^3} \right)
+	\int\limits_0^\infty \dd{y} ~ \left( -i + \frac{y}{\kF \xic} \right) \left( 1 - \tilde{r} y \right) \cdot \frac{1}{\left( \tilde{\lambda}_\text{D} y \right)^4 + 1} = \\
+	= \frac{-i \pi}{2 \sqrt{2} \tilde{\lambda}_\text{D}} + \frac{\pi}{4 \kF \xic \tilde{\lambda}_\text{D}^2} - \tilde{r} \cdot \left( \frac{-i \pi}{4 \tilde{\lambda}_\text{D}^2} + \frac{\pi}{2 \sqrt{2} \kF \xic \tilde{\lambda}_\text{D}^3} \right)
 \end{multline}
 
 A szupravezető állapot $\tilde{G}_\text{SC}(\RR)$ járuléka is hasonlóan számítható, a levezetésben annyi különbség van, hogy a \eqref{k-xi-approx} közelítést nem alkalmazzuk az integrálban tényezőként megjelenő $k$-ra.  Az $x = \frac{\xi}{\left| \Delta \right|}$ változó szerint felírt integrállal a $G_\text{SC}(\RR)$ függvény értéke
 \begin{equation}
-	\tilde{G}_\text{SC}(\RR) \approx \frac{1}{2 \pi^2} \, \frac{\kF}{\xi_\text{c} r} \Im{ e^{i \kF r} \int\limits_{-\infty}^\infty \dd{x} ~ \frac{\sqrt{1 + x^2} - x}{2 \sqrt{1 + x^2}} \, e^{i \tilde{r} x} \cdot \frac{1}{\left( \tilde{\lambda}_\text{D} x \right)^4 + 1} }.
+	\tilde{G}_\text{SC}(\RR) \approx \frac{1}{2 \pi^2} \, \frac{\kF}{\xic r} \Im{ e^{i \kF r} \int\limits_{-\infty}^\infty \dd{x} ~ \frac{\sqrt{1 + x^2} - x}{2 \sqrt{1 + x^2}} \, e^{i \tilde{r} x} \cdot \frac{1}{\left( \tilde{\lambda}_\text{D} x \right)^4 + 1} }.
 \end{equation}
 A továbbiakban jelöljük a zárójel beli integrált $I_\text{SC}$-vel.  Hasonlóan a korábbi számításokhoz, itt is transzformáljuk az integrálási görbét úgy, hogy a képzetes tengely mentén integráljunk.  Az integrál értéke
 \begin{equation}
@@ -652,8 +659,8 @@ Közeltéri közelítésben az integrálban lévő exponenciális függvényt so
 
 A már korábban bevezetett $g_\text{n}(r)$-hez hasonlóan itt is definiálhatunk burkoló mennyiségeket,
 \begin{equation}
-	\tilde{g}_\text{n}(r) = \frac{1}{2 \pi^2} \, \frac{\kF}{\xi_\text{c} r} \cdot I_\text{n}, ~~~
-	\tilde{g}_\text{SC}(r) = \frac{1}{2 \pi^2} \, \frac{\kF}{\xi_\text{c} r} \cdot I_\text{SC},
+	\tilde{g}_\text{n}(r) = \frac{1}{2 \pi^2} \, \frac{\kF}{\xic r} \cdot I_\text{n}, ~~~
+	\tilde{g}_\text{SC}(r) = \frac{1}{2 \pi^2} \, \frac{\kF}{\xic r} \cdot I_\text{SC},
 \end{equation}
 és a teljes $G(\RR)$ függvény $g(r)$ burkolóját kifejezhetjük ezekkel,
 \begin{equation}
@@ -662,38 +669,38 @@ A már korábban bevezetett $g_\text{n}(r)$-hez hasonlóan itt is definiálhatun
 Vizsgáljuk meg ennek a függvénynek a távol- és közeltéri értékeit.  Távoltérben a \eqref{g-n-far-field} és \eqref{g-sc-far-field} összefüggéseket használhatjuk,
 \begin{equation}
 \begin{split}
-	g(r \gg \lambda_\text{D}) & \approx \frac{1}{2 \pi^2} \cdot \left( \frac{1 - i \kF r}{r^3} - \frac{\kF}{\xi_\text{c} r} \cdot \left( -\frac{i}{\tilde{r}} + \frac{1}{\kF \xi_\text{c} \tilde{r}^2} \right) + \frac{\kF}{\xi_\text{c} r} \cdot K_1(\tilde{r}) \right) \approx \\
-	& \approx \frac{1}{2 \pi^2} \, \frac{\kF}{\xi_\text{c} r} \cdot K_1(r / \xi_\text{c}).
+	g(r \gg \lambda_\text{D}) & \approx \frac{1}{2 \pi^2} \cdot \left( \frac{1 - i \kF r}{r^3} - \frac{\kF}{\xic r} \cdot \left( -\frac{i}{\tilde{r}} + \frac{1}{\kF \xic \tilde{r}^2} \right) + \frac{\kF}{\xic r} \cdot K_1(\tilde{r}) \right) \approx \\
+	& \approx \frac{1}{2 \pi^2} \, \frac{\kF}{\xic r} \cdot K_1(r / \xic).
 \end{split}
 \end{equation}
 Azt látjuk, hogy távoltérben a $g_\text{n}(r)$ teljesen kiesik, és csak a szupravezető járulék marad meg,
 \begin{equation}
-	g(r \gg \lambda_\text{D}) \approx \frac{1}{2 \pi^2} \, \frac{\kF}{\xi_\text{c} r} \cdot K_1(r / \xi_\text{c}),
+	g(r \gg \lambda_\text{D}) \approx \frac{1}{2 \pi^2} \, \frac{\kF}{\xic r} \cdot K_1(r / \xic),
 \end{equation}
 ezzel a $G(\RR)$ függvényt felírva
 \begin{equation}
-	G(\RR \gg \lambda_\text{D}) \approx \frac{1}{2 \pi^2} \, \frac{\kF}{\xi_\text{c} r} \cdot K_1(\tilde{r}) \cdot \sin(\kF r).
+	G(\RR \gg \lambda_\text{D}) \approx \frac{1}{2 \pi^2} \, \frac{\kF}{\xic r} \cdot K_1(\tilde{r}) \cdot \sin(\kF r).
 \end{equation}
 A függvény asszimptotikus viselkedését is meghatározhatjuk ebből,
 \begin{equation}
-	G(\RR \gg \xi_\text{c}) \approx \frac{1}{2 \pi^2} \, \frac{\kF}{\xi_\text{c} r} \sqrt{\frac{\pi}{2 \tilde{r}}} \cdot e^{-\tilde{r}} \cdot \sin(\kF r)
+	G(\RR \gg \xic) \approx \frac{1}{2 \pi^2} \, \frac{\kF}{\xic r} \sqrt{\frac{\pi}{2 \tilde{r}}} \cdot e^{-\tilde{r}} \cdot \sin(\kF r)
 \end{equation}
 
 Közeltérben a \eqref{g-n-near-field} és \eqref{g-sc-near-field} összefüggéseket használhatjuk,
 \begin{equation} \label{g-near-field}
-	g(r \ll \lambda_\text{D}) \approx \frac{1}{2 \pi^2} \cdot \left( \frac{1 - i \kF r}{r^3} + \frac{\kF}{\xi_\text{c} r} \cdot \left( A - B \cdot r / \xi_\text{c} - R_{2 \text{n}} + R_{1 \text{SC}} + R_{2 \text{SC}} \right) \right),
+	g(r \ll \lambda_\text{D}) \approx \frac{1}{2 \pi^2} \cdot \left( \frac{1 - i \kF r}{r^3} + \frac{\kF}{\xic r} \cdot \left( A - B \cdot r / \xic - R_{2 \text{n}} + R_{1 \text{SC}} + R_{2 \text{SC}} \right) \right),
 \end{equation}
 ahol $A$ és $B$ az egyes eseteknél számolt együtthatók különbsége.
 
 Végül $g(r)$ segítségével felírhatjuk a $G(\RR)$ függvény alakját,
 \begin{equation}
-	G(\RR \gg \lambda_\text{D}) \approx \frac{1}{2 \pi^2} \cdot \frac{\kF}{\xi_\text{c} r} \cdot K_1(r / \xi_\text{c}) \cdot \sin(\kF r),
+	G(\RR \gg \lambda_\text{D}) \approx \frac{1}{2 \pi^2} \cdot \frac{\kF}{\xic r} \cdot K_1(r / \xic) \cdot \sin(\kF r),
 \end{equation}
 és
 \begin{multline}
 	G(\RR \ll \lambda_\text{D}) \approx \frac{1}{2 \pi^2} \cdot \left( \frac{\sin(\kF r) - \kF r \cos(\kF r)}{r^3} +
 	\right. \\ \left. +
-	\frac{\kF}{\xi_\text{c} r} \cdot \sin(\kF r) \cdot \left( A - B \cdot r / \xi_\text{c} - R_{2 \text{n}} + R_{1 \text{SC}} + R_{2 \text{SC}} \right) \right)
+	\frac{\kF}{\xic r} \cdot \sin(\kF r) \cdot \left( A - B \cdot r / \xic - R_{2 \text{n}} + R_{1 \text{SC}} + R_{2 \text{SC}} \right) \right)
 \end{multline}
 
 Az eredmények ellenőrzésére $g(r)$ értékét numerikusan is kiszámoltuk, és összehasonlítottuk a kapott közelítések értékével.  A számolás során a $\left| \Delta \right| : \omega_\text{D} : \EF = 1 : 100 : 10000$ energia arányokat használtuk.  A kapott függvényeket az \ref{G-sc-fig}.\ ábrán láthatjuk.  Az ábrázoláshoz log-log skálát használtunk.
@@ -731,14 +738,14 @@ A spin- és töltéskorrelációs függvényeket már korábban kifejeztük az $
 	F^2(\RR) & = \left(\Im{ e^{i \kF r} \cdot f(r) }\right)^2 = \frac{\left| f(r) \right|^2 - \Re{ e^{2 \, i \kF r} \cdot f^2(r) }}{2}.
 \end{split}
 \end{equation}
-Ezeknek a függvényeknek az értékei rendre a $\left[ 0, \left| g(r) \right|^2 \right]$ és $\left[ 0, \left| f(r) \right|^2 \right]$ tartományokban vannak.  A korrelációs függvények burkolójára használjuk az alábbi jelölést,
+Ezeknek a függvényeknek az értékei rendre a $\left[ 0, \left| g(r) \right|^2 \right]$ és $\left[ 0, \left| f(r) \right|^2 \right]$ tartományokban vannak.  A továbbiakban használjuk az alábbi jelölést,
 \begin{equation}
 \begin{split}
 	\expval{\delta\rho(\RR) \delta\rho(0)} & = \Re{g_{\rho 0}(r) - e^{2 \, i \kF r} \cdot g_\rho(r)}, \\
 	\expval{\va*{s}(\RR) \cdot \va*{s}(0)} & = \Re{g_{\va*{s} 0}(r) - e^{2 \, i \kF r} \cdot g_{\va*{s}}(r)}.
 \end{split}
 \end{equation}
-A burkolókat így könnyen felírhatjuk a \eqref{charge-F-G}, \eqref{spin-F-G} és \eqref{F2-G2-bound} összefüggések segítségével,
+Az itt megjelenő burkolókat így könnyen felírhatjuk a \eqref{charge-F-G}, \eqref{spin-F-G} és \eqref{F2-G2-bound} összefüggések segítségével,
 \begin{equation} \label{charge-spin-bound}
 \begin{split}
 	g_{\rho 0}(r) = \left| f(r) \right|^2 - \left| g(r) \right|^2, ~~~ & g_{\va*{s} 0}(r) = \frac{3}{4} \left( -\left| f(r) \right|^2 - \left| g(r) \right|^2 \right), \\
@@ -776,7 +783,7 @@ Mindkét korrelátor függvény a $-G_\text{n}^2(\RR)$ függvénnyel arányos.  
 	\label{G2-normal-fig}
 \end{figure}
 
-Az ábrán azt látjuk, hogy a függvény $r = 0$ esetén egy negatív véges értéket vesz föl, egyébként pedig gyorsan lecseng.  Az $r = 0$ helyen lévő lyuk az úgynevezett Pauli-lyuk.  Ez a Pauli-elv következménye, ami szerint nem lehet két elektron egyszerre ugyanabban az állapotban.  Töltéskorreláció esetén ez azt eredményezi, hogy a nagy távolságoknál várt átlagos részecskeszám négyzetéhez képest egy kisebb érték fog megjelenni, mert az origóban lévő elektron kiszorítja a többit arról a helyről.  Spinkorreláció esetén is hasonló történik, viszont ott az origóban lévő elektron az azonos spinű elektronokat szorítja ki, ezért egy negatív korrelációt kapunk.
+Az ábrán azt látjuk, hogy a függvény $r = 0$ esetén egy negatív véges értéket vesz föl, egyébként pedig gyorsan lecseng.  Az $r = 0$ helyen lévő lyuk az úgynevezett Pauli-lyuk.  Ez a Pauli-elv következménye, ami szerint nem lehet két elektron egyszerre ugyanabban az állapotban.  Töltéskorreláció esetén ez azt eredményezi, hogy a nagy távolságoknál várt átlagos részecskeszám négyzetéhez képest ennek a fele fog megjelenni, mert az origóban lévő elektron kiszorítja a többit arról a helyről.  Spinkorreláció esetén is hasonló történik.  Mivel az origóban lévő elektron az azonos spinű elektronokat szorítja ki, ezért egy negatív korrelációt kapunk.
 
 
 \subsection{Töltéskorrelációs függvény}
@@ -784,17 +791,24 @@ Az ábrán azt látjuk, hogy a függvény $r = 0$ esetén egy negatív véges é
 A töltéskorrelációs függvény burkolóját a \eqref{charge-spin-bound} összefüggés szerint számolhatjuk ki.  Itt is vizsgáljuk az $r \gg \lambda_\text{D}$ és $r \ll \lambda_\text{D}$ tartományokat.  Az $r \gg \lambda_\text{D}$ távoltéri közelítésben
 \begin{equation} \label{f2-g2-far}
 \begin{split}
-	f^2(r) \approx \left| f(r) \right|^2 & \approx \left( \frac{1}{2 \pi^2} \, \frac{\kF}{\xi_\text{c} r} \right)^2 \cdot K_0^2(r / \xi_\text{c}), \\
-	g^2(r) \approx \left| g(r) \right|^2 & \approx \left( \frac{1}{2 \pi^2} \, \frac{\kF}{\xi_\text{c} r} \right)^2 \cdot K_1^2(r / \xi_\text{c}),
+	f^2(r) \approx \left| f(r) \right|^2 & \approx \left( \frac{1}{2 \pi^2} \, \frac{\kF}{\xic r} \right)^2 \cdot K_0^2(r / \xic), \\
+	g^2(r) \approx \left| g(r) \right|^2 & \approx \left( \frac{1}{2 \pi^2} \, \frac{\kF}{\xic r} \right)^2 \cdot K_1^2(r / \xic),
 \end{split}
 \end{equation}
-így a töltéskorrelációs függvény burkolóji
+így a töltéskorrelációs függvény burkolói
 \begin{equation}
-	g_{\rho 0}(r \gg \lambda_\text{D}) \approx g_\rho(r \gg \lambda_\text{D}) \approx \left( \frac{1}{2 \pi^2} \, \frac{\kF}{\xi_\text{c} r} \right)^2 \cdot \left( K_0^2(r / \xi_\text{c}) - K_1^2(r / \xi_\text{c}) \right),
+	g_{\rho 0}(r \gg \lambda_\text{D}) \approx g_\rho(r \gg \lambda_\text{D}) \approx \left( \frac{1}{2 \pi^2} \, \frac{\kF}{\xic r} \right)^2 \cdot \left( K_0^2(r / \xic) - K_1^2(r / \xic) \right),
 \end{equation}
-amik $r \gg \xi_\text{c}$ esetén tovább egyszerűsödnek,
+amik $r \gg \xic$ esetén tovább egyszerűsödnek,
 \begin{equation}
-	g_{\rho 0}(r \gg \xi_\text{c}) \approx g_\rho(r \gg \xi_\text{c}) \approx -\left( \frac{1}{2 \pi^2} \, \frac{\kF}{r} \right)^2 \cdot \frac{\pi}{2 \, r^2} \, \exp(-2 \, r / \xi_\text{c}) \sim -\frac{\exp(-2 \, r / \xi_\text{c})}{r^4}.
+	g_{\rho 0}(r \gg \xic) \approx g_\rho(r \gg \xic) \approx -\left( \frac{1}{2 \pi^2} \, \frac{\kF}{r} \right)^2 \cdot \frac{\pi}{2 \, r^2} \, \exp(-2 \, r / \xic) \sim -\frac{\exp(-2 \, r / \xic)}{r^4}.
+\end{equation}
+Ezekkel felírhatjuk a töltéskorrelációs függvény teljes közelítő alakját $r \gg \lambda_\text{D}$ és $r \gg \xic$ esetén,
+\begin{equation}
+\begin{split}
+	\expval{\delta\rho(\RR \gg \lambda_\text{D}) \delta\rho(0)} & \approx \left( \frac{1}{2 \pi^2} \, \frac{\kF}{\xic r} \right)^2 \cdot \left( K_0^2(r / \xic) - K_1^2(r / \xic) \right) \cdot \left( 1 - \cos(2 \, \kF r) \right), \\
+	\expval{\delta\rho(\RR \gg \xic) \delta\rho(0)} & \approx \left( \frac{1}{2 \pi^2} \, \frac{\kF}{r} \right)^2 \cdot \frac{\pi}{2 \, r^2} \, \exp(-2 \, r / \xic) \cdot \left( 1 - \cos(2 \, \kF r) \right),
+\end{split}
 \end{equation}
 
 Az $r \ll \lambda_\text{D}$ közeltéri közelítésben belátható, hogy $\left| f(r) \right|^2 \ll \left| g(r) \right|^2$, így a burkoló függvények
@@ -805,7 +819,7 @@ lesznek, ahol $g(r)$ a \eqref{g-near-field} összefüggés alapján írható fel
 
 A korábbiakhoz hasonlóan a korrelációs függvényt numerikusan is ellenőriztük.  A számolás során itt is a $\left| \Delta \right| : \omega_\text{D} : \EF = 1 : 100 : 10000$ energia arányokat használtuk.  Az ábrázolásnál a $\expval{\delta\rho(\RR) \delta\rho(0)}$ korrelációs függvény harmonikus függésének amplitúdóját ábrázoltuk, vagyis $\left| g_\rho(r) \right|$-t, illetve ezek közelítő függvényeit.  Ezen kívül a közelítések relatív hibáit is ábrázoltuk.  Mindezt a \ref{rho-fig}.\ ábrán láthatjuk.  A haszált közelítő függvények itt is jól illeszkednek a megfelelő tartományokban a numerikusan számolt görbéhez.
 
-\begin{figure}[h!]
+\begin{figure}[H]
 	\centering
 	\begin{subfigure}[t]{0.48\linewidth}
 		\centering
@@ -824,20 +838,27 @@ A korábbiakhoz hasonlóan a korrelációs függvényt numerikusan is ellenőriz
 
 \subsection{Spinkorrelációs függvény}
 
-A spinkorrelációs függvény burkolóját a \eqref{charge-spin-bound} összefüggés alaján számolhatjuk ki.  Az $r \gg \lambda_\text{D}$ távoltéri közelítésben \eqref{f2-g2-far} összefüggés teljesül, így a spinkorrelációs függvény burkolóji
+A spinkorrelációs függvényt és annak burkolóját a \eqref{charge-spin-bound} összefüggés alaján számolhatjuk ki.  Az $r \gg \lambda_\text{D}$ távoltéri közelítésben \eqref{f2-g2-far} összefüggés teljesül, így a spinkorrelációs függvény burkolói
 \begin{equation}
-	g_{\va*{s} 0}(r \gg \lambda_\text{D}) \approx g_{\va*{s}}(r \gg \lambda_\text{D}) \approx -\frac{3}{4} \cdot \left( \frac{1}{2 \pi^2} \, \frac{\kF}{\xi_\text{c} r} \right)^2 \cdot \left( K_0^2(r / \xi_\text{c}) + K_1^2(r / \xi_\text{c}) \right),
+	g_{\va*{s} 0}(r \gg \lambda_\text{D}) \approx g_{\va*{s}}(r \gg \lambda_\text{D}) \approx -\frac{3}{4} \cdot \left( \frac{1}{2 \pi^2} \, \frac{\kF}{\xic r} \right)^2 \cdot \left( K_0^2(r / \xic) + K_1^2(r / \xic) \right),
 \end{equation}
-amik $r \gg \xi_\text{c}$ esetén tovább egyszerűsödnek,
+amik $r \gg \xic$ esetén tovább egyszerűsödnek,
 \begin{equation}
-	g_{\va*{s} 0}(r \gg \xi_\text{c}) \approx g_{\va*{s}}(r \gg \xi_\text{c}) \approx -\frac{3}{4} \cdot \left( \frac{1}{2 \pi^2} \, \frac{\kF}{\xi_\text{c} r} \right)^2 \cdot \frac{\pi}{\xi_\text{c} r} \, \exp(-2 \, r / \xi_\text{c}) \sim -\frac{\exp(-2 \, r / \xi_\text{c})}{r^3}.
+	g_{\va*{s} 0}(r \gg \xic) \approx g_{\va*{s}}(r \gg \xic) \approx -\frac{3}{4} \cdot \left( \frac{1}{2 \pi^2} \, \frac{\kF}{r} \right)^2 \cdot \frac{\pi}{\xic r} \, \exp(-2 \, r / \xic) \sim -\frac{\exp(-2 \, r / \xic)}{r^3}.
+\end{equation}
+Ezekkel felírhatjuk a spinkorrelációs függvény teljes közelítő alakját $r \gg \lambda_\text{D}$ és $r \gg \xic$ esetén,
+\begin{equation}
+\begin{split}
+	\expval{\va*{s}(\RR \gg \lambda_\text{d}) \cdot \va*{s}(0)} & \approx -\frac{3}{4} \cdot \left( \frac{1}{2 \pi^2} \, \frac{\kF}{\xic r} \right)^2 \cdot \left( K_0^2(r / \xic) + K_1^2(r / \xic) \right) \cdot \left( 1 - \cos(2 \, \kF r) \right), \\
+	\expval{\va*{s}(\RR \gg \xic) \cdot \va*{s}(0)} & \approx -\frac{3}{4} \cdot \left( \frac{1}{2 \pi^2} \, \frac{\kF}{r} \right)^2 \cdot \frac{\pi}{\xic r} \, \exp(-2 \, r / \xic) \cdot \left( 1 - \cos(2 \, \kF r) \right).
+\end{split}
 \end{equation}
 
 Az $r \ll \lambda_\text{D}$ közeltéri közelítésben itt is felhasználhatjuk, hogy $\left| f(r) \right|^2 \ll \left| g(r) \right|^2$, így a burkoló függvények
 \begin{equation}
 	g_{\va*{s} 0}(r \ll \lambda_\text{D}) \approx -\frac{3}{4} \cdot \left| g(r) \right|^2 ~~~ \text{és} ~~~ g_{\va*{s}}(r \ll \lambda_\text{D}) \approx -\frac{3}{4} \cdot g^2(r)
 \end{equation}
-lesznek, ahol $g(r)$ itt is a \eqref{g-near-field} összefüggés alapján írható fel.
+lesznek, ahol $g(r)$ a \eqref{g-near-field} összefüggés alapján írható fel.
 
 Itt is csináltunk egy numerikus ellenőrzést ugyanolyan paraméterekkel, mint a töltéskorrelációs függvény esetén.  A $\left| g_{\va*{s}}(r) \right|$ burkoló függvényt a közelítő függvényekkel együtt, illetve a közelítések relatív hibáit a \ref{s-fig}.\ ábrán láthatjuk.  A használt közelítő függvények itt is jól illeszkednek a megfelelő tartományokban.
 
@@ -862,26 +883,34 @@ Itt is csináltunk egy numerikus ellenőrzést ugyanolyan paraméterekkel, mint 
 % ================================================================
 \section{Konklúzió}
 
-A dolgozatban megvizsgáltuk, hogy egy szupravezetőben hogyan változnak a spin- és töltéskorrelációs függvények a normál állapothoz képest.  Három féle hosszskála jelent meg az eredményeinkben, ezek a $\kF$ Fermi-hullámszám, a $\lambda_\text{D} = \frac{\vF}{\hbar \omega_\text{D}}$ Debeye-hossz és a $\xi_\text{c} = \frac{\vF}{\Delta}$ szupravezető korrelációs hossz, ahol $\vF$ a Fermi-sebesség, $\omega_\text{D}$ a Debeye-frekvencia és $\Delta$ a szupravezető gap nagysága.  Az eredményeink akkor érvényesek, ha teljesül a $\kF^{-1} \ll \lambda_\text{D} \ll \xi_\text{c}$ reláció.  Ez a legtöbb közönséges szupravezetőben teljesül.
+A dolgozatban megvizsgáltuk, hogy egy szupravezetőben hogyan változnak a spin- és töltéskorrelációs függvények a normál állapothoz képest.  Háromféle hosszskála jelent meg az eredményeinkben, ezek a $\kF$ Fermi-hullámszám, a $\lambda_\text{D} = \frac{\vF}{\omega_\text{D}}$ Debeye-hossz és a $\xic = \frac{\hbar \vF}{\left| \Delta \right|}$ szupravezető korrelációs hossz, ahol $\vF$ a Fermi-sebesség, $\omega_\text{D}$ a Debeye-frekvencia és $\Delta$ a szupravezető gap nagysága.
 
-Viszont léteznek olyan szupravezetők, amikben a $\Delta_\KK$ gap függvénynek nódusai vannak (pl.\ magas hőmérsékletű szupravezetők).  Ezeknél a számításainkból arra következtethetünk, hogy a korrelációs függvények asszimptotikus viselkedése nem egy exponenciális, hanem valamilyen hatványfüggvényt követ.  Az eredményeink továbbá nem érvényesek olyan szupravezetőkre, amikre nem ismert a BCS-elmélet (pl.\ $\mathrm{U}\mathrm{Be}_{13}$).
-
-Azt tapasztaltuk, hogy a korrelációk lokalizáltabbak a szupravezető állapotban.  A szupravezető állapotban lévő spin- és töltéskorrelációs függvények lecsengése vezető rendben asszimptotikusan, az $r \gg \xi_\text{c}$ tartományban rendre $\frac{\exp(-2 \, r / \xi_\text{c})}{r^3}$ és $\frac{\exp(-2 \, r / \xi_\text{c})}{r^4}$.  Ezzel szemben a normál állapotban mindkét esetben $r^{-4}$-t kapunk.  Az exponenciális lecsengés karakterisztikus hossza $\xi_\text{c}$ a szupravezető korrelációs hossz.  Az $r \ll \lambda_\text{D}$ tartományban a szupravezető állapotbeli korrelációs függvények egy $\order{r^{-2}}$ kis korrekción kívül megegyeznek a normál állapotbeli függvényekkel.
+Azt tapasztaltuk, hogy a korrelációk lokalizáltabbak a szupravezető állapotban.  A szupravezető állapotban lévő spin- és töltéskorrelációs függvények lecsengése vezető rendben asszimptotikusan, az $r \gg \xic$ tartományban rendre $\sim \frac{\exp(-2 \, r / \xic)}{r^3}$ és $\sim \frac{\exp(-2 \, r / \xic)}{r^4}$.  Ezzel szemben a normál állapotban mindkét esetben $\sim r^{-4}$ lecsnegést kapunk.  Az exponenciális lecsengés karakterisztikus hossza $\xic$ a szupravezető korrelációs hossz.  Az $r \ll \lambda_\text{D}$ tartományban a szupravezető állapotbeli korrelációs függvények egy $\order{r^{-2}}$ kis korrekción kívül megegyeznek a normál állapotbeli függvényekkel.
 
 A korrelációs függvényekhez analitikus közelítő függvényeket is meghatároztunk $r \ll \lambda_\text{D}$ és $r \gg \lambda_\text{D}$ tartományokban.  Ezek érvényességi tartományát a $\lambda_\text{D}$ Debeye-hossz határozza meg.  Az ehhez tartozó $\omega_\text{D}$ Debeye-frekvenciának az a szerepe a szupravezetésben, hogy a Fermi-felület körül csak a $\pm \hbar \omega_\text{D}$ energiatartományban hatnak kölcsön az elektronok, és rendeződnek Cooper-párokba.  Ennek megfelelően $r \ll \lambda_\text{D}$ esetén lényegében a normál állapotbeli függvényeket kapjuk vissza.  Ezek a vizsgált 3 dimenziós esetben
-$$ g_{\va*{s}}(r), \ g_\rho(r) \sim \frac{\left( \sin(\kF r) - \kF r \cos(\kF r) \right)^2}{r^6} $$
+$$ \expval{\va*{s}(\RR) \cdot \va*{s}(0)}, \ \expval{\delta\rho(\RR) \delta\rho(0)} \sim \frac{\left( \sin(\kF r) - \kF r \cos(\kF r) \right)^2}{r^6} $$
 lecsengést mutatnak.
 
 Az $r \approx \lambda_\text{D}$ tartományban nem tudtunk analitikus megoldást adni a korrelációs függvények alakjára.  Itt a szupravezető járulék és a normál állapotbeli korrelációk keverednek, ahogy $r$ nő, a szupravezető járulék egyre dominánsabbá válik.  Habár analitikus megoldás nincs ebben a tartományban, numerikusan jól lehet számolni a két állapot járulékát.
 
-Az $r \gg \xi_\text{c}$ tartományban az $F(\RR)$ párkorrelációs függvény és a $G(\RR)$ normál korrelációs függvény vezető rendben asszimptotikusan azonosan viselkednek.  Spinkorrelációs függvénynél a két járulék erősíti egymást,
+Az $r \gg \lambda_\text{D}$ tartományban az $F(\RR)$ párkorrelációs függvény és a $G(\RR)$ normál korrelációs függvény másodfajú módosított Bessel-függvényeket követnek.  Spinkorrelációs függvénynél a két járulék erősíti egymást,
 \begin{equation}
-	g_{\va*{s}}(r \gg \xi_\text{c}) \sim \frac{\exp(-2 \, r / \xi_\text{c})}{r^3},
+	\expval{\va*{s}(\RR) \cdot \va*{s}(0)} \approx -\frac{3}{4} \cdot \left( \frac{1}{2 \pi^2} \, \frac{\kF}{\xic r} \right)^2 \cdot \left( K_0^2(r / \xic) + K_1^2(r / \xic) \right) \cdot \left( 1 - \cos(2 \, \kF r) \right),
 \end{equation}
-míg töltéskorrelációs függvénynél gyengítik egymást, tehát a vezető rendű tag kiesik,
+%	\expval{\va*{s}(\RR \gg \xic) \cdot \va*{s}(0)} & \approx -\frac{3}{4} \cdot \left( \frac{1}{2 \pi^2} \, \frac{\kF}{r} \right)^2 \cdot \frac{\pi}{\xic r} \, \exp(-2 \, r / \xic) \cdot \left( 1 - \cos(2 \, \kF r) \right).
+míg töltéskorrelációs függvénynél gyengítik egymást,
 \begin{equation}
-	g_\rho(r \gg \xi_\text{c}) \sim \frac{\exp(-2 \, r / \xi_\text{c})}{r^4}.
+	e^2 \, \expval{\delta\rho(\RR) \delta\rho(0)} \approx e^2 \left( \frac{1}{2 \pi^2} \, \frac{\kF}{\xic r} \right)^2 \cdot \left( K_0^2(r / \xic) - K_1^2(r / \xic) \right) \cdot \left( 1 - \cos(2 \, \kF r) \right).
 \end{equation}
+A korrelációs függvények asszimptotikus viselkedése $r \gg \xic$ esetén pedig
+\begin{equation}
+\begin{split}
+	\expval{\va*{s}(\RR \gg \xic) \cdot \va*{s}(0)} & \sim \frac{\exp(-2 \, r / \xic)}{r^3} \cdot \left( 1 - \cos(2 \, \kF r) \right), \\
+	\expval{\delta\rho(\RR \gg \xic) \delta\rho(0)} & \sim \frac{\exp(-2 \, r / \xic)}{r^4} \cdot \left( 1 - \cos(2 \, \kF r) \right).
+\end{split}
+\end{equation}
+
+Az eredményeink akkor érvényesek, ha teljesül a $\kF^{-1} \ll \lambda_\text{D} \ll \xic$ reláció.  Ez a legtöbb közönséges szupravezetőben így van.  Léteznek azonban olyan szupravezetők, amikben a $\Delta_\KK$ gap függvénynek nódusai vannak (pl.\ magas hőmérsékletű szupravezetők).  Ezeknél a számításainkból arra következtethetünk, hogy a korrelációs függvények asszimptotikus viselkedése nem egy exponenciális, hanem valamilyen hatványfüggvényt követ.  Az eredményeink továbbá nem érvényesek olyan szupravezetőkre, amikre nem ismert a BCS-elmélet (pl.\ $\mathrm{U}\mathrm{Be}_{13}$).
 
 
 
@@ -890,7 +919,7 @@ míg töltéskorrelációs függvénynél gyengítik egymást, tehát a vezető 
 \begin{thebibliography}{}
 
 \bibitem{openstax}
-OpenStax College. (2017). \emph{College Physics}. OpenStax College. \\
+OpenStax College: \emph{College Physics} (OpenStax College, 2017) \\
 \href{https://openstax.org/details/books/college-physics-ap-courses}{\texttt{https://openstax.org/details/books/college-physics-ap-courses}}
 
 \bibitem{superconductor-gap}
@@ -898,10 +927,10 @@ Electric control of superconducting transition through a spin-orbit coupled inte
 \href{https://www.researchgate.net/figure/Sketch-of-the-superconducting-gap-D-as-a-function-of-temperature-T-for-a-superconducting_fig3_305412985}{\texttt{https://www.researchgate.net/figure/Sketch-of-the-superconducting-gap-D- as-a-function-of-temperature-T-for-a-superconducting\_fig3\_305412985}}
 
 \bibitem{ashcroft}
-Neil W.\ Ashcroft, N.\ David Mermin. (1976). \emph{Solid State Physics}.
+Neil W.\ Ashcroft, N.\ David Mermin: \emph{Solid State Physics} (Saunders College, 1976)
 
 \bibitem{degennes}
-P.\ G.\ de Gennes. (1966). \emph{Superconductivity of Metals and Alloys}. \newline Advanced Book Classics.
+P.\ G.\ de Gennes: \emph{Superconductivity of Metals and Alloys}, Advanced Book Classics \newline (Westview Press, 1966)
 
 \end{thebibliography}
 
