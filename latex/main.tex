@@ -168,7 +168,7 @@ $$ V_{\KK \LL} = \left\{ \begin{array}{rl}
 	-V, & \text{ha } \left| \xi_\LL \right| < \hbar \omega_\text{D} \text{ és } \left| \xi_\KK \right| < \hbar \omega_\text{D} \\
 	0, & \text{egyébként}
 \end{array} \right. , $$
-ahol $\omega_\text{D}$ a Debeye-frekvencia.  Ez azt jelenti, hogy csak a Fermi-felület közelében lévő elektronok hatnak kölcsön.
+ahol $\omega_\text{D}$ a Debye-frekvencia.  Ez azt jelenti, hogy csak a Fermi-felület közelében lévő elektronok hatnak kölcsön.
 
 Bardeen, Cooper és Schrieffer a Hamilton-operátor alapállapotát a következő variációs hullámfüggvénnyel közelítette,
 \begin{equation} \label{phi-tilde}
@@ -287,7 +287,7 @@ A BCS-elméletben $\Delta_\KK$ definíciója
 \begin{equation}
 	\Delta_\KK = \Delta(\xi_\KK) = \left\{ \begin{array}{cl} \Delta, & \text{ha } \left| \xi_\KK \right| < \hbar \omega_\text{D} \\ 0, & \text{ha } \left| \xi_\KK \right| > \hbar \omega_\text{D} \end{array} \right. ,
 \end{equation}
-ahol $\omega_\text{D}$ a Debeye-frekvencia.  Ez azt jelenti, hogy csak a Fermi-felület közelében lévő elektronok vesznek részt a szupravezetésben.
+ahol $\omega_\text{D}$ a Debye-frekvencia.  Ez azt jelenti, hogy csak a Fermi-felület közelében lévő elektronok vesznek részt a szupravezetésben.
 
 E helyett az éles levágás helyett mi egy sima függvényt használunk, így a számolás során kapott integrálokat egyszerűbben tudjuk kezelni.  A használt levágás
 \begin{equation} \label{cutoff}
@@ -488,7 +488,7 @@ ahol $\vF = \frac{\kF}{m}$ a Fermi-sebesség.
 
 A integrálban tényezőként lévő $k$ értékét egyszerűen $\kF$-el közelítjük, mert a pontosabb közelítésből csak egy elhanyagolható nagyságú korrekció származna.
 
-Még érdemes bevezetni a $\Delta$ és $\omega_\text{D}$ energiákhoz tartozó hosszskálákat, a szupravezető korrelációs hosszat és a Debeye hullámhosszat,
+Még érdemes bevezetni a $\Delta$ és $\omega_\text{D}$ energiákhoz tartozó hosszskálákat, a szupravezető korrelációs hosszat és a Debye hullámhosszat,
 \begin{equation}
 	\xic \equiv \frac{\vF}{\left| \Delta \right|} ~~~ \text{és} ~~~ \lambda_\text{D} \equiv \frac{\vF}{\omega_\text{D}},
 \end{equation}
@@ -883,11 +883,11 @@ Itt is csináltunk egy numerikus ellenőrzést ugyanolyan paraméterekkel, mint 
 % ================================================================
 \section{Konklúzió}
 
-A dolgozatban megvizsgáltuk, hogy egy szupravezetőben hogyan változnak a spin- és töltéskorrelációs függvények a normál állapothoz képest.  Háromféle hosszskála jelent meg az eredményeinkben, ezek a $\kF$ Fermi-hullámszám, a $\lambda_\text{D} = \frac{\vF}{\omega_\text{D}}$ Debeye-hossz és a $\xic = \frac{\hbar \vF}{\left| \Delta \right|}$ szupravezető korrelációs hossz, ahol $\vF$ a Fermi-sebesség, $\omega_\text{D}$ a Debeye-frekvencia és $\Delta$ a szupravezető gap nagysága.
+A dolgozatban megvizsgáltuk, hogy egy szupravezetőben hogyan változnak a spin- és töltéskorrelációs függvények a normál állapothoz képest.  Háromféle hosszskála jelent meg az eredményeinkben, ezek a $\kF$ Fermi-hullámszám, a $\lambda_\text{D} = \frac{\vF}{\omega_\text{D}}$ Debye-hossz és a $\xic = \frac{\hbar \vF}{\left| \Delta \right|}$ szupravezető korrelációs hossz, ahol $\vF$ a Fermi-sebesség, $\omega_\text{D}$ a Debye-frekvencia és $\Delta$ a szupravezető gap nagysága.
 
 Azt tapasztaltuk, hogy a korrelációk lokalizáltabbak a szupravezető állapotban.  A szupravezető állapotban lévő spin- és töltéskorrelációs függvények lecsengése vezető rendben aszimptotikusan, az $r \gg \xic$ tartományban rendre $\sim \frac{\exp(-2 \, r / \xic)}{r^3}$ és $\sim \frac{\exp(-2 \, r / \xic)}{r^4}$.  Ezzel szemben a normál állapotban mindkét esetben $\sim r^{-4}$ lecsengést kapunk.  Az exponenciális lecsengés karakterisztikus hossza $\xic$ a szupravezető korrelációs hossz.  Az $r \ll \lambda_\text{D}$ tartományban a szupravezető állapotbeli korrelációs függvények egy $\order{r^{-2}}$ kis korrekción kívül megegyeznek a normál állapotbeli függvényekkel.
 
-A korrelációs függvényekhez analitikus közelítő függvényeket is meghatároztunk $r \ll \lambda_\text{D}$ és $r \gg \lambda_\text{D}$ tartományokban.  Ezek érvényességi tartományát a $\lambda_\text{D}$ Debeye-hossz határozza meg.  Az ehhez tartozó $\omega_\text{D}$ Debeye-frekvenciának az a szerepe a szupravezetésben, hogy a Fermi-felület körül csak a $\pm \hbar \omega_\text{D}$ energiatartományban hatnak kölcsön az elektronok, és rendeződnek Cooper-párokba.  Ennek megfelelően $r \ll \lambda_\text{D}$ esetén lényegében a normál állapotbeli függvényeket kapjuk vissza.  Ezek a vizsgált 3 dimenziós esetben
+A korrelációs függvényekhez analitikus közelítő függvényeket is meghatároztunk $r \ll \lambda_\text{D}$ és $r \gg \lambda_\text{D}$ tartományokban.  Ezek érvényességi tartományát a $\lambda_\text{D}$ Debye-hossz határozza meg.  Az ehhez tartozó $\omega_\text{D}$ Debye-frekvenciának az a szerepe a szupravezetésben, hogy a Fermi-felület körül csak a $\pm \hbar \omega_\text{D}$ energiatartományban hatnak kölcsön az elektronok, és rendeződnek Cooper-párokba.  Ennek megfelelően $r \ll \lambda_\text{D}$ esetén lényegében a normál állapotbeli függvényeket kapjuk vissza.  Ezek a vizsgált 3 dimenziós esetben
 $$ \expval{\va*{s}(\RR) \cdot \va*{s}(0)}, \ \expval{\delta\rho(\RR) \delta\rho(0)} \sim \frac{\left( \sin(\kF r) - \kF r \cos(\kF r) \right)^2}{r^6} $$
 lecsengést mutatnak.
 
